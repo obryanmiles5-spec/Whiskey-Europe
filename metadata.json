@@ -1,0 +1,6 @@
+{
+  "name": "Whiskey Europe",
+  "description": "Curated European boutique for rare single malts, aged whiskies, distillery map, tasting notes, regional shipping, and Cask Club rewards.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
