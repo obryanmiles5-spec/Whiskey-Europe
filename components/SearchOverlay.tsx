@@ -118,6 +118,7 @@ export default function SearchOverlay() {
                       src={w.image}
                       alt={w.name}
                       fill
+                      unoptimized
                       sizes="80px"
                       className="object-cover"
                       referrerPolicy="no-referrer"

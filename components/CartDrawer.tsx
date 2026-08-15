@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { X, Trash2, ShoppingBag, ShieldCheck, Truck, ArrowRight, Tag, AlertTriangle, CheckCircle, Wine } from 'lucide-react';
 import { useCart, EU_COUNTRIES } from '@/lib/cart-context';
 
@@ -109,12 +110,14 @@ export default function CartDrawer() {
                 <p className="text-xs text-[#a39382] max-w-xs mx-auto">
                   Explore our collection of rare single malts, Islay peated drams, and cask strength allocations.
                 </p>
-                <button
+                <Link
+                  href="/shop"
                   onClick={() => setIsCartOpen(false)}
-                  className="bg-amber-600 hover:bg-amber-500 text-black font-bold text-xs px-5 py-2.5 rounded-md shadow-md"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-black font-bold text-xs px-5 py-2.5 rounded-md shadow-md transition-all cursor-pointer"
                 >
-                  Start Exploring
-                </button>
+                  <ShoppingBag className="w-4 h-4" />
+                  <span>Shop Cellar Bottles</span>
+                </Link>
               </div>
             ) : (
               <div className="space-y-4">
@@ -130,6 +133,7 @@ export default function CartDrawer() {
                           src={item.whiskey.image}
                           alt={item.whiskey.name}
                           fill
+                          unoptimized
                           sizes="80px"
                           className="object-cover"
                           referrerPolicy="no-referrer"

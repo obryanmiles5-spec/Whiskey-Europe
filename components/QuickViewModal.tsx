@@ -10,6 +10,7 @@ export default function QuickViewModal() {
   const [quantity, setQuantity] = useState(1);
   const [engravingText, setEngravingText] = useState('');
   const [added, setAdded] = useState(false);
+  const [imgError, setImgError] = useState(false);
 
   if (!quickViewWhiskey) return null;
 
@@ -41,14 +42,16 @@ export default function QuickViewModal() {
           
           {/* Bottle Image */}
           <div className="md:col-span-5 relative h-72 md:h-96 w-full rounded-xl overflow-hidden bg-[#18130f] border border-[#261f18]">
-            {quickViewWhiskey.image ? (
+            {quickViewWhiskey.image && !imgError ? (
               <Image
                 src={quickViewWhiskey.image}
                 alt={quickViewWhiskey.name}
                 fill
+                unoptimized
                 sizes="(max-width: 768px) 100vw, 40vw"
                 className="object-cover object-center"
                 referrerPolicy="no-referrer"
+                onError={() => setImgError(true)}
               />
             ) : (
               <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-b from-[#1e1813] via-[#14100d] to-[#0a0806] p-6 text-center">

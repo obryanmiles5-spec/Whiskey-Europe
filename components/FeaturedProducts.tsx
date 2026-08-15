@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { ShoppingBag, Eye, Star, Flame, Shield, Award, CheckCircle2, Wine } from 'lucide-react';
+import Link from 'next/link';
+import { ShoppingBag, Eye, Star, Flame, Shield, Award, CheckCircle2, Wine, ArrowRight } from 'lucide-react';
 import { WHISKEY_COLLECTION, Whiskey } from '@/lib/whiskeys';
 import { useCart } from '@/lib/cart-context';
 
@@ -12,6 +13,7 @@ export default function FeaturedProducts() {
   const { addToCart, setQuickViewWhiskey } = useCart();
   const [activeTab, setActiveTab] = useState<FilterTab>('All');
   const [addedAnimationId, setAddedAnimationId] = useState<string | null>(null);
+  const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
 
   const displayedWhiskeys = WHISKEY_COLLECTION.filter((whiskey) => {
     if (activeTab === 'Balvenie Casks') return whiskey.category === 'Balvenie' || whiskey.name.toLowerCase().includes('balvenie');
@@ -20,7 +22,7 @@ export default function FeaturedProducts() {
     if (activeTab === 'Vintage & Single Cask') return whiskey.type.toLowerCase().includes('vintage') || whiskey.type.toLowerCase().includes('single') || whiskey.name.toLowerCase().includes('cask');
     if (activeTab === 'Tun Series') return whiskey.name.toLowerCase().includes('tun');
     return true;
-  });
+  }).slice(0, 4);
 
   const handleAddToCart = (whiskey: Whiskey) => {
     addToCart(whiskey, 1);
@@ -84,14 +86,16 @@ export default function FeaturedProducts() {
             >
               {/* Top Image Container */}
               <div className="relative h-64 sm:h-72 w-full bg-[#18130f] overflow-hidden">
-                {whiskey.image ? (
+                {whiskey.image && !imageErrors[whiskey.id] ? (
                   <Image
                     src={whiskey.image}
                     alt={whiskey.name}
                     fill
+                    unoptimized
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
                     referrerPolicy="no-referrer"
+                    onError={() => setImageErrors((prev) => ({ ...prev, [whiskey.id]: true }))}
                   />
                 ) : (
                   <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-b from-[#1e1813] via-[#14100d] to-[#0a0806] p-4 text-center border border-[#2d241c]">
@@ -217,6 +221,18 @@ export default function FeaturedProducts() {
           ))}
         </div>
       )}
+
+      {/* Shop All Bottles CTA Footer */}
+      <div className="mt-12 text-center pt-8 border-t border-[#261f18]">
+        <Link
+          href="/shop"
+          className="inline-flex items-center gap-3 bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-black font-extrabold text-sm sm:text-base px-8 py-3.5 rounded-full shadow-xl hover:shadow-amber-900/30 transition-all transform hover:-translate-y-0.5"
+        >
+          <ShoppingBag className="w-5 h-5 text-black" />
+          <span>Shop Full Cellar Collection</span>
+          <ArrowRight className="w-5 h-5 text-black" />
+        </Link>
+      </div>
 
       </div>
     </section>

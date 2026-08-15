@@ -106,7 +106,7 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
               </div>
 
               <Link
-                href="/#collection"
+                href="/shop"
                 className="bg-amber-600 hover:bg-amber-500 text-black font-bold text-xs px-4 py-2.5 rounded-md"
               >
                 Browse Cellar

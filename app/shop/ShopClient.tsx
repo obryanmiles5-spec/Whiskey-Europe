@@ -42,6 +42,7 @@ export default function ShopClient() {
   const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc' | 'rating' | 'age'>('featured');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [addedBottleId, setAddedBottleId] = useState<string | null>(null);
+  const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
 
   const regions = [
     'All',
@@ -330,14 +331,16 @@ export default function ShopClient() {
 
                 {/* Bottle Image with Quick View Hover Overlay */}
                 <div className="relative h-64 w-full rounded-lg overflow-hidden bg-[#100d0a] mb-4 group-hover:scale-[1.02] transition-transform">
-                  {whiskey.image ? (
+                  {whiskey.image && !imageErrors[whiskey.id] ? (
                     <Image
                       src={whiskey.image}
                       alt={whiskey.name}
                       fill
+                      unoptimized
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                       className="object-cover object-center"
                       referrerPolicy="no-referrer"
+                      onError={() => setImageErrors((prev) => ({ ...prev, [whiskey.id]: true }))}
                     />
                   ) : (
                     <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-b from-[#1e1813] via-[#14100d] to-[#0a0806] p-4 text-center border border-[#2d241c]">

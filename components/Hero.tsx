@@ -36,13 +36,6 @@ export default function Hero() {
       <div className="absolute inset-0 flex items-center justify-center z-10 px-4">
         <Link
           href="/shop"
-          onClick={(e) => {
-            const el = document.getElementById('collection');
-            if (el && window.location.pathname === '/') {
-              e.preventDefault();
-              handleScrollToSection('collection');
-            }
-          }}
           className="group inline-flex items-center gap-3 bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-black font-extrabold text-lg sm:text-xl px-9 py-4 sm:py-4.5 rounded-full shadow-2xl shadow-black/80 hover:shadow-amber-500/30 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 uppercase tracking-wider cursor-pointer border border-amber-300/40"
         >
           <ShoppingBag className="w-6 h-6 text-black group-hover:scale-110 transition-transform" />

@@ -110,11 +110,11 @@ export default function Footer() {
               Rare Collections
             </h4>
             <ul className="space-y-2 text-[#a39382]">
-              <li><a href="#collection" className="hover:text-amber-400 transition-colors">Islay Peated Single Malts</a></li>
-              <li><a href="#collection" className="hover:text-amber-400 transition-colors">Speyside Sherry Oak 18+ Yrs</a></li>
-              <li><a href="#collection" className="hover:text-amber-400 transition-colors">Irish Single Pot Still</a></li>
-              <li><a href="#collection" className="hover:text-amber-400 transition-colors">Nordic & French Craft</a></li>
-              <li><a href="#collection" className="hover:text-amber-400 transition-colors">Cask Strength Allocations</a></li>
+              <li><Link href="/shop?category=Balvenie" className="hover:text-amber-400 transition-colors">Balvenie Cask Allocations</Link></li>
+              <li><Link href="/shop?category=Scottish%20Whiskey" className="hover:text-amber-400 transition-colors">Scottish Single Malts</Link></li>
+              <li><Link href="/shop?category=Japanese" className="hover:text-amber-400 transition-colors">Japanese Mizunara Whiskies</Link></li>
+              <li><Link href="/shop?category=Macallan" className="hover:text-amber-400 transition-colors">The Macallan Sherry Oak</Link></li>
+              <li><Link href="/shop?category=Old%20and%20Rare" className="hover:text-amber-400 transition-colors">Old & Rare Vintage Casks</Link></li>
             </ul>
           </div>
 

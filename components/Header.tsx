@@ -123,14 +123,14 @@ export default function Header() {
           </button>
 
           {/* CTA Button: Order Now */}
-          <button
+          <Link
             id="header-order-now-cta-btn"
-            onClick={handleOrderNow}
+            href="/shop"
             className="hidden sm:flex items-center gap-1.5 bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-black font-bold text-xs sm:text-sm px-3.5 sm:px-4 py-2 rounded-md shadow-lg hover:shadow-amber-900/30 transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
           >
             <span>Order Now</span>
             <ChevronRight className="w-4 h-4" />
-          </button>
+          </Link>
         </div>
       </div>
 
@@ -184,14 +184,15 @@ export default function Header() {
             </div>
 
             <div className="flex gap-2 pt-1">
-              <button
+              <Link
                 id="mobile-order-now-cta-btn"
-                onClick={handleOrderNow}
+                href="/shop"
+                onClick={() => setIsMobileMenuOpen(false)}
                 className="flex-1 bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-black font-bold text-xs py-2.5 rounded-md text-center flex items-center justify-center gap-1"
               >
                 <span>Order Now</span>
                 <ChevronRight className="w-4 h-4" />
-              </button>
+              </Link>
 
               <button
                 id="mobile-view-cart-btn"
