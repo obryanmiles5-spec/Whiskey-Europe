@@ -2,8 +2,9 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Wine, Mail, Send, ShieldCheck, MapPin, Truck, HelpCircle, CheckCircle2 } from 'lucide-react';
+import { Mail, Send, ShieldCheck, MapPin, Truck, HelpCircle, CheckCircle2 } from 'lucide-react';
 import { subscribeNewsletterAction } from '@/app/actions/send-email';
+import BrandLogo from '@/components/BrandLogo';
 
 export default function Footer() {
   const [newsletterEmail, setNewsletterEmail] = useState('');
@@ -83,14 +84,9 @@ export default function Footer() {
           
           {/* Col 1: Brand Info */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-amber-600 flex items-center justify-center text-black font-bold">
-                <Wine className="w-4 h-4" />
-              </div>
-              <span className="font-serif text-lg font-bold text-[#f5f0ea] uppercase tracking-wider">
-                Whiskey Europe
-              </span>
-            </div>
+            <Link href="/" className="inline-block">
+              <BrandLogo size="lg" />
+            </Link>
 
             <p className="text-xs text-[#9c8e80] font-light leading-relaxed max-w-sm">
               Europe’s premier online boutique dedicated to rare single malts, collectible cask allocations, and artisanal European craft whiskies. Bonded climate-controlled delivery across all 27 EU member states.
@@ -161,12 +157,13 @@ export default function Footer() {
             © 2026 Whiskey Europe (whiskeyeurope.org). All rights reserved. Please drink responsibly.
           </div>
 
-          <div className="flex items-center gap-3 text-xs font-mono text-[#a39382]">
-            <span>VISA</span>
-            <span>Mastercard</span>
-            <span>SEPA</span>
-            <span>Apple Pay</span>
-            <span>Klarna</span>
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-2 sm:gap-3 text-xs font-mono text-[#b3a393]">
+            <span className="px-2 py-1 bg-[#18130f] border border-[#2b221a] rounded text-[11px]">Credit Card</span>
+            <span className="px-2 py-1 bg-[#18130f] border border-[#2b221a] rounded text-[11px]">Bank Transfer</span>
+            <span className="px-2 py-1 bg-[#18130f] border border-[#2b221a] rounded text-[11px]">Crypto</span>
+            <span className="px-2 py-1 bg-[#18130f] border border-[#2b221a] rounded text-[11px]">PayPal</span>
+            <span className="px-2 py-1 bg-[#18130f] border border-[#2b221a] rounded text-[11px]">Pay ID</span>
+            <span className="px-2 py-1 bg-[#18130f] border border-[#2b221a] rounded text-[11px]">Wire Transfer</span>
           </div>
         </div>
 

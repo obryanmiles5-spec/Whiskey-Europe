@@ -1,22 +1,24 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Image from 'next/image';
 import { WHISKEY_COLLECTION, Whiskey } from '@/lib/whiskeys';
 import { useCart } from '@/lib/cart-context';
-import { Star, Eye, ShoppingBag, Filter, Sparkles, CheckCircle2, SlidersHorizontal, ArrowUpDown } from 'lucide-react';
+import { Star, Eye, ShoppingBag, Filter, Sparkles, CheckCircle2, SlidersHorizontal, ArrowUpDown, Wine, RotateCcw } from 'lucide-react';
 
 export default function ShopClient() {
   const { addToCart, setQuickViewWhiskey } = useCart();
   const categories = [
     'All',
-    'Japanese',
     'Balvenie',
+    'Scottish Whiskey',
+    'Japanese',
     'Hennessy',
     'Macallan',
     'Old and Rare',
     'Port Ellen',
     'Bourbon',
+    "Ballantine's",
   ];
 
   const [selectedCategory, setSelectedCategory] = useState<string>(() => {
@@ -25,16 +27,17 @@ export default function ShopClient() {
       const catParam = params.get('category');
       if (catParam) {
         const matched = categories.find(
-          (c) => c.toLowerCase() === catParam.toLowerCase().trim()
+          (c) => c.toLowerCase() === catParam.toLowerCase().trim() ||
+                 (catParam.toLowerCase().includes('balvenie') && c === 'Balvenie')
         );
         if (matched) return matched;
       }
     }
-    return 'All';
+    return 'Balvenie';
   });
 
   const [selectedRegion, setSelectedRegion] = useState<string>('All');
-  const [maxPrice, setMaxPrice] = useState<number>(500);
+  const [maxPrice, setMaxPrice] = useState<number>(60000);
   const [minAge, setMinAge] = useState<number>(0);
   const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc' | 'rating' | 'age'>('featured');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -42,14 +45,30 @@ export default function ShopClient() {
 
   const regions = [
     'All',
-    'Kyoto / Japan',
     'Speyside',
-    'Cognac',
-    'Islay',
-    'Kentucky',
     'Highlands',
+    'Islay',
+    'Kyoto / Japan',
+    'Cognac',
+    'Kentucky',
     'County Cork',
   ];
+
+  const getCategoryProductCount = (cat: string) => {
+    if (cat === 'All') return WHISKEY_COLLECTION.length;
+    return WHISKEY_COLLECTION.filter((w) => {
+      if (cat === 'Balvenie') return w.category === 'Balvenie' || w.distillery.toLowerCase().includes('balvenie') || w.name.toLowerCase().includes('balvenie');
+      if (cat === 'Japanese') return w.category === 'Japanese' || w.country === 'Japan';
+      if (cat === 'Hennessy') return w.category === 'Hennessy' || w.distillery.toLowerCase().includes('hennessy');
+      if (cat === 'Macallan') return w.category === 'Macallan' || w.distillery.toLowerCase().includes('macallan');
+      if (cat === 'Old and Rare') return w.category === 'Old and Rare' || w.isRare || w.age >= 21;
+      if (cat === 'Port Ellen') return w.category === 'Port Ellen' || w.distillery.toLowerCase().includes('port ellen');
+      if (cat === 'Bourbon') return w.category === 'Bourbon' || w.type.toLowerCase().includes('bourbon');
+      if (cat === "Ballantine's") return w.category === 'Ballantines' || w.category === "Ballantine's" || w.distillery.toLowerCase().includes('ballantine');
+      if (cat === 'Scottish Whiskey') return w.category === 'Scottish Whiskey' || w.country === 'Scotland';
+      return false;
+    }).length;
+  };
 
   const filteredBottles = useMemo(() => {
     return WHISKEY_COLLECTION.filter((w) => {
@@ -58,7 +77,7 @@ export default function ShopClient() {
         matchesCategory = true;
       } else if (selectedCategory === 'Japanese') {
         matchesCategory = w.category === 'Japanese' || w.country === 'Japan' || w.name.toLowerCase().includes('japanese') || w.type.toLowerCase().includes('japanese');
-      } else if (selectedCategory === 'Balvenie') {
+      } else if (selectedCategory === 'Balvenie' || selectedCategory === 'Balvenie Casks') {
         matchesCategory = w.category === 'Balvenie' || w.distillery.toLowerCase().includes('balvenie') || w.name.toLowerCase().includes('balvenie');
       } else if (selectedCategory === 'Hennessy') {
         matchesCategory = w.category === 'Hennessy' || w.distillery.toLowerCase().includes('hennessy') || w.name.toLowerCase().includes('hennessy');
@@ -70,6 +89,10 @@ export default function ShopClient() {
         matchesCategory = w.category === 'Port Ellen' || w.distillery.toLowerCase().includes('port ellen') || w.name.toLowerCase().includes('port ellen');
       } else if (selectedCategory === 'Bourbon') {
         matchesCategory = w.category === 'Bourbon' || w.type.toLowerCase().includes('bourbon') || w.country === 'United States';
+      } else if (selectedCategory === "Ballantine's" || selectedCategory === "Ballantines") {
+        matchesCategory = w.category === 'Ballantines' || w.distillery.toLowerCase().includes('ballantine') || w.name.toLowerCase().includes('ballantine');
+      } else if (selectedCategory === 'Scottish Whiskey' || selectedCategory === 'Scottish') {
+        matchesCategory = w.category === 'Scottish Whiskey' || w.country === 'Scotland' || w.type.toLowerCase().includes('scotch') || w.name.toLowerCase().includes('scotch') || w.name.toLowerCase().includes('scottish') || w.category === 'Balvenie';
       }
 
       const matchesRegion =
@@ -130,30 +153,57 @@ export default function ShopClient() {
           
           {/* Category Switcher */}
           <div className="flex items-center gap-1.5 overflow-x-auto w-full md:w-auto no-scrollbar pb-1 md:pb-0">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`text-xs font-semibold px-3.5 py-2 rounded-lg transition-all cursor-pointer whitespace-nowrap ${
-                  selectedCategory === cat
-                    ? 'bg-amber-600 text-black shadow-md'
-                    : 'bg-[#1a1511] text-[#a39382] hover:text-[#f5f0ea] hover:bg-[#261f18] border border-[#2b221a]'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+            {categories.map((cat) => {
+              const count = getCategoryProductCount(cat);
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`text-xs font-semibold px-3.5 py-2 rounded-lg transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+                    selectedCategory === cat
+                      ? 'bg-amber-600 text-black shadow-md font-bold'
+                      : 'bg-[#1a1511] text-[#a39382] hover:text-[#f5f0ea] hover:bg-[#261f18] border border-[#2b221a]'
+                  }`}
+                >
+                  <span>{cat}</span>
+                  <span className={`text-[10px] px-1.5 py-0.2 rounded font-mono ${
+                    selectedCategory === cat ? 'bg-black/20 text-black' : 'bg-[#0d0b09] text-[#7a6d5f]'
+                  }`}>
+                    {count}
+                  </span>
+                </button>
+              );
+            })}
           </div>
 
-          {/* Search Input */}
-          <div className="w-full md:w-72 relative">
-            <input
-              type="text"
-              placeholder="Search distillery, notes, cask..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-[#0d0b09] border border-[#332920] rounded-lg px-3.5 py-2 text-xs text-[#f5f0ea] placeholder-[#6e6256] focus:outline-none focus:border-amber-500"
-            />
+          {/* Search Input & Reset */}
+          <div className="flex items-center gap-2 w-full md:w-auto">
+            <div className="w-full md:w-72 relative">
+              <input
+                type="text"
+                placeholder="Search Balvenie, age, cask, tasting notes..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-[#0d0b09] border border-[#332920] rounded-lg px-3.5 py-2 text-xs text-[#f5f0ea] placeholder-[#6e6256] focus:outline-none focus:border-amber-500"
+              />
+            </div>
+            {(selectedCategory !== 'Balvenie' || selectedRegion !== 'All' || maxPrice < 60000 || minAge > 0 || searchQuery || sortBy !== 'featured') && (
+              <button
+                onClick={() => {
+                  setSelectedCategory('Balvenie');
+                  setSelectedRegion('All');
+                  setMaxPrice(60000);
+                  setMinAge(0);
+                  setSearchQuery('');
+                  setSortBy('featured');
+                }}
+                className="px-3 py-2 bg-[#1c1611] hover:bg-[#2a221a] border border-[#382c21] text-amber-400 text-xs rounded-lg flex items-center gap-1 shrink-0 transition-colors"
+                title="Reset Filters"
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Reset</span>
+              </button>
+            )}
           </div>
 
         </div>
@@ -179,12 +229,12 @@ export default function ShopClient() {
           <div className="space-y-1">
             <div className="flex justify-between text-[11px]">
               <span className="font-semibold text-[#f5f0ea]">Minimum Aging</span>
-              <span className="text-amber-400 font-mono font-bold">{minAge > 0 ? `${minAge} Years` : 'Any Age'}</span>
+              <span className="text-amber-400 font-mono font-bold">{minAge > 0 ? `${minAge}+ Years` : 'Any Age'}</span>
             </div>
             <input
               type="range"
               min={0}
-              max={25}
+              max={50}
               step={1}
               value={minAge}
               onChange={(e) => setMinAge(Number(e.target.value))}
@@ -196,13 +246,15 @@ export default function ShopClient() {
           <div className="space-y-1">
             <div className="flex justify-between text-[11px]">
               <span className="font-semibold text-[#f5f0ea]">Max Price (€)</span>
-              <span className="text-amber-400 font-mono font-bold">€{maxPrice}</span>
+              <span className="text-amber-400 font-mono font-bold">
+                {maxPrice >= 60000 ? '€60,000+ (All)' : `€${maxPrice.toLocaleString()}`}
+              </span>
             </div>
             <input
               type="range"
-              min={50}
-              max={500}
-              step={10}
+              min={500}
+              max={60000}
+              step={500}
               value={maxPrice}
               onChange={(e) => setMaxPrice(Number(e.target.value))}
               className="w-full accent-amber-500 cursor-pointer bg-[#0d0b09]"
@@ -254,9 +306,9 @@ export default function ShopClient() {
       {filteredBottles.length === 0 ? (
         <div className="text-center py-20 bg-[#14100c] border border-[#2b221a] rounded-2xl space-y-4">
           <SlidersHorizontal className="w-12 h-12 text-[#6e6256] mx-auto" />
-          <h3 className="font-serif font-bold text-xl text-[#f5f0ea]">No Bottlings Match Your Criteria</h3>
-          <p className="text-xs text-[#a39382] max-w-md mx-auto">
-            Try adjusting your price range, origin region, or minimum age statement filter to discover available allocations.
+          <h3 className="font-serif font-bold text-xl text-[#f5f0ea]">The shop is currently empty</h3>
+          <p className="text-xs text-[#a39382] max-w-md mx-auto leading-relaxed">
+            All products have been cleared from the shop catalog.
           </p>
         </div>
       ) : (
@@ -278,14 +330,28 @@ export default function ShopClient() {
 
                 {/* Bottle Image with Quick View Hover Overlay */}
                 <div className="relative h-64 w-full rounded-lg overflow-hidden bg-[#100d0a] mb-4 group-hover:scale-[1.02] transition-transform">
-                  <Image
-                    src={whiskey.image}
-                    alt={whiskey.name}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                    className="object-cover object-center"
-                    referrerPolicy="no-referrer"
-                  />
+                  {whiskey.image ? (
+                    <Image
+                      src={whiskey.image}
+                      alt={whiskey.name}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                      className="object-cover object-center"
+                      referrerPolicy="no-referrer"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-b from-[#1e1813] via-[#14100d] to-[#0a0806] p-4 text-center border border-[#2d241c]">
+                      <div className="w-14 h-14 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mb-3 text-amber-500">
+                        <Wine className="w-7 h-7" />
+                      </div>
+                      <span className="font-serif font-bold text-amber-200/90 text-sm tracking-wider uppercase">
+                        {whiskey.distillery}
+                      </span>
+                      <span className="text-[11px] text-[#a39382] font-mono mt-1">
+                        {whiskey.age > 0 ? `${whiskey.age} Year Old` : 'Speyside Malt'} • {whiskey.volumeMl}ml
+                      </span>
+                    </div>
+                  )}
 
                   {/* Quick View Button */}
                   <button

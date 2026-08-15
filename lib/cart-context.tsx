@@ -34,6 +34,8 @@ export const EU_COUNTRIES: EUCountryShipping[] = [
   { code: 'DK', name: 'Denmark', flag: '🇩🇰', standardCost: 14.90, expressCost: 24.90, freeShippingThreshold: 180, vatRate: 0.25, estimatedDays: '2-3 Days' }
 ];
 
+export const MINIMUM_ORDER_AMOUNT = 300;
+
 interface CartContextType {
   cart: CartItem[];
   addToCart: (whiskey: Whiskey, quantity?: number, engravingText?: string) => void;
@@ -43,6 +45,11 @@ interface CartContextType {
   cartCount: number;
   subtotal: number;
   
+  // Minimum Order Threshold
+  minimumOrderAmount: number;
+  isMinimumOrderMet: boolean;
+  minimumOrderDeficit: number;
+
   // Cart Drawer
   isCartOpen: boolean;
   setIsCartOpen: (open: boolean) => void;
@@ -219,6 +226,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         clearCart,
         cartCount,
         subtotal,
+        minimumOrderAmount: MINIMUM_ORDER_AMOUNT,
+        isMinimumOrderMet: subtotal >= MINIMUM_ORDER_AMOUNT,
+        minimumOrderDeficit: Math.max(0, MINIMUM_ORDER_AMOUNT - subtotal),
         isCartOpen,
         setIsCartOpen,
         isSearchOpen,

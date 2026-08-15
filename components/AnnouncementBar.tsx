@@ -5,8 +5,13 @@ import { Truck, ShieldCheck, Tag, ChevronLeft, ChevronRight, Award } from 'lucid
 
 const ANNOUNCEMENTS = [
   {
+    icon: <ShieldCheck className="w-4 h-4 text-amber-500" />,
+    text: 'Minimum Order: €300 for Climate-Controlled European Bonded Vault Dispatch',
+    highlight: 'Min Order €300'
+  },
+  {
     icon: <Truck className="w-4 h-4 text-amber-500" />,
-    text: 'FREE Express Insured Shipping across Europe on orders over €150',
+    text: 'FREE Express Insured Shipping across all 27 EU states',
     highlight: 'Code: FREESHIP'
   },
   {
@@ -16,13 +21,8 @@ const ANNOUNCEMENTS = [
   },
   {
     icon: <Award className="w-4 h-4 text-amber-500" />,
-    text: 'Cask Club Loyalty: Earn 10 points per €1 spent on all single malts',
+    text: 'Cask Club Loyalty: Earn 10 points per €1 spent on all rare single malts',
     highlight: 'Join Free'
-  },
-  {
-    icon: <ShieldCheck className="w-4 h-4 text-amber-500" />,
-    text: 'Strict 18+ EU Age Verification & Bonded Climate-Controlled Delivery',
-    highlight: '100% Authentic'
   }
 ];
 

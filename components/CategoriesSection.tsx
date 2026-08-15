@@ -1,14 +1,16 @@
 'use client';
 
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ChevronRight, Sparkles, Flame, Wine, ShieldAlert, Award, Globe, Compass } from 'lucide-react';
+import { ChevronRight, Sparkles, Flame, Wine, Award, Globe, Compass } from 'lucide-react';
+
+import { WHISKEY_COLLECTION } from '@/lib/whiskeys';
 
 export interface Category {
   id: string;
   title: string;
   subtitle: string;
-  count: string;
   image: string;
   icon: React.ReactNode;
   tag: string;
@@ -16,11 +18,18 @@ export interface Category {
 
 const CATEGORIES: Category[] = [
   {
+    id: 'Scottish Whiskey',
+    title: 'Scottish Whiskey',
+    subtitle: 'Speyside, Islay & Highland Single Malts',
+    image: 'https://lh3.googleusercontent.com/d/1nbOLLCZ7mkPxEzy2S0uM0bSereZAXBj_',
+    icon: <Award className="w-4 h-4 text-amber-500" />,
+    tag: 'Scottish Heritage'
+  },
+  {
     id: 'Japanese',
     title: 'Japanese Whiskies',
     subtitle: 'Yamazaki, Hibiki & Mizunara Oak Casks',
-    count: '3 Allocations',
-    image: 'https://images.unsplash.com/photo-1527281400683-1aae777175f8?auto=format&fit=crop&q=80&w=800',
+    image: 'https://lh3.googleusercontent.com/d/1V-8ZnKh63DPMGjXoPO89b_SVFg9CH_Vy',
     icon: <Globe className="w-4 h-4 text-amber-400" />,
     tag: 'Suntory & Nikka'
   },
@@ -28,35 +37,31 @@ const CATEGORIES: Category[] = [
     id: 'Balvenie',
     title: 'Balvenie Casks',
     subtitle: 'PortWood & Caribbean Rum Finishes',
-    count: '2 Bottlings',
-    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800',
+    image: 'https://lh3.googleusercontent.com/d/11ImUr9gk2vSnFBSdH_vYFaSLQbEIW_eU',
     icon: <Wine className="w-4 h-4 text-amber-500" />,
     tag: 'Speyside Craft'
-  },
-  {
-    id: 'Hennessy',
-    title: 'Hennessy Cognac',
-    subtitle: 'XO Extra Old & Paradis Reserve',
-    count: '2 Prestige Editions',
-    image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800',
-    icon: <Award className="w-4 h-4 text-amber-300" />,
-    tag: 'French Heritage'
   },
   {
     id: 'Macallan',
     title: 'The Macallan',
     subtitle: 'Sherry Oak 18 Year & Rare Cask Releases',
-    count: '2 Allocations',
-    image: 'https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&q=80&w=800',
+    image: 'https://lh3.googleusercontent.com/d/1xMKFTuCZRwv5rJw6HptO8BcZJOy11w5M',
     icon: <Sparkles className="w-4 h-4 text-amber-400" />,
     tag: 'Sherry Oak Icon'
+  },
+  {
+    id: 'Hennessy',
+    title: 'Hennessy Cognac',
+    subtitle: 'XO Extra Old & Paradis Reserve',
+    image: 'https://lh3.googleusercontent.com/d/1tl5HxBwhTBOAJE-nRkJ2fi111JJjfZz9',
+    icon: <Award className="w-4 h-4 text-amber-300" />,
+    tag: 'French Heritage'
   },
   {
     id: 'Old and Rare',
     title: 'Old and Rare',
     subtitle: 'Bowmore 25 & Brora 1977 Ghost Vintage',
-    count: '2 Rare Allocations',
-    image: 'https://images.unsplash.com/photo-1527281400683-1aae777175f8?auto=format&fit=crop&q=80&w=800',
+    image: 'https://lh3.googleusercontent.com/d/1NlD0yH4t193adtZVo1IusTAKYKd3ZfAy',
     icon: <Sparkles className="w-4 h-4 text-orange-400" />,
     tag: 'Collector Choice'
   },
@@ -64,8 +69,7 @@ const CATEGORIES: Category[] = [
     id: 'Port Ellen',
     title: 'Port Ellen',
     subtitle: 'Lost Distillery Islay Single Casks 39-40 Yrs',
-    count: '2 Ghost Casks',
-    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800',
+    image: 'https://lh3.googleusercontent.com/d/1THlfo9EWbT8mA4eAlIfhsINT-T5USH4y',
     icon: <Compass className="w-4 h-4 text-red-400" />,
     tag: 'Ghost Distillery'
   },
@@ -73,14 +77,36 @@ const CATEGORIES: Category[] = [
     id: 'Bourbon',
     title: 'Bourbon & Rye',
     subtitle: 'Pappy Van Winkle 15, Blanton’s & WhistlePig',
-    count: '3 Reserve Bottlings',
-    image: 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&q=80&w=800',
+    image: 'https://lh3.googleusercontent.com/d/12Xn18KSHqyNIDRTEwZmH3-eIaT5LESZ6',
     icon: <Flame className="w-4 h-4 text-amber-500" />,
     tag: 'Kentucky & Vermont'
+  },
+  {
+    id: "Ballantine's",
+    title: "Ballantine's Heritage",
+    subtitle: '30 Year Old Masterpiece & 21 Year Old Reserve',
+    image: 'https://lh3.googleusercontent.com/d/1YFsFh6BbUMQEkuNHQAhbr5VR1BfBrzTf',
+    icon: <Award className="w-4 h-4 text-amber-400" />,
+    tag: 'Blended Masterpiece'
   }
 ];
 
 export default function CategoriesSection() {
+  const getCategoryCount = (catId: string) => {
+    const count = WHISKEY_COLLECTION.filter((w) => {
+      if (catId === 'Japanese') return w.category === 'Japanese' || w.country === 'Japan';
+      if (catId === 'Balvenie') return w.category === 'Balvenie' || w.distillery.toLowerCase().includes('balvenie');
+      if (catId === 'Hennessy') return w.category === 'Hennessy' || w.distillery.toLowerCase().includes('hennessy');
+      if (catId === 'Macallan') return w.category === 'Macallan' || w.distillery.toLowerCase().includes('macallan');
+      if (catId === 'Old and Rare') return w.category === 'Old and Rare' || w.isRare;
+      if (catId === 'Port Ellen') return w.category === 'Port Ellen' || w.distillery.toLowerCase().includes('port ellen');
+      if (catId === 'Bourbon') return w.category === 'Bourbon' || w.type.toLowerCase().includes('bourbon');
+      if (catId === "Ballantine's") return w.category === 'Ballantines' || w.category === "Ballantine's" || w.distillery.toLowerCase().includes('ballantine');
+      if (catId === 'Scottish Whiskey') return w.category === 'Scottish Whiskey' || w.country === 'Scotland';
+      return false;
+    }).length;
+    return `${count} Products`;
+  };
   return (
     <section className="py-16 bg-[#13100d] border-b border-[#261f18]" id="categories">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -96,24 +122,25 @@ export default function CategoriesSection() {
             </h2>
           </div>
           <p className="text-sm text-[#a39382] max-w-md">
-            Hand-selected allocations categorized by iconic heritage houses, Japanese rare malts, ghost distilleries, and small-batch bourbons.
+            Hand-selected allocations categorized by Scottish single malts, Japanese rare bottlings, ghost distilleries, and small-batch bourbons.
           </p>
         </div>
 
-        {/* Categories Grid / Mobile Horizontal Scroll */}
-        <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 overflow-x-auto no-scrollbar pb-4 -mx-4 px-4 sm:mx-0 sm:px-0">
+        {/* Categories Grid - 3 Per Row (9 Total) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {CATEGORIES.map((cat) => (
             <Link
               key={cat.id}
               href={`/shop?category=${encodeURIComponent(cat.id)}`}
-              className="group relative min-w-[260px] sm:min-w-0 h-[240px] rounded-xl overflow-hidden bg-[#1a1511] border border-[#2e261f] hover:border-amber-600/70 cursor-pointer shadow-lg transition-all duration-300 transform hover:-translate-y-1 shrink-0 sm:shrink block"
+              className="group relative h-[250px] rounded-xl overflow-hidden bg-[#1a1511] border border-[#2e261f] hover:border-amber-600/70 cursor-pointer shadow-lg transition-all duration-300 transform hover:-translate-y-1 block"
             >
               {/* Image Background */}
               <Image
                 src={cat.image}
                 alt={cat.title}
                 fill
-                sizes="(max-width: 640px) 260px, (max-width: 1024px) 50vw, 25vw"
+                unoptimized
+                sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover object-center group-hover:scale-110 transition-transform duration-700 opacity-60 group-hover:opacity-75"
                 referrerPolicy="no-referrer"
               />
@@ -122,13 +149,13 @@ export default function CategoriesSection() {
               <div className="absolute inset-0 bg-gradient-to-t from-[#0f0d0b] via-[#0f0d0b]/60 to-transparent" />
 
               {/* Top Tag */}
-              <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-10">
+              <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between z-10">
                 <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#0f0d0b]/80 border border-amber-900/40 text-[11px] font-semibold text-amber-400 backdrop-blur-sm">
                   {cat.icon}
                   <span>{cat.tag}</span>
                 </span>
                 <span className="text-[11px] font-mono text-[#c4b6a7] bg-[#0f0d0b]/80 px-2 py-0.5 rounded">
-                  {cat.count}
+                  {getCategoryCount(cat.id)}
                 </span>
               </div>
 

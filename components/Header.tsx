@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Search, ShoppingBag, Menu, X, Award, MapPin, Wine, ChevronRight } from 'lucide-react';
+import { Search, ShoppingBag, Menu, X, Award, MapPin, Wine, ChevronRight, Shield } from 'lucide-react';
 import { useCart } from '@/lib/cart-context';
+import BrandLogo from '@/components/BrandLogo';
 
 export default function Header() {
   const { cartCount, setIsCartOpen, setIsSearchOpen, caskPoints } = useCart();
@@ -63,20 +64,8 @@ export default function Header() {
           </button>
 
           {/* Logo */}
-          <Link href="/" id="header-logo-link" className="flex items-center gap-2 group">
-            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-amber-600 via-amber-700 to-amber-950 p-0.5 shadow-md group-hover:scale-105 transition-transform">
-              <div className="w-full h-full bg-[#0f0d0b] rounded-full flex items-center justify-center">
-                <Wine className="w-5 h-5 text-amber-500" />
-              </div>
-            </div>
-            <div className="flex flex-col">
-              <span className="font-serif text-lg sm:text-xl font-bold tracking-widest text-[#f5f0ea] uppercase group-hover:text-amber-400 transition-colors">
-                Whiskey <span className="text-amber-500 font-sans font-light">Europe</span>
-              </span>
-              <span className="text-[10px] tracking-widest text-[#8c7e70] uppercase font-mono -mt-1 hidden sm:inline">
-                Curated Boutique • EU Bonded
-              </span>
-            </div>
+          <Link href="/" id="header-logo-link" className="flex items-center group">
+            <BrandLogo size="md" />
           </Link>
         </div>
 

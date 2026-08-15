@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Search, X, Star, ShoppingBag, Eye, Filter } from 'lucide-react';
+import { Search, X, Star, ShoppingBag, Eye, Filter, Wine } from 'lucide-react';
 import { useCart } from '@/lib/cart-context';
 import { WHISKEY_COLLECTION, Whiskey } from '@/lib/whiskeys';
 
@@ -112,15 +112,21 @@ export default function SearchOverlay() {
                 key={w.id}
                 className="bg-[#18130f] border border-[#2b221a] hover:border-amber-600/60 p-3 rounded-xl flex gap-3 relative group transition-all"
               >
-                <div className="relative w-20 h-24 rounded-lg overflow-hidden bg-[#100d0a] shrink-0">
-                  <Image
-                    src={w.image}
-                    alt={w.name}
-                    fill
-                    sizes="80px"
-                    className="object-cover"
-                    referrerPolicy="no-referrer"
-                  />
+                <div className="relative w-20 h-24 rounded-lg overflow-hidden bg-[#100d0a] shrink-0 border border-[#2b221a]">
+                  {w.image ? (
+                    <Image
+                      src={w.image}
+                      alt={w.name}
+                      fill
+                      sizes="80px"
+                      className="object-cover"
+                      referrerPolicy="no-referrer"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-b from-[#1e1813] to-[#0a0806] text-amber-500 p-1">
+                      <Wine className="w-6 h-6" />
+                    </div>
+                  )}
                 </div>
 
                 <div className="flex-1 flex flex-col justify-between">

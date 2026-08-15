@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { X, Trash2, ShoppingBag, ShieldCheck, Truck, ArrowRight, Tag, AlertTriangle, CheckCircle } from 'lucide-react';
+import { X, Trash2, ShoppingBag, ShieldCheck, Truck, ArrowRight, Tag, AlertTriangle, CheckCircle, Wine } from 'lucide-react';
 import { useCart, EU_COUNTRIES } from '@/lib/cart-context';
 
 export default function CartDrawer() {
@@ -13,6 +13,9 @@ export default function CartDrawer() {
     isCartOpen,
     setIsCartOpen,
     subtotal,
+    minimumOrderAmount,
+    isMinimumOrderMet,
+    minimumOrderDeficit,
     selectedCountry,
     setSelectedCountry,
     shippingMethod,
@@ -55,6 +58,10 @@ export default function CartDrawer() {
   };
 
   const handleProceedCheckout = () => {
+    if (!isMinimumOrderMet) {
+      alert(`The minimum order threshold for European Bonded Vault Dispatch is €${minimumOrderAmount}. Please add €${minimumOrderDeficit.toFixed(2)} more to your cart.`);
+      return;
+    }
     if (!isAgeVerified) {
       verifyAge();
     }
@@ -117,15 +124,21 @@ export default function CartDrawer() {
                     className="p-3 bg-[#18130f] border border-[#2b221a] rounded-xl flex gap-3 relative"
                   >
                     {/* Item Image */}
-                    <div className="relative w-20 h-20 rounded-lg overflow-hidden bg-[#100d0a] shrink-0">
-                      <Image
-                        src={item.whiskey.image}
-                        alt={item.whiskey.name}
-                        fill
-                        sizes="80px"
-                        className="object-cover"
-                        referrerPolicy="no-referrer"
-                      />
+                    <div className="relative w-20 h-20 rounded-lg overflow-hidden bg-[#100d0a] shrink-0 border border-[#2b221a]">
+                      {item.whiskey.image ? (
+                        <Image
+                          src={item.whiskey.image}
+                          alt={item.whiskey.name}
+                          fill
+                          sizes="80px"
+                          className="object-cover"
+                          referrerPolicy="no-referrer"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-b from-[#1e1813] to-[#0a0806] text-amber-500 p-1">
+                          <Wine className="w-6 h-6" />
+                        </div>
+                      )}
                     </div>
 
                     {/* Item Info */}
@@ -263,6 +276,19 @@ export default function CartDrawer() {
                 </div>
               </div>
 
+              {/* Minimum Order Warning Banner */}
+              {!isMinimumOrderMet && (
+                <div className="p-3 bg-amber-950/60 border border-amber-600/50 rounded-lg text-xs space-y-1">
+                  <div className="flex items-center gap-1.5 text-amber-400 font-bold">
+                    <AlertTriangle className="w-4 h-4 shrink-0 text-amber-500" />
+                    <span>Minimum Order Required: €{minimumOrderAmount}</span>
+                  </div>
+                  <p className="text-[11px] text-[#d6c5b3] leading-relaxed">
+                    European Bonded Vault Dispatch requires a minimum order of €{minimumOrderAmount}. Please add <strong className="text-amber-400 font-mono">€{minimumOrderDeficit.toFixed(2)}</strong> more in fine whiskies to enable checkout.
+                  </p>
+                </div>
+              )}
+
               {/* Age Verification Declaration */}
               <div className="flex items-center gap-2 text-xs text-[#a39382] bg-[#18130f] p-2.5 rounded border border-[#2b221a]">
                 <input
@@ -282,15 +308,38 @@ export default function CartDrawer() {
               {/* Checkout Button */}
               <button
                 onClick={handleProceedCheckout}
-                className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-black font-bold text-sm py-3 rounded-md shadow-xl transition-all cursor-pointer"
+                disabled={!isMinimumOrderMet}
+                className={`w-full inline-flex items-center justify-center gap-2 font-bold text-sm py-3 rounded-md shadow-xl transition-all ${
+                  isMinimumOrderMet
+                    ? 'bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-black cursor-pointer'
+                    : 'bg-[#292018] text-[#8a7b6c] border border-[#3d3126] cursor-not-allowed opacity-90'
+                }`}
               >
-                <span>Proceed to Secure EU Checkout</span>
-                <ArrowRight className="w-4 h-4" />
+                {isMinimumOrderMet ? (
+                  <>
+                    <span>Proceed to Secure EU Checkout</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </>
+                ) : (
+                  <>
+                    <span>Add €{minimumOrderDeficit.toFixed(2)} to Reach €{minimumOrderAmount} Min Order</span>
+                  </>
+                )}
               </button>
 
-              <div className="flex items-center justify-center gap-2 text-[10px] text-[#786c60]">
-                <ShieldCheck className="w-3.5 h-3.5 text-amber-500" />
-                <span>SSL Encrypted • Pre-cleared EU Excise & Duty</span>
+              <div className="space-y-1.5 text-center">
+                <div className="flex items-center justify-center gap-2 text-[10px] text-[#786c60]">
+                  <ShieldCheck className="w-3.5 h-3.5 text-amber-500" />
+                  <span>SSL Encrypted • Pre-cleared EU Excise & Duty</span>
+                </div>
+                <div className="flex flex-wrap items-center justify-center gap-1.5 text-[9px] text-[#a39382] font-mono pt-1">
+                  <span className="px-1.5 py-0.5 bg-[#18130f] border border-[#2b221a] rounded">Credit Card</span>
+                  <span className="px-1.5 py-0.5 bg-[#18130f] border border-[#2b221a] rounded">Bank Transfer</span>
+                  <span className="px-1.5 py-0.5 bg-[#18130f] border border-[#2b221a] rounded">Crypto</span>
+                  <span className="px-1.5 py-0.5 bg-[#18130f] border border-[#2b221a] rounded">PayPal</span>
+                  <span className="px-1.5 py-0.5 bg-[#18130f] border border-[#2b221a] rounded">Pay ID</span>
+                  <span className="px-1.5 py-0.5 bg-[#18130f] border border-[#2b221a] rounded">Wire Transfer</span>
+                </div>
               </div>
 
             </div>

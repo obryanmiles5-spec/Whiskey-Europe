@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { X, Star, ShoppingBag, ShieldCheck, MapPin, Award, CheckCircle2 } from 'lucide-react';
+import { X, Star, ShoppingBag, ShieldCheck, MapPin, Award, CheckCircle2, Wine } from 'lucide-react';
 import { useCart } from '@/lib/cart-context';
 
 export default function QuickViewModal() {
@@ -41,14 +41,28 @@ export default function QuickViewModal() {
           
           {/* Bottle Image */}
           <div className="md:col-span-5 relative h-72 md:h-96 w-full rounded-xl overflow-hidden bg-[#18130f] border border-[#261f18]">
-            <Image
-              src={quickViewWhiskey.image}
-              alt={quickViewWhiskey.name}
-              fill
-              sizes="(max-width: 768px) 100vw, 40vw"
-              className="object-cover object-center"
-              referrerPolicy="no-referrer"
-            />
+            {quickViewWhiskey.image ? (
+              <Image
+                src={quickViewWhiskey.image}
+                alt={quickViewWhiskey.name}
+                fill
+                sizes="(max-width: 768px) 100vw, 40vw"
+                className="object-cover object-center"
+                referrerPolicy="no-referrer"
+              />
+            ) : (
+              <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-b from-[#1e1813] via-[#14100d] to-[#0a0806] p-6 text-center">
+                <div className="w-16 h-16 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mb-4 text-amber-500">
+                  <Wine className="w-8 h-8" />
+                </div>
+                <span className="font-serif font-bold text-amber-200/90 text-base tracking-wider uppercase">
+                  {quickViewWhiskey.distillery}
+                </span>
+                <span className="text-xs text-[#a39382] font-mono mt-1">
+                  {quickViewWhiskey.age > 0 ? `${quickViewWhiskey.age} Year Old Single Malt` : 'Speyside Malt'}
+                </span>
+              </div>
+            )}
             {quickViewWhiskey.badge && (
               <span className="absolute top-3 left-3 bg-amber-500 text-black font-extrabold text-[10px] uppercase px-2.5 py-1 rounded shadow">
                 {quickViewWhiskey.badge}

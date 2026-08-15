@@ -2,11 +2,11 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { ShoppingBag, Eye, Star, Flame, Shield, Award, CheckCircle2 } from 'lucide-react';
+import { ShoppingBag, Eye, Star, Flame, Shield, Award, CheckCircle2, Wine } from 'lucide-react';
 import { WHISKEY_COLLECTION, Whiskey } from '@/lib/whiskeys';
 import { useCart } from '@/lib/cart-context';
 
-type FilterTab = 'All' | 'Rare Allocations' | 'Islay Peated' | 'Sherry Cask' | 'Irish & European' | 'Under €200';
+type FilterTab = 'All' | 'Balvenie Casks' | 'Rare Allocations' | 'Sherry Cask' | 'Vintage & Single Cask' | 'Tun Series';
 
 export default function FeaturedProducts() {
   const { addToCart, setQuickViewWhiskey } = useCart();
@@ -14,13 +14,13 @@ export default function FeaturedProducts() {
   const [addedAnimationId, setAddedAnimationId] = useState<string | null>(null);
 
   const displayedWhiskeys = WHISKEY_COLLECTION.filter((whiskey) => {
-    if (activeTab === 'Rare Allocations') return whiskey.isRare;
-    if (activeTab === 'Islay Peated') return whiskey.region === 'Islay' || whiskey.flavorProfile.peatedSmoky >= 5;
-    if (activeTab === 'Sherry Cask') return whiskey.caskType.toLowerCase().includes('sherry');
-    if (activeTab === 'Irish & European') return whiskey.country !== 'Scotland';
-    if (activeTab === 'Under €200') return whiskey.price <= 200;
+    if (activeTab === 'Balvenie Casks') return whiskey.category === 'Balvenie' || whiskey.name.toLowerCase().includes('balvenie');
+    if (activeTab === 'Rare Allocations') return whiskey.isRare || whiskey.age >= 30;
+    if (activeTab === 'Sherry Cask') return whiskey.caskType.toLowerCase().includes('sherry') || whiskey.name.toLowerCase().includes('sherry');
+    if (activeTab === 'Vintage & Single Cask') return whiskey.type.toLowerCase().includes('vintage') || whiskey.type.toLowerCase().includes('single') || whiskey.name.toLowerCase().includes('cask');
+    if (activeTab === 'Tun Series') return whiskey.name.toLowerCase().includes('tun');
     return true;
-  }).slice(0, 4);
+  });
 
   const handleAddToCart = (whiskey: Whiskey) => {
     addToCart(whiskey, 1);
@@ -50,7 +50,7 @@ export default function FeaturedProducts() {
 
         {/* Filter Tabs Bar */}
         <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto no-scrollbar pb-4 mb-10 border-b border-[#241d17]">
-          {(['All', 'Rare Allocations', 'Islay Peated', 'Sherry Cask', 'Irish & European', 'Under €200'] as FilterTab[]).map(
+          {(['All', 'Balvenie Casks', 'Rare Allocations', 'Sherry Cask', 'Vintage & Single Cask', 'Tun Series'] as FilterTab[]).map(
             (tab) => (
               <button
                 key={tab}
@@ -68,22 +68,44 @@ export default function FeaturedProducts() {
         </div>
 
         {/* Product Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {displayedWhiskeys.map((whiskey) => (
+        {displayedWhiskeys.length === 0 ? (
+          <div className="text-center py-16 bg-[#14100c] border border-[#29221b] rounded-xl p-8 space-y-3 max-w-xl mx-auto">
+            <p className="font-serif font-bold text-lg text-[#f8f3ed]">No Products in Shop</p>
+            <p className="text-xs text-[#a39382]">
+              The shop is currently empty. New allocations will appear here when added.
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {displayedWhiskeys.map((whiskey) => (
             <div
               key={whiskey.id}
               className="bg-[#14100c] border border-[#29221b] hover:border-amber-600/60 rounded-xl overflow-hidden shadow-xl transition-all duration-300 flex flex-col group relative"
             >
               {/* Top Image Container */}
               <div className="relative h-64 sm:h-72 w-full bg-[#18130f] overflow-hidden">
-                <Image
-                  src={whiskey.image}
-                  alt={whiskey.name}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
-                  referrerPolicy="no-referrer"
-                />
+                {whiskey.image ? (
+                  <Image
+                    src={whiskey.image}
+                    alt={whiskey.name}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                    referrerPolicy="no-referrer"
+                  />
+                ) : (
+                  <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-b from-[#1e1813] via-[#14100d] to-[#0a0806] p-4 text-center border border-[#2d241c]">
+                    <div className="w-14 h-14 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mb-3 text-amber-500">
+                      <Wine className="w-7 h-7" />
+                    </div>
+                    <span className="font-serif font-bold text-amber-200/90 text-sm tracking-wider uppercase">
+                      {whiskey.distillery}
+                    </span>
+                    <span className="text-[11px] text-[#a39382] font-mono mt-1">
+                      {whiskey.age > 0 ? `${whiskey.age} Year Old` : 'Speyside Malt'} • {whiskey.volumeMl}ml
+                    </span>
+                  </div>
+                )}
                 
                 <div className="absolute inset-0 bg-gradient-to-t from-[#14100c] via-transparent to-transparent opacity-90" />
 
@@ -194,6 +216,7 @@ export default function FeaturedProducts() {
             </div>
           ))}
         </div>
+      )}
 
       </div>
     </section>
