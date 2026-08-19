@@ -80,6 +80,7 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
                 alt={article.title}
                 fill
                 priority
+                unoptimized
                 sizes="100vw"
                 className="object-cover"
                 referrerPolicy="no-referrer"

@@ -3918,7 +3918,7 @@ export const WHISKEY_COLLECTION: Whiskey[] = [
     isRare: true,
     isFeatured: true,
     badge: '1982 Single Cask #4447',
-    image: 'https://lh3.googleusercontent.com/d/1THlfo9EWbT8mA4eAlIfhsINT-T5USH4y',
+    image: 'https://lh3.googleusercontent.com/d/1fOhPMhfe1nud-apNWkaswD9BJkwvuNjL',
     description: 'Distilled in the historic 1982 vintage at the legendary Port Ellen distillery before its silent era, aged for 26 years in single cask #4447 and bottled by renowned independent bottler Douglas Laing for the Old Malt Cask series at 50% ABV without chill filtration.',
     tastingNotes: {
       nose: 'Smoky sea spray, sweet heather honey, beeswax, candied lemon peel, and gentle medicinal peat embers.',
@@ -3951,7 +3951,7 @@ export const WHISKEY_COLLECTION: Whiskey[] = [
     isRare: true,
     isFeatured: true,
     badge: '9th Annual Release (2009)',
-    image: 'https://lh3.googleusercontent.com/d/1PzqLhvy4NRGGcreW5nI2rqVDNGOaCufx',
+    image: 'https://lh3.googleusercontent.com/d/12ZUXYd-UVdW_Ie3giOk8fVG3tnOGd2xS',
     description: 'The celebrated 9th official Special Release from Port Ellen, distilled in 1979 and matured for three full decades before bottling in 2009 at natural cask strength of 57.7% ABV. A benchmark release representing the zenith of classic Islay peat complexity.',
     tastingNotes: {
       nose: 'Profound maritime depth: coastal bonfire ash, dried blood orange, sea spray, tarred rope, and vintage leather.',
@@ -3984,7 +3984,7 @@ export const WHISKEY_COLLECTION: Whiskey[] = [
     isRare: true,
     isFeatured: true,
     badge: '1983 Closing Vintage Cask',
-    image: 'https://lh3.googleusercontent.com/d/19DtYB1v_eCm59CrKdT8O5hmSyVNqT6UH',
+    image: 'https://lh3.googleusercontent.com/d/1HfnPddjAiM7yHiibxmcR4m7Q24MN_l8m',
     description: 'Distilled during the final year of production in 1983 at Port Ellen before the distillery fell silent for 40 years. Matured patiently in a single oak cask for 35 years and bottled at natural cask strength of 52.4% ABV by Master of Malt.',
     tastingNotes: {
       nose: 'Antique oak library, polished mahogany, subtle coastal peat, dried citrus zest, and honeydew melon.',
@@ -4017,7 +4017,7 @@ export const WHISKEY_COLLECTION: Whiskey[] = [
     isRare: true,
     isFeatured: true,
     badge: 'Untold Stories (40 Years)',
-    image: 'https://lh3.googleusercontent.com/d/1x2lfYT7xv2dITD7qkqW0nCtQcgbcRryH',
+    image: 'https://lh3.googleusercontent.com/d/1iLP3LBEBv7vimB9x3OKuo3XQgzyagQoJ',
     description: 'An official masterpiece from Port Ellen. Crafted by Master Blender Craig Wilson by harmonizing nine exceptional rogue casks discovered in the bonded reserves, aged for forty years and bottled at a natural cask strength of 50.9% ABV in bespoke presentation timber decanter casing.',
     tastingNotes: {
       nose: 'Delicate herbal smoke, vintage Chesterfield leather, Turkish delight, cured citrus rind, and sweet pipe tobacco.',
@@ -4050,7 +4050,7 @@ export const WHISKEY_COLLECTION: Whiskey[] = [
     isRare: true,
     isFeatured: true,
     badge: '1979 Private Collection',
-    image: 'https://lh3.googleusercontent.com/d/1G6gszjRnGVOacrN2ArvFt7t5YNZJxr8-',
+    image: 'https://lh3.googleusercontent.com/d/1u63XHWpfhA1e-IzNhRWS7AV7VJbuEROj',
     description: 'A benchmark 1979 vintage single malt from Gordon & MacPhail’s world-renowned Private Collection, matured for four full decades in a single first-fill European oak sherry butt. Demonstrates magnificent synergy between dark Oloroso sherry richness and Islay maritime peat.',
     tastingNotes: {
       nose: 'Dense Oloroso sherry, Medjool dates, demerara sugar, peat smoke, espresso beans, and polished cedarwood.',
@@ -4083,7 +4083,7 @@ export const WHISKEY_COLLECTION: Whiskey[] = [
     isRare: true,
     isFeatured: true,
     badge: '41 Years Ultra-Aged Cask',
-    image: 'https://lh3.googleusercontent.com/d/1VhdYiX4lieLztQ31Zo-50KQBle8eq2rM',
+    image: 'https://lh3.googleusercontent.com/d/1DgV2cCumrC6yRs6xfvhwrIQX1IJ_G2c2',
     description: 'One of the most mature single cask expressions ever released from the lost Port Ellen distillery. Distilled in 1982 and rested quietly for 41 years in a refill hogshead cask before being bottled at natural cask strength of 49.8% ABV by Master of Malt.',
     tastingNotes: {
       nose: 'Fragrant maritime sea air, antique beeswax, dried white figs, Meyer lemon marmalade, and delicate earthy peat.',
@@ -4118,7 +4118,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     readTime: '6 min read',
     category: 'Market & Collector Trends',
     excerpt: 'Why Hakushu 18, Port Ellen ghost distillery bottles, and old sherry-cask Macallans are outperforming traditional luxury assets across the European market.',
-    thumbnail: 'https://images.unsplash.com/photo-1527281400683-1aae777175f8?auto=format&fit=crop&q=80&w=800',
+    thumbnail: 'https://lh3.googleusercontent.com/d/1pAG0WB9SFKtgLvwe_DQNCnp8gIYjTCfM',
     content: [
       'Over the past decade, rare single malt scotch and Japanese whisky have evolved from a connoisseur passion into one of the most resilient alternative physical assets in Europe. Particular focus has shifted toward vintage Islay distilleries like Port Ellen and Macallan.',
       'Factors driving value include cask provenance, bottle scarcity, natural cask strength bottlings, and original presentation boxes with verified certificates of authenticity.',
@@ -4133,7 +4133,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     readTime: '5 min read',
     category: 'Distillery Spotlight',
     excerpt: 'From Japanese Mizunara oak maturation in Yamanashi to rare Hennessy Paradis and Balvenie PortWood finishes, explore the world’s most coveted spirits.',
-    thumbnail: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800',
+    thumbnail: 'https://lh3.googleusercontent.com/d/1pAG0WB9SFKtgLvwe_DQNCnp8gIYjTCfM',
     content: [
       'While Scotland and Ireland boast centuries of whisky lineage, Japanese distilleries like Hakushu have set new global benchmarks for subtlety.',
       'In Japan, Mizunara oak gives unique sandalwood notes. In Cognac, France, Hennessy ages century-old eaux-de-vie in limousin oak.',
@@ -4148,7 +4148,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     readTime: '4 min read',
     category: 'Tasting Masterclass',
     excerpt: 'Learn how to dissect nose, palate, and finish like a professional whisky judge using our 5-axis sensory flavor wheel.',
-    thumbnail: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800',
+    thumbnail: 'https://lh3.googleusercontent.com/d/1pAG0WB9SFKtgLvwe_DQNCnp8gIYjTCfM',
     content: [
       'Understanding a whiskey begins long before it touches your palate. The color, leg structure, and aroma (nose) reveal cask history.',
       'Oloroso sherry casks impart dark fruit, raisin, and nutmeg, while American ex-bourbon barrels deliver sweet vanilla, coconut, and butterscotch.',
@@ -4163,7 +4163,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     readTime: '4 min read',
     category: 'Shipping & Compliance',
     excerpt: 'How Whiskey Europe guarantees seamless door-to-door insured delivery across all 27 EU member states with pre-paid excise duties and zero customs delays.',
-    thumbnail: 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&q=80&w=800',
+    thumbnail: 'https://lh3.googleusercontent.com/d/1pAG0WB9SFKtgLvwe_DQNCnp8gIYjTCfM',
     content: [
       'Shipping high-value spirits across European borders requires strict adherence to EU excise duty directives and age verification protocols.',
       'At Whiskey Europe, all shipments are dispatched from our central bonded warehouse in Western Europe, pre-cleared for local VAT and excise duties.',

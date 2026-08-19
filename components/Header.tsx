@@ -46,8 +46,8 @@ export default function Header() {
       id="main-header"
       className={`sticky top-0 z-30 transition-all duration-300 border-b ${
         isScrolled
-          ? 'bg-[#0f0d0b]/95 backdrop-blur-md border-[#2b241d] shadow-2xl py-3'
-          : 'bg-[#0f0d0b] border-[#221c17] py-4'
+          ? 'bg-white/95 backdrop-blur-md border-slate-200 shadow-md py-3'
+          : 'bg-white border-slate-200 py-4'
       }`}
     >
       <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 2xl:px-16 flex items-center justify-between">
@@ -57,7 +57,7 @@ export default function Header() {
           <button
             id="mobile-menu-toggle-btn"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 text-[#d1c5b8] hover:text-amber-500 rounded-md focus:outline-none transition-colors"
+            className="lg:hidden p-2 text-slate-700 hover:text-amber-700 rounded-md focus:outline-none transition-colors hover:bg-slate-100"
             aria-label="Toggle Navigation Menu"
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -65,18 +65,18 @@ export default function Header() {
 
           {/* Logo */}
           <Link href="/" id="header-logo-link" className="flex items-center group">
-            <BrandLogo size="md" />
+            <BrandLogo size="md" variant="light" />
           </Link>
         </div>
 
         {/* Desktop Navigation Menu */}
-        <nav id="desktop-nav-menu" className="hidden lg:flex items-center space-x-6 text-sm font-medium text-[#c4b6a7]">
+        <nav id="desktop-nav-menu" className="hidden lg:flex items-center space-x-6 text-sm font-semibold text-slate-700">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               id={link.id}
               href={link.href}
-              className="hover:text-amber-400 transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-amber-500 hover:after:w-full after:transition-all"
+              className="hover:text-amber-700 transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-amber-600 hover:after:w-full after:transition-all"
             >
               {link.name}
             </Link>
@@ -90,10 +90,10 @@ export default function Header() {
           <a
             id="cask-points-badge"
             href="#cask-club"
-            className="hidden sm:flex items-center gap-1.5 bg-[#1c1713] hover:bg-[#28211b] border border-amber-900/40 text-amber-400 px-3 py-1.5 rounded-full text-xs font-medium transition-all shadow-inner"
+            className="hidden sm:flex items-center gap-1.5 bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-900 px-3 py-1.5 rounded-full text-xs font-semibold transition-all shadow-xs"
             title="Your Cask Club Rewards Points"
           >
-            <Award className="w-3.5 h-3.5 text-amber-500" />
+            <Award className="w-3.5 h-3.5 text-amber-600" />
             <span>{caskPoints} PTS</span>
           </a>
 
@@ -101,7 +101,7 @@ export default function Header() {
           <button
             id="header-search-trigger-btn"
             onClick={() => setIsSearchOpen(true)}
-            className="p-2 text-[#c4b6a7] hover:text-amber-400 transition-colors rounded-full hover:bg-[#1a1612]"
+            className="p-2 text-slate-700 hover:text-amber-700 transition-colors rounded-full hover:bg-slate-100 cursor-pointer"
             aria-label="Search Whiskeys"
           >
             <Search className="w-5 h-5" />
@@ -111,12 +111,12 @@ export default function Header() {
           <button
             id="header-cart-drawer-trigger-btn"
             onClick={() => setIsCartOpen(true)}
-            className="relative p-2 text-[#c4b6a7] hover:text-amber-400 transition-colors rounded-full hover:bg-[#1a1612]"
+            className="relative p-2 text-slate-700 hover:text-amber-700 transition-colors rounded-full hover:bg-slate-100 cursor-pointer"
             aria-label="Open Shopping Cart Drawer"
           >
             <ShoppingBag className="w-5 h-5" />
             {cartCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-gradient-to-r from-amber-500 to-amber-700 text-black text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-[#0f0d0b] shadow-md animate-pulse">
+              <span className="absolute -top-1 -right-1 bg-gradient-to-r from-amber-600 to-amber-700 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white shadow-md animate-pulse">
                 {cartCount}
               </span>
             )}
@@ -126,7 +126,7 @@ export default function Header() {
           <Link
             id="header-order-now-cta-btn"
             href="/shop"
-            className="hidden sm:flex items-center gap-1.5 bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-black font-bold text-xs sm:text-sm px-3.5 sm:px-4 py-2 rounded-md shadow-lg hover:shadow-amber-900/30 transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+            className="hidden sm:flex items-center gap-1.5 bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white font-bold text-xs sm:text-sm px-3.5 sm:px-4 py-2 rounded-md shadow-md hover:shadow-amber-900/20 transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
           >
             <span>Order Now</span>
             <ChevronRight className="w-4 h-4" />
@@ -136,13 +136,13 @@ export default function Header() {
 
       {/* Mobile Drawer Navigation */}
       {isMobileMenuOpen && (
-        <div id="mobile-drawer-menu" className="lg:hidden bg-[#14100c] border-b border-[#2b241d] px-4 pt-3 pb-6 space-y-4 animate-fadeIn">
-          <div className="flex items-center justify-between pb-3 border-b border-[#241e17]">
-            <div className="flex items-center gap-2 text-amber-400 text-xs font-semibold">
-              <Award className="w-4 h-4 text-amber-500" />
+        <div id="mobile-drawer-menu" className="lg:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-6 space-y-4 animate-fadeIn shadow-xl">
+          <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+            <div className="flex items-center gap-2 text-amber-800 text-xs font-semibold">
+              <Award className="w-4 h-4 text-amber-600" />
               <span>Cask Club: {caskPoints} Points</span>
             </div>
-            <span className="text-[10px] text-[#a39382] font-mono">domain: whiskeyeurope.org</span>
+            <span className="text-[10px] text-slate-500 font-mono">domain: whiskeyeurope.org</span>
           </div>
 
           <div className="grid grid-cols-1 gap-1.5">
@@ -152,21 +152,21 @@ export default function Header() {
                 id={`mobile-${link.id}`}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block text-sm text-[#e3d8cb] hover:text-amber-400 hover:bg-[#1f1914] px-3 py-2 rounded-md transition-colors"
+                className="block text-sm font-medium text-slate-800 hover:text-amber-700 hover:bg-slate-50 px-3 py-2 rounded-md transition-colors"
               >
                 {link.name}
               </Link>
             ))}
           </div>
 
-          <div className="pt-3 border-t border-[#241e17] flex flex-col gap-2.5">
+          <div className="pt-3 border-t border-slate-100 flex flex-col gap-2.5">
             <div className="flex items-center justify-between">
               <a
                 href="#shipping-faq"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-xs text-[#a39382] flex items-center gap-1 hover:text-amber-400"
+                className="text-xs text-slate-600 flex items-center gap-1 hover:text-amber-700"
               >
-                <MapPin className="w-3.5 h-3.5 text-amber-500" />
+                <MapPin className="w-3.5 h-3.5 text-amber-600" />
                 <span>EU Bonded Transit (27 States)</span>
               </a>
 
@@ -176,7 +176,7 @@ export default function Header() {
                   setIsMobileMenuOpen(false);
                   setIsSearchOpen(true);
                 }}
-                className="text-xs text-amber-400 hover:underline flex items-center gap-1"
+                className="text-xs text-amber-700 font-semibold hover:underline flex items-center gap-1 cursor-pointer"
               >
                 <Search className="w-3.5 h-3.5" />
                 <span>Search</span>
@@ -188,7 +188,7 @@ export default function Header() {
                 id="mobile-order-now-cta-btn"
                 href="/shop"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="flex-1 bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-black font-bold text-xs py-2.5 rounded-md text-center flex items-center justify-center gap-1"
+                className="flex-1 bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white font-bold text-xs py-2.5 rounded-md text-center flex items-center justify-center gap-1"
               >
                 <span>Order Now</span>
                 <ChevronRight className="w-4 h-4" />
@@ -200,9 +200,9 @@ export default function Header() {
                   setIsMobileMenuOpen(false);
                   setIsCartOpen(true);
                 }}
-                className="bg-[#1f1914] hover:bg-[#2b221a] text-amber-400 font-bold text-xs px-4 py-2.5 rounded-md border border-amber-900/40 flex items-center gap-1"
+                className="bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs px-4 py-2.5 rounded-md border border-slate-300 flex items-center gap-1"
               >
-                <ShoppingBag className="w-3.5 h-3.5" />
+                <ShoppingBag className="w-3.5 h-3.5 text-slate-700" />
                 <span>Cart ({cartCount})</span>
               </button>
             </div>

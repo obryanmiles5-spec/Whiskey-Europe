@@ -46,35 +46,35 @@ export default function DistilleryMapSection() {
               <span>8 Featured Distilleries</span>
             </div>
 
-            {/* SVG Europe Map Container with Custom Pins */}
-            <div className="relative w-full h-[360px] sm:h-[440px] bg-[#0d0b09] rounded-xl border border-[#231d17] p-4 flex items-center justify-center overflow-hidden">
+            {/* Visual Europe Map Container with Provided Map Image & Custom Pins */}
+            <div className="relative w-full h-[380px] sm:h-[480px] bg-[#0d0b09] rounded-xl border-2 border-amber-600/50 shadow-2xl flex items-center justify-center overflow-hidden">
               
-              {/* Subtle Stylized Map Background SVG */}
-              <svg
-                viewBox="0 0 800 600"
-                className="w-full h-full opacity-30 text-[#3b3127]"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-              >
-                {/* Europe Landmass outlines simplified */}
-                <path d="M 220 180 Q 240 140 280 150 T 320 190 T 300 250 T 230 220 Z" fill="#1c1611" /> {/* UK & Scotland */}
-                <path d="M 170 200 Q 190 190 200 220 T 180 250 Z" fill="#1c1611" /> {/* Ireland */}
-                <path d="M 330 100 Q 380 70 420 110 T 390 180 T 320 140 Z" fill="#1c1611" /> {/* Scandinavia */}
-                <path d="M 280 280 Q 320 270 380 290 T 420 380 T 320 400 T 260 320 Z" fill="#1c1611" /> {/* France/Germany */}
-                <path d="M 380 380 Q 400 420 420 450 T 390 470 Z" fill="#1c1611" /> {/* Italy */}
-              </svg>
+              {/* Provided European Map Image */}
+              <Image
+                src="https://lh3.googleusercontent.com/d/1knkbCnmvVz52nfDUj81UILYUsrCtCloj"
+                alt="Interactive European Distillery Terroir Map"
+                fill
+                priority
+                unoptimized
+                className="object-cover object-center"
+                sizes="(max-width: 1024px) 100vw, 60vw"
+                referrerPolicy="no-referrer"
+              />
+
+              {/* Light gradient vignette to keep the map image clearly seen while giving depth */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 pointer-events-none" />
+              <div className="absolute inset-0 bg-radial from-transparent via-black/15 to-black/50 pointer-events-none" />
 
               {/* Pins Layer */}
-              <div className="absolute inset-0 pointer-events-auto">
+              <div className="absolute inset-0 pointer-events-auto z-10">
                 {DISTILLERIES.map((dist) => {
                   const isSelected = selectedDistillery.id === dist.id;
                   
                   // Map coordinates normalization relative to viewBox
                   // lat range ~47 to 61 -> y range ~500 to 80
                   // lng range ~-8 to 18 -> x range ~150 to 650
-                  const mapY = Math.max(10, Math.min(90, ((61 - dist.lat) / (61 - 47)) * 75 + 10));
-                  const mapX = Math.max(10, Math.min(90, ((dist.lng + 9) / (18 + 9)) * 75 + 10));
+                  const mapY = Math.max(12, Math.min(88, ((61 - dist.lat) / (61 - 47)) * 72 + 14));
+                  const mapX = Math.max(12, Math.min(88, ((dist.lng + 9) / (18 + 9)) * 72 + 14));
 
                   return (
                     <button
@@ -82,7 +82,7 @@ export default function DistilleryMapSection() {
                       onClick={() => setSelectedDistillery(dist)}
                       style={{ top: `${mapY}%`, left: `${mapX}%` }}
                       className={`absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 group cursor-pointer ${
-                        isSelected ? 'z-30 scale-125' : 'z-20 hover:scale-110'
+                        isSelected ? 'z-30 scale-125' : 'z-20 hover:scale-115'
                       }`}
                       aria-label={`View ${dist.name}`}
                     >
@@ -90,15 +90,15 @@ export default function DistilleryMapSection() {
                         
                         {/* Pulse Ring if selected */}
                         {isSelected && (
-                          <span className="absolute -inset-2 rounded-full bg-amber-500/30 animate-ping pointer-events-none" />
+                          <span className="absolute -inset-2 rounded-full bg-amber-400/50 animate-ping pointer-events-none" />
                         )}
 
                         {/* Pin Marker */}
                         <div
-                          className={`w-7 h-7 rounded-full flex items-center justify-center shadow-xl border-2 transition-colors ${
+                          className={`w-7 h-7 rounded-full flex items-center justify-center shadow-xl border-2 transition-all ${
                             isSelected
-                              ? 'bg-amber-500 border-white text-black'
-                              : 'bg-[#1b1612] border-amber-600/80 text-amber-400 group-hover:bg-amber-600 group-hover:text-black'
+                              ? 'bg-amber-500 border-white text-black shadow-amber-500/80 scale-110'
+                              : 'bg-[#1b1612]/95 border-amber-400/90 text-amber-300 group-hover:bg-amber-500 group-hover:text-black group-hover:border-white shadow-black/80'
                           }`}
                         >
                           <Wine className="w-3.5 h-3.5" />
@@ -106,10 +106,10 @@ export default function DistilleryMapSection() {
 
                         {/* Pin Label */}
                         <span
-                          className={`mt-1 text-[10px] font-bold px-2 py-0.5 rounded shadow-md whitespace-nowrap transition-colors ${
+                          className={`mt-1 text-[10px] font-bold px-2 py-0.5 rounded shadow-lg whitespace-nowrap transition-colors backdrop-blur-md ${
                             isSelected
-                              ? 'bg-amber-500 text-black'
-                              : 'bg-[#0f0d0b]/90 text-[#d1c5b8] border border-[#2e261f] group-hover:text-amber-400'
+                              ? 'bg-amber-500 text-black border border-amber-300'
+                              : 'bg-black/90 text-[#f5ede4] border border-amber-800/80 group-hover:text-amber-300 group-hover:border-amber-500'
                           }`}
                         >
                           {dist.name.split(' ')[0]}

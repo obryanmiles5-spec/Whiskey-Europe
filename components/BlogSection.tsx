@@ -43,8 +43,9 @@ export default function BlogSection() {
                   src={article.thumbnail}
                   alt={article.title}
                   fill
+                  unoptimized
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100"
+                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700 opacity-100"
                   referrerPolicy="no-referrer"
                 />
                 

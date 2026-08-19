@@ -6,9 +6,10 @@ interface BrandLogoProps {
   size?: 'sm' | 'md' | 'lg';
   showSubtitle?: boolean;
   className?: string;
+  variant?: 'dark' | 'light';
 }
 
-export default function BrandLogo({ size = 'md', showSubtitle = true, className = '' }: BrandLogoProps) {
+export default function BrandLogo({ size = 'md', showSubtitle = true, className = '', variant = 'dark' }: BrandLogoProps) {
   const sizeClasses = {
     sm: { icon: 'w-8 h-8', title: 'text-base', sub: 'text-[9px]' },
     md: { icon: 'w-10 h-10', title: 'text-xl', sub: 'text-[10px]' },
@@ -16,6 +17,8 @@ export default function BrandLogo({ size = 'md', showSubtitle = true, className 
   };
 
   const currentSize = sizeClasses[size];
+
+  const isLight = variant === 'light';
 
   return (
     <div className={`flex items-center gap-2.5 select-none ${className}`}>
@@ -27,7 +30,7 @@ export default function BrandLogo({ size = 'md', showSubtitle = true, className 
         {/* SVG Crest */}
         <svg
           viewBox="0 0 100 100"
-          className="relative w-full h-full rounded-full shadow-2xl bg-[#0d0a08]"
+          className="relative w-full h-full rounded-full shadow-md bg-[#0d0a08]"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -105,13 +108,13 @@ export default function BrandLogo({ size = 'md', showSubtitle = true, className 
 
       {/* Brand Text */}
       <div className="flex flex-col leading-none">
-        <div className={`font-serif font-bold tracking-widest text-[#f8f3ed] uppercase flex items-center gap-1.5 ${currentSize.title}`}>
+        <div className={`font-serif font-bold tracking-widest uppercase flex items-center gap-1.5 ${isLight ? 'text-[#1a1410]' : 'text-[#f8f3ed]'} ${currentSize.title}`}>
           <span>WHISKEY</span>
-          <span className="text-amber-500 font-sans font-light tracking-wider">EUROPE</span>
+          <span className={`${isLight ? 'text-amber-700' : 'text-amber-500'} font-sans font-semibold tracking-wider`}>EUROPE</span>
         </div>
 
         {showSubtitle && (
-          <span className={`tracking-[0.2em] text-[#a39382] uppercase font-mono mt-0.5 ${currentSize.sub}`}>
+          <span className={`tracking-[0.2em] ${isLight ? 'text-[#6b5d52]' : 'text-[#a39382]'} uppercase font-mono mt-0.5 ${currentSize.sub}`}>
             Premier Bonded House • Est. 1892
           </span>
         )}
