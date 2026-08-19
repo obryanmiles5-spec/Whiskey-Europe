@@ -28,10 +28,10 @@ const CATEGORIES: Category[] = [
   {
     id: 'Japanese',
     title: 'Japanese Whiskies',
-    subtitle: 'Yamazaki, Hibiki & Mizunara Oak Casks',
+    subtitle: 'Chichibu, Hakushu, Hibiki, Karuizawa & Yamazaki',
     image: 'https://lh3.googleusercontent.com/d/1V-8ZnKh63DPMGjXoPO89b_SVFg9CH_Vy',
     icon: <Globe className="w-4 h-4 text-amber-400" />,
-    tag: 'Suntory & Nikka'
+    tag: '5 Iconic Houses'
   },
   {
     id: 'Balvenie',
@@ -60,8 +60,8 @@ const CATEGORIES: Category[] = [
   {
     id: 'Old and Rare',
     title: 'Old and Rare',
-    subtitle: 'Bowmore 25 & Brora 1977 Ghost Vintage',
-    image: 'https://lh3.googleusercontent.com/d/1NlD0yH4t193adtZVo1IusTAKYKd3ZfAy',
+    subtitle: 'Clés des Ducs 1930, Hermitage 1890 & Hine 250',
+    image: 'https://lh3.googleusercontent.com/d/1delgvRWGGz32J-mr8kvjikZTXb0kacHq',
     icon: <Sparkles className="w-4 h-4 text-orange-400" />,
     tag: 'Collector Choice'
   },
@@ -98,7 +98,7 @@ export default function CategoriesSection() {
       if (catId === 'Balvenie') return w.category === 'Balvenie' || w.distillery.toLowerCase().includes('balvenie');
       if (catId === 'Hennessy') return w.category === 'Hennessy' || w.distillery.toLowerCase().includes('hennessy');
       if (catId === 'Macallan') return w.category === 'Macallan' || w.distillery.toLowerCase().includes('macallan');
-      if (catId === 'Old and Rare') return w.category === 'Old and Rare' || w.isRare;
+      if (catId === 'Old and Rare') return w.category === 'Old and Rare';
       if (catId === 'Port Ellen') return w.category === 'Port Ellen' || w.distillery.toLowerCase().includes('port ellen');
       if (catId === 'Bourbon') return w.category === 'Bourbon' || w.type.toLowerCase().includes('bourbon');
       if (catId === "Ballantine's") return w.category === 'Ballantines' || w.category === "Ballantine's" || w.distillery.toLowerCase().includes('ballantine');

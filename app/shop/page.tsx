@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import CartDrawer from '@/components/CartDrawer';
@@ -21,7 +21,16 @@ export default function ShopPage() {
       <div className="min-h-screen bg-[#0f0d0b] text-[#f5f0ea] flex flex-col justify-between selection:bg-amber-600 selection:text-black">
         <div>
           <Header />
-          <ShopClient />
+          <Suspense fallback={
+            <div className="min-h-[50vh] flex items-center justify-center text-amber-400">
+              <div className="text-center space-y-2">
+                <div className="w-8 h-8 border-2 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto" />
+                <p className="font-mono text-xs uppercase tracking-widest text-[#a39382]">Opening Bonded Cellar...</p>
+              </div>
+            </div>
+          }>
+            <ShopClient />
+          </Suspense>
         </div>
         <Footer />
         <CartDrawer />
@@ -33,3 +42,4 @@ export default function ShopPage() {
     </CartProvider>
   );
 }
+
