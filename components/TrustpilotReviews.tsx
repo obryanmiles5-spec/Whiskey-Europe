@@ -75,7 +75,7 @@ export default function TrustpilotReviews() {
 
   return (
     <section className="py-16 bg-[#120e0b] border-b border-[#261f18]" id="reviews">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 2xl:px-16">
         
         {/* Section Header with TrustScore Badge */}
         <div className="bg-[#18130f] border border-amber-900/40 rounded-2xl p-6 sm:p-8 shadow-2xl mb-12 flex flex-col md:flex-row items-center justify-between gap-6">

@@ -48,7 +48,7 @@ export default function AnnouncementBar() {
 
   return (
     <div className="bg-[#171411] border-b border-[#2e261f] text-xs py-2 px-4 text-[#d1c5b8] relative z-40 select-none">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+      <div className="w-full px-2 sm:px-4 lg:px-8 xl:px-10 flex items-center justify-between">
         <button 
           onClick={handlePrev}
           aria-label="Previous announcement"

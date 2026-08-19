@@ -12,7 +12,7 @@ export default function BlogSection() {
 
   return (
     <section className="py-16 bg-[#0f0d0b] border-b border-[#241d17]" id="blog">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 2xl:px-16">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">

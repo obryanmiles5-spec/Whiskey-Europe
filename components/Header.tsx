@@ -50,7 +50,7 @@ export default function Header() {
           : 'bg-[#0f0d0b] border-[#221c17] py-4'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 2xl:px-16 flex items-center justify-between">
         
         {/* Mobile Menu Toggle & Brand */}
         <div className="flex items-center gap-3">

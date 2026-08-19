@@ -32,7 +32,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#0b0907] border-t border-[#261f18] text-[#c2b2a3] text-xs pt-16 pb-12" id="contact">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 2xl:px-16 space-y-12">
         
         {/* Top Zoho Newsletter Banner */}
         <div className="bg-gradient-to-r from-[#17130f] via-[#1c1611] to-[#120e0b] border border-amber-900/50 rounded-2xl p-6 sm:p-8 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">

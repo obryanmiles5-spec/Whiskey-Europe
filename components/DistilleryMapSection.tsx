@@ -17,7 +17,7 @@ export default function DistilleryMapSection() {
 
   return (
     <section className="py-16 bg-[#110e0b] border-b border-[#241d17]" id="distillery-map">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 2xl:px-16">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">

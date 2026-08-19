@@ -109,7 +109,7 @@ export default function CategoriesSection() {
   };
   return (
     <section className="py-16 bg-[#13100d] border-b border-[#261f18]" id="categories">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 2xl:px-16">
         
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
@@ -127,7 +127,7 @@ export default function CategoriesSection() {
         </div>
 
         {/* Categories Grid - 3 Per Row (9 Total) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {CATEGORIES.map((cat) => (
             <Link
               key={cat.id}

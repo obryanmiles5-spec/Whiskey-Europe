@@ -29,7 +29,7 @@ export default function CaskClubSection() {
 
   return (
     <section className="py-16 bg-[#0e0b09] border-b border-[#241d17]" id="cask-club">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 2xl:px-16">
         
         <div className="bg-gradient-to-br from-[#1c1611] via-[#15110d] to-[#0e0b09] border border-amber-900/50 rounded-2xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
           
