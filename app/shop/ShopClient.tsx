@@ -28,7 +28,7 @@ function getMatchedCategory(param: string | null): string {
   if (clean.includes('balvenie')) return 'Balvenie';
   if (clean.includes('hennessy')) return 'Hennessy';
   if (clean.includes('macallan')) return 'Macallan';
-  if (clean.includes('port ellen')) return 'Port Ellen';
+  if (clean.includes('port ellen') || clean.includes('port hellen') || clean.includes('ellen') || clean.includes('hellen')) return 'Port Ellen';
   if (clean.includes('bourbon') || clean.includes('rye')) return 'Bourbon';
   if (clean.includes('ballantine')) return "Ballantine's";
   if (clean.includes('old') || clean.includes('rare')) return 'Old and Rare';
