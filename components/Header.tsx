@@ -26,8 +26,9 @@ export default function Header() {
   const navLinks = [
     { name: 'Home', href: '/', id: 'nav-home' },
     { name: 'Shop', href: '/shop', id: 'nav-shop' },
-    { name: 'About Us', href: '/about', id: 'nav-about' },
+    { name: 'Journal', href: '/blog', id: 'nav-blog' },
     { name: 'Distillery Map', href: '/#distillery-map', id: 'nav-distillery-map' },
+    { name: 'About Us', href: '/about', id: 'nav-about' },
     { name: 'Contact', href: '/contact', id: 'nav-contact' },
   ];
 

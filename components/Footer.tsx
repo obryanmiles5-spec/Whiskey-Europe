@@ -103,6 +103,7 @@ export default function Footer() {
               Rare Collections
             </h4>
             <ul className="space-y-2 text-slate-600">
+              <li><Link href="/shop?category=Ballantine%27s" className="hover:text-amber-700 transition-colors font-medium">Ballantine&apos;s Heritage 21-40Y</Link></li>
               <li><Link href="/shop?category=Balvenie" className="hover:text-amber-700 transition-colors">Balvenie Cask Allocations</Link></li>
               <li><Link href="/shop?category=Scottish%20Whiskey" className="hover:text-amber-700 transition-colors">Scottish Single Malts</Link></li>
               <li><Link href="/shop?category=Japanese" className="hover:text-amber-700 transition-colors">Japanese Mizunara Whiskies</Link></li>
@@ -112,35 +113,34 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Col 3: Customer Care & EU Shipping */}
-          <div className="space-y-3" id="shipping-faq">
+          {/* Col 3: Editorial & Blog */}
+          <div className="space-y-3">
             <h4 className="font-serif font-bold text-sm text-slate-900 uppercase tracking-wider">
-              EU Shipping & Tax
+              Journal & Guides
             </h4>
             <ul className="space-y-2 text-slate-600">
-              <li><a href="#shipping-faq" className="hover:text-amber-700 transition-colors">27 EU Countries Transit</a></li>
-              <li><a href="#shipping-faq" className="hover:text-amber-700 transition-colors">Insured Climate Packaging</a></li>
-              <li><a href="#shipping-faq" className="hover:text-amber-700 transition-colors">Pre-paid VAT & Duties</a></li>
-              <li><a href="#shipping-faq" className="hover:text-amber-700 transition-colors">Authenticity Guarantee</a></li>
-              <li><a href="#cask-club" className="hover:text-amber-700 transition-colors">The Cask & Club Rewards</a></li>
+              <li><Link href="/blog" className="hover:text-amber-700 font-medium text-amber-900 transition-colors flex items-center gap-1">All Journal Articles</Link></li>
+              <li><Link href="/blog/guide-to-investing-in-rare-islay-malts-2026" className="hover:text-amber-700 transition-colors">Whisky Investing Guide</Link></li>
+              <li><Link href="/blog/decoding-tasting-notes-peat-sherry-and-oak" className="hover:text-amber-700 transition-colors">Tasting Masterclasses</Link></li>
+              <li><Link href="/blog/uncorking-continental-europe-nordic-and-french-whiskies" className="hover:text-amber-700 transition-colors">Distillery Spotlights</Link></li>
+              <li><Link href="/blog/understanding-eu-alcohol-import-regulations-and-shipping" className="hover:text-amber-700 transition-colors">EU Tax & Regulations</Link></li>
+              <li><Link href="/#distillery-map" className="hover:text-amber-700 transition-colors">Terroir & Distillery Map</Link></li>
             </ul>
           </div>
 
-          {/* Col 4: FAQ Quick Accordion */}
+          {/* Col 4: Legal & Policies */}
           <div className="space-y-3">
             <h4 className="font-serif font-bold text-sm text-slate-900 uppercase tracking-wider">
-              Compliance & FAQ
+              Legal & Policies
             </h4>
-            <div className="space-y-2 text-[11px] text-slate-600">
-              <div className="p-2.5 bg-slate-50 border border-slate-200 rounded-lg">
-                <strong className="text-slate-800 block">Age Requirement:</strong>
-                Strict 18+ age verification required upon entry & courier sign-off.
-              </div>
-              <div className="p-2.5 bg-slate-50 border border-slate-200 rounded-lg">
-                <strong className="text-slate-800 block">Bottles Authenticity:</strong>
-                All vintage bottles sourced directly from distillery cellars.
-              </div>
-            </div>
+            <ul className="space-y-2 text-slate-600">
+              <li><Link href="/terms" className="hover:text-amber-700 transition-colors">Terms of Service</Link></li>
+              <li><Link href="/privacy" className="hover:text-amber-700 transition-colors">Privacy & GDPR Policy</Link></li>
+              <li><Link href="/shipping" className="hover:text-amber-700 transition-colors">EU Shipping Policy</Link></li>
+              <li><Link href="/returns" className="hover:text-amber-700 transition-colors">Returns & Refunds</Link></li>
+              <li><Link href="/cookies" className="hover:text-amber-700 transition-colors">Cookie Policy</Link></li>
+              <li className="pt-1 text-[11px] text-slate-500 font-medium">Strict 18+ Age Required</li>
+            </ul>
           </div>
 
         </div>

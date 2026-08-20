@@ -139,7 +139,7 @@ export default function ShopClient() {
     } else if (selectedCategory === 'Bourbon') {
       matchesCategory = w.category === 'Bourbon' || w.type.toLowerCase().includes('bourbon') || w.country === 'United States';
     } else if (selectedCategory === "Ballantine's" || selectedCategory === "Ballantines") {
-      matchesCategory = w.category === 'Ballantines' || w.distillery.toLowerCase().includes('ballantine') || w.name.toLowerCase().includes('ballantine');
+      matchesCategory = w.category === 'Ballantines' || w.category === "Ballantine's" || w.distillery.toLowerCase().includes('ballantine') || w.name.toLowerCase().includes('ballantine');
     } else if (selectedCategory === 'Scottish Whiskey' || selectedCategory === 'Scottish') {
       matchesCategory = w.category === 'Scottish Whiskey' || w.category === 'Macallan' || w.category === 'Balvenie' || w.country === 'Scotland' || w.type.toLowerCase().includes('scotch') || w.name.toLowerCase().includes('scotch') || w.name.toLowerCase().includes('scottish');
     }

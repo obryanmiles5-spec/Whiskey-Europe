@@ -85,7 +85,7 @@ const CATEGORIES: Category[] = [
     id: "Ballantine's",
     title: "Ballantine's Heritage",
     subtitle: '30 Year Old Masterpiece & 21 Year Old Reserve',
-    image: 'https://lh3.googleusercontent.com/d/1YFsFh6BbUMQEkuNHQAhbr5VR1BfBrzTf',
+    image: 'https://lh3.googleusercontent.com/d/1VR7swVn2F86xZnIk7q6dyiyRAzDhMpkU',
     icon: <Award className="w-4 h-4 text-amber-400" />,
     tag: 'Blended Masterpiece'
   }
