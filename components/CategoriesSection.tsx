@@ -18,14 +18,6 @@ export interface Category {
 
 const CATEGORIES: Category[] = [
   {
-    id: 'Scottish Whiskey',
-    title: 'Scottish Whiskey',
-    subtitle: 'Speyside, Islay & Highland Single Malts',
-    image: 'https://lh3.googleusercontent.com/d/1nbOLLCZ7mkPxEzy2S0uM0bSereZAXBj_',
-    icon: <Award className="w-4 h-4 text-amber-500" />,
-    tag: 'Scottish Heritage'
-  },
-  {
     id: 'Japanese',
     title: 'Japanese Whiskies',
     subtitle: 'Chichibu, Hakushu, Hibiki, Karuizawa & Yamazaki',
@@ -102,7 +94,6 @@ export default function CategoriesSection() {
       if (catId === 'Port Ellen') return w.category === 'Port Ellen' || w.distillery.toLowerCase().includes('port ellen');
       if (catId === 'Bourbon') return w.category === 'Bourbon' || w.type.toLowerCase().includes('bourbon');
       if (catId === "Ballantine's") return w.category === 'Ballantines' || w.category === "Ballantine's" || w.distillery.toLowerCase().includes('ballantine');
-      if (catId === 'Scottish Whiskey') return w.category === 'Scottish Whiskey' || w.country === 'Scotland';
       return false;
     }).length;
     return `${count} Products`;
@@ -122,12 +113,12 @@ export default function CategoriesSection() {
             </h2>
           </div>
           <p className="text-sm text-[#a39382] max-w-md">
-            Hand-selected allocations categorized by Scottish single malts, Japanese rare bottlings, ghost distilleries, and small-batch bourbons.
+            Hand-selected allocations categorized by Japanese rare bottlings, Speyside single malts, ghost distilleries, and small-batch bourbons.
           </p>
         </div>
 
-        {/* Categories Grid - 3 Per Row (9 Total) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Categories Grid - 8 Curated Categories */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {CATEGORIES.map((cat) => (
             <Link
               key={cat.id}

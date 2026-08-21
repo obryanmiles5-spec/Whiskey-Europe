@@ -105,7 +105,8 @@ export default function Footer() {
             <ul className="space-y-2 text-slate-600">
               <li><Link href="/shop?category=Ballantine%27s" className="hover:text-amber-700 transition-colors font-medium">Ballantine&apos;s Heritage 21-40Y</Link></li>
               <li><Link href="/shop?category=Balvenie" className="hover:text-amber-700 transition-colors">Balvenie Cask Allocations</Link></li>
-              <li><Link href="/shop?category=Scottish%20Whiskey" className="hover:text-amber-700 transition-colors">Scottish Single Malts</Link></li>
+              <li><Link href="/shop?category=Bourbon" className="hover:text-amber-700 transition-colors">Bourbon & Rye Allocations</Link></li>
+              <li><Link href="/shop?category=Hennessy" className="hover:text-amber-700 transition-colors">Hennessy Cognac Allocations</Link></li>
               <li><Link href="/shop?category=Japanese" className="hover:text-amber-700 transition-colors">Japanese Mizunara Whiskies</Link></li>
               <li><Link href="/shop?category=Macallan" className="hover:text-amber-700 transition-colors">The Macallan Sherry Oak</Link></li>
               <li><Link href="/shop?category=Old%20and%20Rare" className="hover:text-amber-700 transition-colors">Old & Rare Vintage Casks</Link></li>

@@ -17,7 +17,6 @@ const SHOP_CATEGORIES = [
   'Port Ellen',
   'Bourbon',
   "Ballantine's",
-  'Scottish Whiskey',
 ];
 
 function getMatchedCategory(param: string | null): string {
@@ -32,7 +31,6 @@ function getMatchedCategory(param: string | null): string {
   if (clean.includes('bourbon') || clean.includes('rye')) return 'Bourbon';
   if (clean.includes('ballantine')) return "Ballantine's";
   if (clean.includes('old') || clean.includes('rare')) return 'Old and Rare';
-  if (clean.includes('scottish') || clean.includes('scotch')) return 'Scottish Whiskey';
   
   const direct = SHOP_CATEGORIES.find((c) => c.toLowerCase() === clean);
   return direct || 'All';
@@ -96,7 +94,6 @@ export default function ShopClient() {
       if (cat === 'Port Ellen') return w.category === 'Port Ellen' || w.distillery.toLowerCase().includes('port ellen');
       if (cat === 'Bourbon') return w.category === 'Bourbon' || w.type.toLowerCase().includes('bourbon');
       if (cat === "Ballantine's") return w.category === 'Ballantines' || w.category === "Ballantine's" || w.distillery.toLowerCase().includes('ballantine');
-      if (cat === 'Scottish Whiskey') return w.category === 'Scottish Whiskey' || w.country === 'Scotland';
       return false;
     }).length;
   };
@@ -140,8 +137,6 @@ export default function ShopClient() {
       matchesCategory = w.category === 'Bourbon' || w.type.toLowerCase().includes('bourbon') || w.country === 'United States';
     } else if (selectedCategory === "Ballantine's" || selectedCategory === "Ballantines") {
       matchesCategory = w.category === 'Ballantines' || w.category === "Ballantine's" || w.distillery.toLowerCase().includes('ballantine') || w.name.toLowerCase().includes('ballantine');
-    } else if (selectedCategory === 'Scottish Whiskey' || selectedCategory === 'Scottish') {
-      matchesCategory = w.category === 'Scottish Whiskey' || w.category === 'Macallan' || w.category === 'Balvenie' || w.country === 'Scotland' || w.type.toLowerCase().includes('scotch') || w.name.toLowerCase().includes('scotch') || w.name.toLowerCase().includes('scottish');
     }
 
     const matchesRegion =
@@ -197,7 +192,6 @@ export default function ShopClient() {
     if (selectedCategory === 'Port Ellen') return 'Port Ellen Ghost Distillery Single Casks';
     if (selectedCategory === 'Bourbon') return 'Small-Batch Bourbon & Rye Allocations';
     if (selectedCategory === "Ballantine's") return "Ballantine's Heritage Aged Releases";
-    if (selectedCategory === 'Scottish Whiskey') return 'Scottish Single Malt Scotch Whiskies';
     return `${selectedCategory} Collection`;
   };
 

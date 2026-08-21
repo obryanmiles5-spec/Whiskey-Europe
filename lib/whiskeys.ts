@@ -21,8 +21,7 @@ export type CategoryType =
   | 'Port Ellen'
   | 'Bourbon'
   | 'Ballantines'
-  | "Ballantine's"
-  | 'Scottish Whiskey';
+  | "Ballantine's";
 
 export type JapaneseBrand = 'Chichibu' | 'Hakushu' | 'Hibiki' | 'Karuizawa' | 'Yamazaki';
 
