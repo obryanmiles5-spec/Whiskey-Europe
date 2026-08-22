@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import TawkToChat from '@/components/TawkToChat';
+import SalesNotification from '@/components/SalesNotification';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://whiskeyeurope.org'),
@@ -368,7 +370,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
       </head>
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning>
+        {children}
+        <SalesNotification />
+        <TawkToChat />
+      </body>
     </html>
   );
 }

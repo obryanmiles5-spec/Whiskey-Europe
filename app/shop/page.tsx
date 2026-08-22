@@ -36,6 +36,12 @@ export const metadata: Metadata = {
     siteName: 'Whiskey Europe',
     type: 'website',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Boutique Bottle Shop | Whiskey Europe',
+    description:
+      'Explore certified authentic rare single malts, aged Scotches, Bourbons, and Japanese whiskies stored in bonded cellars in Rotterdam.',
+  },
 };
 
 export default function ShopPage() {

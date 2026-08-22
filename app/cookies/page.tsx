@@ -12,12 +12,53 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Cookie Policy | Whiskey Europe',
-  description: 'Cookie usage, session preferences, cart persistence, and consent management.',
+  description:
+    'Cookie usage, session preferences, cart persistence, and consent management under EU ePrivacy Directive and GDPR.',
+  alternates: {
+    canonical: 'https://whiskeyeurope.org/cookies',
+  },
+  openGraph: {
+    title: 'Cookie Policy | Whiskey Europe',
+    description:
+      'Cookie usage, session preferences, cart persistence, and consent management under EU ePrivacy Directive and GDPR.',
+    url: 'https://whiskeyeurope.org/cookies',
+    siteName: 'Whiskey Europe',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Cookie Policy | Whiskey Europe',
+    description:
+      'Cookie usage, session preferences, cart persistence, and consent management under EU ePrivacy Directive and GDPR.',
+  },
 };
 
 export default function CookiesPage() {
+  const cookiesBreadcrumbs = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://whiskeyeurope.org',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Cookie Policy',
+        item: 'https://whiskeyeurope.org/cookies',
+      },
+    ],
+  };
+
   return (
     <CartProvider>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(cookiesBreadcrumbs) }}
+      />
       <div className="min-h-screen bg-[#0f0d0b] text-[#f5f0ea] flex flex-col justify-between">
         <div>
           <Header />

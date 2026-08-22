@@ -12,12 +12,53 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Terms & Conditions | Whiskey Europe',
-  description: 'Terms of Service, sale contracts, buyer age requirements, and European alcohol distribution compliance.',
+  description:
+    'Terms of Service, sale contracts, buyer age requirements (18+), and European alcohol distribution compliance.',
+  alternates: {
+    canonical: 'https://whiskeyeurope.org/terms',
+  },
+  openGraph: {
+    title: 'Terms & Conditions | Whiskey Europe',
+    description:
+      'Terms of Service, sale contracts, buyer age requirements (18+), and European alcohol distribution compliance.',
+    url: 'https://whiskeyeurope.org/terms',
+    siteName: 'Whiskey Europe',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Terms & Conditions | Whiskey Europe',
+    description:
+      'Terms of Service, sale contracts, buyer age requirements (18+), and European alcohol distribution compliance.',
+  },
 };
 
 export default function TermsPage() {
+  const termsBreadcrumbs = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://whiskeyeurope.org',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Terms & Conditions',
+        item: 'https://whiskeyeurope.org/terms',
+      },
+    ],
+  };
+
   return (
     <CartProvider>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(termsBreadcrumbs) }}
+      />
       <div className="min-h-screen bg-[#0f0d0b] text-[#f5f0ea] flex flex-col justify-between">
         <div>
           <Header />

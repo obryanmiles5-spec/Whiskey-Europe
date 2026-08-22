@@ -14,10 +14,67 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'About Us | Whiskey Europe Bonded Cellars & Sommelier Team',
-  description: 'Learn about Whiskey Europe’s history, bonded climate-controlled cellars in Rotterdam, sommelier tasting panel, anti-counterfeit guarantee, and direct distillery allocations across Europe.',
+  description:
+    'Learn about Whiskey Europe’s heritage, bonded climate-controlled cellars in Rotterdam, sommelier tasting panel, anti-counterfeit guarantee, and direct distillery allocations across Europe.',
+  keywords: [
+    'about whiskey europe',
+    'bonded spirits cellar rotterdam',
+    'rare whisky provenance',
+    'sommelier verified spirits europe',
+    'whiskey cellar master panel',
+  ],
+  alternates: {
+    canonical: 'https://whiskeyeurope.org/about',
+  },
+  openGraph: {
+    title: 'About Us | Whiskey Europe Bonded Cellars & Sommelier Team',
+    description:
+      'Learn about Whiskey Europe’s heritage, bonded climate-controlled cellars in Rotterdam, sommelier tasting panel, and direct distillery allocations.',
+    url: 'https://whiskeyeurope.org/about',
+    siteName: 'Whiskey Europe',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Us | Whiskey Europe Bonded Cellars & Sommelier Team',
+    description:
+      'Learn about Whiskey Europe’s heritage, bonded climate-controlled cellars in Rotterdam, and sommelier tasting panel.',
+  },
 };
 
 export default function AboutPage() {
+  const aboutBreadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://whiskeyeurope.org',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'About Us',
+        item: 'https://whiskeyeurope.org/about',
+      },
+    ],
+  };
+
+  const aboutPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: 'About Whiskey Europe',
+    url: 'https://whiskeyeurope.org/about',
+    description:
+      'History, bonded vault facilities, sommelier tasting panel, and authentic direct distillery allocations across Europe.',
+    mainEntity: {
+      '@type': 'LiquorStore',
+      name: 'Whiskey Europe',
+      url: 'https://whiskeyeurope.org',
+    },
+  };
   const pillars = [
     {
       title: 'Direct Distillery Allocations',
@@ -67,6 +124,14 @@ export default function AboutPage() {
 
   return (
     <CartProvider>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutBreadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPageSchema) }}
+      />
       <div className="min-h-screen bg-[#0f0d0b] text-[#f5f0ea] flex flex-col justify-between selection:bg-amber-600 selection:text-black">
         <div>
           <Header />

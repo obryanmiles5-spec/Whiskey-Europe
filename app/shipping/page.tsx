@@ -12,12 +12,53 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'EU Shipping & Customs Policy | Whiskey Europe',
-  description: 'Door-to-door insured climate delivery across all 27 EU member states, duty clearance, and specialized spirits packaging.',
+  description:
+    'Door-to-door insured climate delivery across all 27 EU member states, duty clearance, and specialized spirits packaging.',
+  alternates: {
+    canonical: 'https://whiskeyeurope.org/shipping',
+  },
+  openGraph: {
+    title: 'EU Shipping & Customs Policy | Whiskey Europe',
+    description:
+      'Door-to-door insured climate delivery across all 27 EU member states, duty clearance, and specialized spirits packaging.',
+    url: 'https://whiskeyeurope.org/shipping',
+    siteName: 'Whiskey Europe',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'EU Shipping & Customs Policy | Whiskey Europe',
+    description:
+      'Door-to-door insured climate delivery across all 27 EU member states, duty clearance, and specialized spirits packaging.',
+  },
 };
 
 export default function ShippingPage() {
+  const shippingBreadcrumbs = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://whiskeyeurope.org',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Shipping & Customs Policy',
+        item: 'https://whiskeyeurope.org/shipping',
+      },
+    ],
+  };
+
   return (
     <CartProvider>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(shippingBreadcrumbs) }}
+      />
       <div className="min-h-screen bg-[#0f0d0b] text-[#f5f0ea] flex flex-col justify-between">
         <div>
           <Header />

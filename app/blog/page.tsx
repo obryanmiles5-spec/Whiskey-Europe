@@ -14,12 +14,83 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'The Whiskey Europe Journal | Spirits Sommelier & Market Insights',
-  description: 'Read the latest editorial guides, collector insights, masterclasses, and European spirits shipping regulations.',
+  description:
+    'Read the latest editorial guides, collector insights, masterclasses, and European spirits shipping regulations.',
+  keywords: [
+    'whiskey europe journal',
+    'whisky investment guide europe',
+    'japanese whisky collector insights',
+    'single malt scotch guide',
+    'bonded spirits storage',
+  ],
+  alternates: {
+    canonical: 'https://whiskeyeurope.org/blog',
+  },
+  openGraph: {
+    title: 'The Whiskey Europe Journal | Spirits Sommelier & Market Insights',
+    description:
+      'Read the latest editorial guides, collector insights, masterclasses, and European spirits shipping regulations.',
+    url: 'https://whiskeyeurope.org/blog',
+    siteName: 'Whiskey Europe',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'The Whiskey Europe Journal | Spirits Sommelier & Market Insights',
+    description:
+      'Expert analyses on rare Scotch single malts, Japanese Mizunara cask aging, and European cellar trade.',
+  },
 };
 
 export default function BlogPage() {
+  const blogBreadcrumbs = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://whiskeyeurope.org',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Journal & Insights',
+        item: 'https://whiskeyeurope.org/blog',
+      },
+    ],
+  };
+
+  const blogCollectionSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'The Whiskey Europe Journal',
+    url: 'https://whiskeyeurope.org/blog',
+    description: 'Editorial guides, collector insights, and sommelier masterclasses.',
+    hasPart: BLOG_ARTICLES.map((article) => ({
+      '@type': 'BlogPosting',
+      headline: article.title,
+      url: `https://whiskeyeurope.org/blog/${article.slug}`,
+      description: article.excerpt,
+      datePublished: article.date,
+      author: {
+        '@type': 'Person',
+        name: article.author,
+      },
+    })),
+  };
+
   return (
     <CartProvider>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogBreadcrumbs) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogCollectionSchema) }}
+      />
       <div className="min-h-screen bg-[#0f0d0b] text-[#f5f0ea] flex flex-col justify-between">
         <div>
           <Header />

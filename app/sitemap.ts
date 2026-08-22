@@ -112,12 +112,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   // Blog Article URLs
-  const blogRoutes: MetadataRoute.Sitemap = BLOG_ARTICLES.map((article) => ({
-    url: `${baseUrl}/blog/${article.slug}`,
-    lastModified: new Date(article.date),
-    changeFrequency: 'monthly',
-    priority: 0.8,
-  }));
+  const blogRoutes: MetadataRoute.Sitemap = BLOG_ARTICLES.map((article) => {
+    const articleDate = new Date(article.date);
+    const validDate = !isNaN(articleDate.getTime()) ? articleDate : lastModified;
+    return {
+      url: `${baseUrl}/blog/${article.slug}`,
+      lastModified: validDate,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    };
+  });
 
   // Every Individual Bottle Product URL (All 165+ rare whiskies)
   const productRoutes: MetadataRoute.Sitemap = WHISKEY_COLLECTION.map((whiskey) => ({

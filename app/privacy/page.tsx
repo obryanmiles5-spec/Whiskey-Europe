@@ -12,12 +12,53 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | Whiskey Europe',
-  description: 'GDPR compliance, personal data protection, cookies management, and customer confidentiality.',
+  description:
+    'GDPR compliance, personal data protection, cookies management, and customer confidentiality under EU Regulation 2016/679.',
+  alternates: {
+    canonical: 'https://whiskeyeurope.org/privacy',
+  },
+  openGraph: {
+    title: 'Privacy Policy | Whiskey Europe',
+    description:
+      'GDPR compliance, personal data protection, cookies management, and customer confidentiality under EU Regulation 2016/679.',
+    url: 'https://whiskeyeurope.org/privacy',
+    siteName: 'Whiskey Europe',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Privacy Policy | Whiskey Europe',
+    description:
+      'GDPR compliance, personal data protection, and customer confidentiality under EU Regulation 2016/679.',
+  },
 };
 
 export default function PrivacyPage() {
+  const privacyBreadcrumbs = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://whiskeyeurope.org',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Privacy Policy',
+        item: 'https://whiskeyeurope.org/privacy',
+      },
+    ],
+  };
+
   return (
     <CartProvider>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(privacyBreadcrumbs) }}
+      />
       <div className="min-h-screen bg-[#0f0d0b] text-[#f5f0ea] flex flex-col justify-between">
         <div>
           <Header />
