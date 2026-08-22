@@ -40,7 +40,7 @@ export interface OrderDetails {
  */
 function getZohoConfig() {
   const host = (process.env.ZOHO_MAIL_HOST || 'smtp.zoho.eu').trim();
-  const port = parseInt((process.env.ZOHO_MAIL_PORT || '465').trim(), 10) || 465;
+  const port = parseInt((process.env.ZOHO_MAIL_PORT || '587').trim(), 10) || 587;
   const user = (process.env.ZOHO_MAIL_USER || 'contact@whiskeyeurope.org').trim();
   const pass = (process.env.ZOHO_MAIL_PASSWORD || 'BEOK@1991!').trim();
   const rawFromName = (process.env.ZOHO_MAIL_FROM_NAME || 'Whiskey Europe').trim();
@@ -58,30 +58,36 @@ function getZohoConfig() {
 }
 
 /**
- * Creates a Nodemailer transporter with given host and port
+ * Creates candidate host/port pairs to guarantee delivery across Vercel cloud regions
  */
-function buildTransporter(host: string, port: number, user: string, pass: string) {
-  const isSecure = port === 465;
-  return nodemailer.createTransport({
-    host,
-    port,
-    secure: isSecure,
-    auth: {
-      user,
-      pass,
-    },
-    connectionTimeout: 9000,
-    greetingTimeout: 9000,
-    socketTimeout: 15000,
-    tls: {
-      rejectUnauthorized: false,
-      minVersion: 'TLSv1.2',
-    },
-  });
+function getCandidateConfigs(configuredHost: string, configuredPort: number) {
+  const isCustomPort = configuredPort !== 587 && configuredPort !== 465;
+
+  const list = [
+    // 1. Port 587 on configured host (Highest reliability on Vercel serverless)
+    { host: configuredHost, port: configuredPort === 465 ? 587 : configuredPort, secure: configuredPort === 465 ? false : configuredPort === 465 },
+    // 2. Port 465 on configured host (Direct SSL)
+    { host: configuredHost, port: 465, secure: true },
+    // 3. Alternate Zoho EU Workplace hosts
+    { host: 'smtppro.zoho.eu', port: 587, secure: false },
+    { host: 'smtppro.zoho.eu', port: 465, secure: true },
+    { host: 'smtp.zoho.eu', port: 587, secure: false },
+    { host: 'smtp.zoho.eu', port: 465, secure: true },
+    // 4. Zoho Global hosts fallback
+    { host: 'smtppro.zoho.com', port: 587, secure: false },
+    { host: 'smtp.zoho.com', port: 587, secure: false },
+  ];
+
+  if (isCustomPort) {
+    list.unshift({ host: configuredHost, port: configuredPort, secure: configuredPort === 465 });
+  }
+
+  // Deduplicate
+  return list.filter((c, idx, arr) => arr.findIndex(x => x.host === c.host && x.port === c.port) === idx);
 }
 
 /**
- * Sends mail via Zoho Mail SMTP with automatic port fallback (465 SSL <-> 587 STARTTLS)
+ * Sends mail via Zoho Mail SMTP with automatic host & port fallback
  */
 async function sendZohoMail(mailOptions: {
   to: string | string[];
@@ -89,10 +95,9 @@ async function sendZohoMail(mailOptions: {
   subject: string;
   html: string;
   text?: string;
-}) {
+}): Promise<{ success: boolean; messageId?: string; error?: string }> {
   const config = getZohoConfig();
-  const primaryPort = config.port;
-  const fallbackPort = primaryPort === 465 ? 587 : 465;
+  const candidates = getCandidateConfigs(config.host, config.port);
 
   const fullOptions = {
     from: {
@@ -106,26 +111,40 @@ async function sendZohoMail(mailOptions: {
     text: mailOptions.text || mailOptions.html.replace(/<[^>]*>?/gm, ''),
   };
 
-  // Attempt 1: Using configured primary port (e.g. 465 SSL)
-  try {
-    const transporter = buildTransporter(config.host, primaryPort, config.user, config.pass);
-    const info = await transporter.sendMail(fullOptions);
-    console.log(`[Zoho SMTP Success: ${primaryPort}] Sent "${mailOptions.subject}" to ${mailOptions.to}`, info.messageId);
-    return { success: true, messageId: info.messageId };
-  } catch (primaryErr) {
-    console.warn(`[Zoho SMTP Primary Port ${primaryPort} Failed] Retrying with Port ${fallbackPort}...`, primaryErr);
+  let lastError = '';
 
-    // Attempt 2: Fallback port (e.g. 587 STARTTLS)
+  for (const candidate of candidates) {
     try {
-      const fallbackTransporter = buildTransporter(config.host, fallbackPort, config.user, config.pass);
-      const fallbackInfo = await fallbackTransporter.sendMail(fullOptions);
-      console.log(`[Zoho SMTP Fallback Success: ${fallbackPort}] Sent "${mailOptions.subject}" to ${mailOptions.to}`, fallbackInfo.messageId);
-      return { success: true, messageId: fallbackInfo.messageId };
-    } catch (fallbackErr) {
-      console.error(`[Zoho SMTP Error] Failed on both ports (${primaryPort} & ${fallbackPort}) for "${mailOptions.subject}":`, fallbackErr);
-      return { success: false, error: String(fallbackErr) };
+      const transporter = nodemailer.createTransport({
+        host: candidate.host,
+        port: candidate.port,
+        secure: candidate.secure,
+        requireTLS: !candidate.secure,
+        auth: {
+          user: config.user,
+          pass: config.pass,
+        },
+        connectionTimeout: 8000,
+        greetingTimeout: 8000,
+        socketTimeout: 12000,
+        tls: {
+          rejectUnauthorized: false,
+          minVersion: 'TLSv1.2',
+        },
+      });
+
+      const info = await transporter.sendMail(fullOptions);
+      console.log(`[Zoho SMTP Success: ${candidate.host}:${candidate.port}] Sent "${mailOptions.subject}" to ${mailOptions.to} (ID: ${info.messageId})`);
+      return { success: true, messageId: info.messageId };
+    } catch (err: unknown) {
+      lastError = err instanceof Error ? err.message : String(err);
+      console.warn(`[Zoho SMTP Attempt Failed on ${candidate.host}:${candidate.port}] -> ${lastError}`);
+      // Continue loop to try next candidate host/port
     }
   }
+
+  console.error(`[Zoho SMTP Critical Error] All SMTP attempts failed for "${mailOptions.subject}". Last error: ${lastError}`);
+  return { success: false, error: lastError };
 }
 
 /**
@@ -282,7 +301,7 @@ export async function sendContactEmailAction(formData: {
     });
 
     if (!adminDispatch.success) {
-      console.warn('Admin dispatch reported issue:', adminDispatch.error);
+      console.warn('Admin dispatch error notice:', adminDispatch.error);
     }
   } catch (err) {
     console.error('Zoho Mail contact transport error:', err);
@@ -459,4 +478,3 @@ export async function sendOrderConfirmationAction(orderData: OrderDetails): Prom
     message: `Order #${orderData.orderId} confirmed! An email receipt has been sent to ${orderData.customerEmail} and logged at ${config.adminInbox}.`,
   };
 }
-
