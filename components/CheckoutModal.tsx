@@ -71,7 +71,8 @@ export default function CheckoutModal() {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
-    email: 'buyer@example.com',
+    email: '',
+    phone: '',
     address: '',
     city: '',
     postalCode: '',
@@ -117,18 +118,27 @@ export default function CheckoutModal() {
     const generatedOrderNum = `EU-${Math.floor(100000 + Math.random() * 900000)}`;
     setOrderNum(generatedOrderNum);
 
-    // Call server action to send order confirmation email
+    // Call server action to send order confirmation email to customer & cellar admin desk
     try {
       await sendOrderConfirmationAction({
         orderId: generatedOrderNum,
-        customerName: `${formData.firstName} ${formData.lastName}`,
+        customerName: `${formData.firstName} ${formData.lastName}`.trim(),
         customerEmail: formData.email,
         items: cart.map(i => ({ name: i.whiskey.name, quantity: i.quantity, price: i.whiskey.price })),
         total: grandTotal,
+        subtotal,
+        discount: discountAmount,
+        voucherCode: appliedCoupon || undefined,
+        shippingCost,
         country: selectedCountry.name,
+        address: formData.address,
+        city: formData.city,
+        postalCode: formData.postalCode,
+        phone: formData.phone || undefined,
+        paymentMethod: formData.paymentMethod,
       });
-    } catch {
-      // ignore
+    } catch (err) {
+      console.error('Order email dispatch error:', err);
     }
 
     // Earn Cask Club points (10 pts per €1)
@@ -243,16 +253,28 @@ export default function CheckoutModal() {
                   </div>
                 </div>
 
-                <div>
-                  <label className="block text-xs text-[#a39382] mb-1">Email Address * (For Order Confirmation)</label>
-                  <input
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="contact@whiskeyeurope.org"
-                    className="w-full bg-[#100d0a] border border-[#332920] rounded p-2.5 text-xs text-[#f5f0ea] focus:outline-none focus:border-amber-500"
-                  />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs text-[#a39382] mb-1">Email Address * (For Receipt & Tracking)</label>
+                    <input
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      placeholder="e.g. alexander@domain.com"
+                      className="w-full bg-[#100d0a] border border-[#332920] rounded p-2.5 text-xs text-[#f5f0ea] focus:outline-none focus:border-amber-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs text-[#a39382] mb-1">Phone Number (Optional / Courier SMS)</label>
+                    <input
+                      type="tel"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      placeholder="+49 170 1234567"
+                      className="w-full bg-[#100d0a] border border-[#332920] rounded p-2.5 text-xs text-[#f5f0ea] focus:outline-none focus:border-amber-500"
+                    />
+                  </div>
                 </div>
 
                 <div>
