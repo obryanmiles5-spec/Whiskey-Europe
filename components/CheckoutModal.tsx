@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import { X, ShieldCheck, CheckCircle2, Lock, CreditCard, Building2, Coins, ArrowLeftRight, QrCode, Copy, Check } from 'lucide-react';
+import { X, ShieldCheck, CheckCircle2, Lock, CreditCard, Building2, Coins, ArrowLeftRight, QrCode, Copy, Check, AlertCircle } from 'lucide-react';
 import { useCart } from '@/lib/cart-context';
 import { sendOrderConfirmationAction } from '@/app/actions/send-email';
+import { PAYMENT_CONFIG } from '@/lib/payment-config';
 
 interface PaymentMethodOption {
   id: string;
@@ -419,22 +420,28 @@ export default function CheckoutModal() {
                           <input
                             type="text"
                             placeholder="Card Number (XXXX XXXX XXXX XXXX)"
-                            defaultValue="4532 •••• •••• 8892"
-                            className="col-span-2 bg-[#18130f] border border-[#332920] rounded p-2 text-xs text-[#f5f0ea] font-mono"
+                            className="col-span-2 bg-[#18130f] border border-[#332920] rounded p-2 text-xs text-[#f5f0ea] font-mono focus:outline-none focus:border-amber-500"
                           />
                           <input
                             type="text"
                             placeholder="MM/YY"
-                            defaultValue="12/28"
-                            className="bg-[#18130f] border border-[#332920] rounded p-2 text-xs text-[#f5f0ea] font-mono"
+                            className="bg-[#18130f] border border-[#332920] rounded p-2 text-xs text-[#f5f0ea] font-mono focus:outline-none focus:border-amber-500"
                           />
                           <input
                             type="text"
                             placeholder="CVC / CVV"
-                            defaultValue="882"
-                            className="bg-[#18130f] border border-[#332920] rounded p-2 text-xs text-[#f5f0ea] font-mono"
+                            className="bg-[#18130f] border border-[#332920] rounded p-2 text-xs text-[#f5f0ea] font-mono focus:outline-none focus:border-amber-500"
                           />
                         </div>
+                        {PAYMENT_CONFIG.creditCard.paymentNote && (
+                          <div className="bg-amber-950/40 border border-amber-500/30 rounded p-2 text-[11px] text-amber-200/90 flex items-start gap-1.5 mt-1">
+                            <AlertCircle className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
+                            <div>
+                              <strong className="text-amber-300">Payment note: </strong>
+                              {PAYMENT_CONFIG.creditCard.paymentNote}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     )}
 
@@ -448,33 +455,35 @@ export default function CheckoutModal() {
                         <div className="bg-[#18130f] p-2.5 rounded border border-[#2e251e] space-y-1.5 font-mono text-[11px]">
                           <div className="flex justify-between items-center">
                             <span className="text-[#8c7e70]">Bank Name:</span>
-                            <span className="text-white">BNP Paribas Fortis (Brussels)</span>
+                            <span className="text-white">{PAYMENT_CONFIG.bankTransfer.bankName || '—'}</span>
                           </div>
                           <div className="flex justify-between items-center">
                             <span className="text-[#8c7e70]">Account Name:</span>
-                            <span className="text-amber-400">Whiskey Europe Bonded Vault Ltd</span>
+                            <span className="text-amber-400">{PAYMENT_CONFIG.bankTransfer.accountName || '—'}</span>
                           </div>
                           <div className="flex justify-between items-center">
                             <span className="text-[#8c7e70]">IBAN:</span>
                             <div className="flex items-center gap-1">
-                              <span className="text-white">BE68 5390 0754 9912</span>
-                              <button
-                                type="button"
-                                onClick={() => handleCopy('BE68 5390 0754 9912', 'iban')}
-                                className="text-amber-500 hover:text-amber-400 p-0.5"
-                                title="Copy IBAN"
-                              >
-                                {copiedField === 'iban' ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
-                              </button>
+                              <span className="text-white">{PAYMENT_CONFIG.bankTransfer.iban || '—'}</span>
+                              {PAYMENT_CONFIG.bankTransfer.iban && (
+                                <button
+                                  type="button"
+                                  onClick={() => handleCopy(PAYMENT_CONFIG.bankTransfer.iban, 'iban')}
+                                  className="text-amber-500 hover:text-amber-400 p-0.5"
+                                  title="Copy IBAN"
+                                >
+                                  {copiedField === 'iban' ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                                </button>
+                              )}
                             </div>
                           </div>
                           <div className="flex justify-between items-center">
                             <span className="text-[#8c7e70]">BIC / SWIFT:</span>
-                            <span className="text-white">GEBABEBBXXX</span>
+                            <span className="text-white">{PAYMENT_CONFIG.bankTransfer.swiftBic || '—'}</span>
                           </div>
                         </div>
                         <p className="text-[10px] text-[#8c7e70]">
-                          * Complete your order and use your order number as payment reference.
+                          {PAYMENT_CONFIG.bankTransfer.referenceNote || '* Use your order number as the payment reference.'}
                         </p>
                       </div>
                     )}
@@ -483,40 +492,69 @@ export default function CheckoutModal() {
                       <div className="space-y-2">
                         <div className="flex items-center justify-between text-[#e0d3c5]">
                           <span className="font-bold flex items-center gap-1.5">
-                            <Coins className="w-4 h-4 text-amber-500" /> Cryptocurrency Payment (Instant Dispatch)
+                            <Coins className="w-4 h-4 text-amber-500" /> Cryptocurrency (Bitcoin)
+                          </span>
+                          <span className="text-[10px] text-amber-400 font-mono bg-amber-950/60 border border-amber-800/60 px-1.5 py-0.5 rounded">
+                            {PAYMENT_CONFIG.crypto.acceptedCoins}
                           </span>
                         </div>
-                        <div className="bg-[#18130f] p-2.5 rounded border border-[#2e251e] space-y-1.5 text-[11px]">
+                        <div className="bg-[#18130f] p-2.5 rounded border border-[#2e251e] space-y-2 text-[11px]">
                           <div className="flex justify-between items-center font-mono">
-                            <span className="text-[#8c7e70]">Accepted Coins:</span>
-                            <span className="text-amber-400">BTC • ETH • USDT (TRC20/ERC20)</span>
+                            <span className="text-[#8c7e70]">Network:</span>
+                            <span className="text-amber-400">{PAYMENT_CONFIG.crypto.network}</span>
                           </div>
                           <div className="space-y-1 pt-1 border-t border-[#261e18]">
-                            <span className="text-[#8c7e70] block text-[10px]">Vault Deposit Address (USDT TRC-20):</span>
-                            <div className="flex items-center justify-between bg-[#110e0b] p-1.5 rounded font-mono text-[10px] text-amber-300">
-                              <span className="truncate mr-2">TXv9E8R4zLq2N1p7M5yW8kJ3xH6u9P0aQ</span>
+                            <span className="text-[#8c7e70] block text-[10px]">Bitcoin Wallet Address:</span>
+                            <div className="flex items-center justify-between bg-[#110e0b] border border-[#2e251e] p-2 rounded font-mono text-[11px] text-amber-300">
+                              <span className="truncate mr-2 font-bold tracking-tight select-all">{PAYMENT_CONFIG.crypto.walletAddress}</span>
                               <button
                                 type="button"
-                                onClick={() => handleCopy('TXv9E8R4zLq2N1p7M5yW8kJ3xH6u9P0aQ', 'crypto')}
-                                className="text-amber-500 hover:text-amber-400 p-1 shrink-0"
+                                onClick={() => handleCopy(PAYMENT_CONFIG.crypto.walletAddress, 'crypto')}
+                                className="flex items-center gap-1 bg-amber-600/20 hover:bg-amber-600/30 text-amber-400 px-2 py-1 rounded text-[10px] font-sans font-medium shrink-0 transition-colors"
+                                title="Copy Bitcoin Address"
                               >
-                                {copiedField === 'crypto' ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                                {copiedField === 'crypto' ? (
+                                  <>
+                                    <Check className="w-3 h-3 text-emerald-400" />
+                                    <span className="text-emerald-400">Copied</span>
+                                  </>
+                                ) : (
+                                  <>
+                                    <Copy className="w-3 h-3" />
+                                    <span>Copy</span>
+                                  </>
+                                )}
                               </button>
                             </div>
                           </div>
                         </div>
+                        {PAYMENT_CONFIG.crypto.paymentNote && (
+                          <div className="bg-amber-950/40 border border-amber-500/30 rounded p-2 text-[11px] text-amber-200/90 flex items-start gap-1.5">
+                            <AlertCircle className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
+                            <div>
+                              <strong className="text-amber-300">Payment note: </strong>
+                              {PAYMENT_CONFIG.crypto.paymentNote}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     )}
 
                     {formData.paymentMethod === 'paypal' && (
-                      <div className="space-y-1.5">
+                      <div className="space-y-2">
                         <div className="flex items-center justify-between text-[#e0d3c5]">
                           <span className="font-bold flex items-center gap-1.5">
-                            <span className="font-bold text-amber-500 text-sm font-mono">P</span> PayPal Express Checkout
+                            <span className="font-bold text-amber-500 text-sm font-mono">P</span> PayPal Checkout
                           </span>
                         </div>
+                        <div className="bg-[#18130f] p-2.5 rounded border border-[#2e251e] space-y-1.5 font-mono text-[11px]">
+                          <div className="flex justify-between items-center">
+                            <span className="text-[#8c7e70]">PayPal Account / Email:</span>
+                            <span className="text-amber-400">{PAYMENT_CONFIG.paypal.paypalEmail || '—'}</span>
+                          </div>
+                        </div>
                         <p className="text-[11px] text-[#b0a191] leading-relaxed">
-                          You will receive an instant PayPal buyer protection checkout link upon order confirmation. Express coverage applies to all European shipments.
+                          {PAYMENT_CONFIG.paypal.instructions || 'You will receive an instant PayPal payment confirmation link upon placing your order.'}
                         </p>
                       </div>
                     )}
@@ -525,28 +563,33 @@ export default function CheckoutModal() {
                       <div className="space-y-2">
                         <div className="flex items-center justify-between text-[#e0d3c5]">
                           <span className="font-bold flex items-center gap-1.5">
-                            <QrCode className="w-4 h-4 text-amber-500" /> Instant Pay ID Transfer
+                            <QrCode className="w-4 h-4 text-amber-500" /> Pay ID Transfer
                           </span>
                         </div>
                         <div className="bg-[#18130f] p-2.5 rounded border border-[#2e251e] space-y-1.5 font-mono text-[11px]">
                           <div className="flex justify-between items-center">
                             <span className="text-[#8c7e70]">Pay ID Handle:</span>
                             <div className="flex items-center gap-1">
-                              <span className="text-amber-400">payments@whiskeyeurope.org</span>
-                              <button
-                                type="button"
-                                onClick={() => handleCopy('payments@whiskeyeurope.org', 'payid')}
-                                className="text-amber-500 hover:text-amber-400 p-0.5"
-                              >
-                                {copiedField === 'payid' ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
-                              </button>
+                              <span className="text-amber-400">{PAYMENT_CONFIG.payId.payIdHandle || '—'}</span>
+                              {PAYMENT_CONFIG.payId.payIdHandle && (
+                                <button
+                                  type="button"
+                                  onClick={() => handleCopy(PAYMENT_CONFIG.payId.payIdHandle, 'payid')}
+                                  className="text-amber-500 hover:text-amber-400 p-0.5"
+                                >
+                                  {copiedField === 'payid' ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                                </button>
+                              )}
                             </div>
                           </div>
                           <div className="flex justify-between items-center">
                             <span className="text-[#8c7e70]">Business Name:</span>
-                            <span className="text-white">Whiskey Europe Vault</span>
+                            <span className="text-white">{PAYMENT_CONFIG.payId.businessName || '—'}</span>
                           </div>
                         </div>
+                        {PAYMENT_CONFIG.payId.instructions && (
+                          <p className="text-[10px] text-[#8c7e70]">{PAYMENT_CONFIG.payId.instructions}</p>
+                        )}
                       </div>
                     )}
 
@@ -560,17 +603,20 @@ export default function CheckoutModal() {
                         <div className="bg-[#18130f] p-2.5 rounded border border-[#2e251e] space-y-1.5 font-mono text-[11px]">
                           <div className="flex justify-between items-center">
                             <span className="text-[#8c7e70]">Bank Name:</span>
-                            <span className="text-white">ING Group N.V. (Amsterdam)</span>
+                            <span className="text-white">{PAYMENT_CONFIG.wireTransfer.bankName || '—'}</span>
                           </div>
                           <div className="flex justify-between items-center">
-                            <span className="text-[#8c7e70]">SWIFT Code:</span>
-                            <span className="text-amber-400">INGBNL2AXXX</span>
+                            <span className="text-[#8c7e70]">SWIFT / BIC Code:</span>
+                            <span className="text-amber-400">{PAYMENT_CONFIG.wireTransfer.swiftCode || '—'}</span>
                           </div>
                           <div className="flex justify-between items-center">
-                            <span className="text-[#8c7e70]">Wire Routing:</span>
-                            <span className="text-white">021000089</span>
+                            <span className="text-[#8c7e70]">Account / Routing:</span>
+                            <span className="text-white">{PAYMENT_CONFIG.wireTransfer.accountNumber || PAYMENT_CONFIG.wireTransfer.routingNumber || '—'}</span>
                           </div>
                         </div>
+                        {PAYMENT_CONFIG.wireTransfer.instructions && (
+                          <p className="text-[10px] text-[#8c7e70]">{PAYMENT_CONFIG.wireTransfer.instructions}</p>
+                        )}
                       </div>
                     )}
 

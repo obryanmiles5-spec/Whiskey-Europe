@@ -453,7 +453,10 @@ export async function sendOrderConfirmationAction(orderData: OrderDetails): Prom
           </table>
 
           <div style="background-color: #14100d; border: 1px solid #292018; border-radius: 6px; padding: 16px; margin: 24px 0; font-size: 13px; color: #b0a090;">
-            <strong style="color: #f59e0b; display: block; margin-bottom: 6px;">Next Steps:</strong>
+            <strong style="color: #f59e0b; display: block; margin-bottom: 6px;">Payment &amp; Fulfillment Next Steps:</strong>
+            <p style="margin: 0 0 10px 0; color: #fde68a; font-weight: 500; font-size: 13px;">
+              ⚠️ <strong>Payment Note:</strong> Provide a receipt of your payment after a successful transfer to <a href="mailto:${config.adminInbox}" style="color: #f59e0b; text-decoration: underline;">${config.adminInbox}</a>.
+            </p>
             <ul style="margin: 0; padding-left: 18px; line-height: 1.6;">
               <li>Your bottles are placed into thermal shock-resistant packaging with security hologram tags.</li>
               <li>A tracking link will be dispatched to this inbox upon courier dispatch.</li>
