@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Search, X, Star, ShoppingBag, Eye, Filter, Wine } from 'lucide-react';
 import { useCart } from '@/lib/cart-context';
 import { WHISKEY_COLLECTION, Whiskey } from '@/lib/whiskeys';
@@ -135,15 +136,13 @@ export default function SearchOverlay() {
                     <span className="text-[10px] text-amber-400 font-mono">
                       {w.region} • {w.age} Yrs
                     </span>
-                    <h4
-                      onClick={() => {
-                        setIsSearchOpen(false);
-                        setQuickViewWhiskey(w);
-                      }}
-                      className="font-serif font-bold text-sm text-[#f8f3ed] group-hover:text-amber-400 cursor-pointer line-clamp-1"
+                    <Link
+                      href={`/shop/${w.id}`}
+                      onClick={() => setIsSearchOpen(false)}
+                      className="font-serif font-bold text-sm text-[#f8f3ed] group-hover:text-amber-400 cursor-pointer line-clamp-1 block"
                     >
                       {w.name}
-                    </h4>
+                    </Link>
                     <p className="text-[11px] text-[#8c7e70] truncate">{w.distillery}</p>
                   </div>
 

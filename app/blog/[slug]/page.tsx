@@ -13,6 +13,12 @@ import { CartProvider } from '@/lib/cart-context';
 import { ArrowLeft, Calendar, Clock, BookOpen, Share2 } from 'lucide-react';
 import type { Metadata } from 'next';
 
+export async function generateStaticParams() {
+  return BLOG_ARTICLES.map((article) => ({
+    slug: article.slug,
+  }));
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const article = BLOG_ARTICLES.find((a) => a.slug === slug);
@@ -21,6 +27,30 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${article.title} | Whiskey Europe Journal`,
     description: article.excerpt,
+    alternates: {
+      canonical: `https://whiskeyeurope.org/blog/${article.slug}`,
+    },
+    openGraph: {
+      title: `${article.title} | Whiskey Europe Journal`,
+      description: article.excerpt,
+      url: `https://whiskeyeurope.org/blog/${article.slug}`,
+      siteName: 'Whiskey Europe',
+      images: [
+        {
+          url: article.thumbnail,
+          width: 1200,
+          height: 630,
+          alt: article.title,
+        },
+      ],
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: article.title,
+      description: article.excerpt,
+      images: [article.thumbnail],
+    },
   };
 }
 
@@ -32,9 +62,39 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
     notFound();
   }
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: article.title,
+    description: article.excerpt,
+    image: [article.thumbnail],
+    datePublished: article.date,
+    dateModified: article.date,
+    author: {
+      '@type': 'Person',
+      name: article.author,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Whiskey Europe',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://whiskeyeurope.org/icon.png',
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://whiskeyeurope.org/blog/${article.slug}`,
+    },
+  };
+
   return (
     <CartProvider>
-      <div className="min-h-screen bg-[#0f0d0b] text-[#f5f0ea] flex flex-col justify-between">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <div className="min-h-screen bg-[#0f0d0b] text-[#f5f0ea] flex flex-col justify-between selection:bg-amber-600 selection:text-black">
         <div>
           <Header />
 
@@ -43,7 +103,7 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
             
             {/* Back Button */}
             <Link
-              href="/#blog"
+              href="/blog"
               className="inline-flex items-center gap-2 text-xs font-semibold text-amber-400 hover:text-amber-300 transition-colors bg-[#18130f] px-3.5 py-2 rounded-lg border border-[#2b221a]"
             >
               <ArrowLeft className="w-4 h-4" />
@@ -103,7 +163,7 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
               <div>
                 <span className="text-[10px] text-amber-400 font-mono uppercase">PUBLISHED BY WHISKEY EUROPE</span>
                 <h4 className="font-serif font-bold text-base text-[#f5f0ea]">{article.author}</h4>
-                <p className="text-xs text-[#8c7e70]">Sommelier & Spirits Curator • domain: whiskeyeurope.org</p>
+                <p className="text-xs text-[#8c7e70]">Sommelier &amp; Spirits Curator • domain: whiskeyeurope.org</p>
               </div>
 
               <Link

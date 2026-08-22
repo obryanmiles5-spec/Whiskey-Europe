@@ -155,11 +155,10 @@ export default function FeaturedProducts() {
                   </div>
 
                   {/* Title */}
-                  <h3
-                    onClick={() => setQuickViewWhiskey(whiskey)}
-                    className="font-serif font-bold text-base text-[#f8f3ed] group-hover:text-amber-400 transition-colors cursor-pointer line-clamp-2"
-                  >
-                    {whiskey.name}
+                  <h3 className="font-serif font-bold text-base text-[#f8f3ed] group-hover:text-amber-400 transition-colors line-clamp-2">
+                    <Link href={`/shop/${whiskey.id}`} className="hover:underline">
+                      {whiskey.name}
+                    </Link>
                   </h3>
 
                   {/* Cask Type */}

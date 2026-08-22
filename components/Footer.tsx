@@ -103,6 +103,7 @@ export default function Footer() {
               Rare Collections
             </h4>
             <ul className="space-y-2 text-slate-600">
+              <li><Link href="/rare-whiskey-index" className="hover:text-amber-700 transition-colors font-bold text-amber-900 flex items-center gap-1">★ Rare Whiskey &amp; Spirits Index</Link></li>
               <li><Link href="/shop?category=Ballantine%27s" className="hover:text-amber-700 transition-colors font-medium">Ballantine&apos;s Heritage 21-40Y</Link></li>
               <li><Link href="/shop?category=Balvenie" className="hover:text-amber-700 transition-colors">Balvenie Cask Allocations</Link></li>
               <li><Link href="/shop?category=Bourbon" className="hover:text-amber-700 transition-colors">Bourbon & Rye Allocations</Link></li>

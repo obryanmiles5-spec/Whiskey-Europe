@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { WHISKEY_COLLECTION, Whiskey, JAPANESE_BRANDS, JapaneseBrand } from '@/lib/whiskeys';
 import { useCart } from '@/lib/cart-context';
@@ -561,11 +562,10 @@ export default function ShopClient() {
                       <span>{whiskey.region}</span>
                     </div>
 
-                    <h3
-                      onClick={() => setQuickViewWhiskey(whiskey)}
-                      className="font-serif font-bold text-base text-[#f8f3ed] group-hover:text-amber-400 transition-colors cursor-pointer line-clamp-1"
-                    >
-                      {whiskey.name}
+                    <h3 className="font-serif font-bold text-base text-[#f8f3ed] group-hover:text-amber-400 transition-colors line-clamp-1">
+                      <Link href={`/shop/${whiskey.id}`} className="hover:underline">
+                        {whiskey.name}
+                      </Link>
                     </h3>
 
                     {/* Sommelier Rating */}
