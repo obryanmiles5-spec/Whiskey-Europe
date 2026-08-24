@@ -273,6 +273,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  verification: {
+    google: 'PhoanpLbqcsYTQ2kraJh2NLn0rx1iqHqBpWiqrPt0Mk',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -361,6 +364,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
+        <meta
+          name="google-site-verification"
+          content="PhoanpLbqcsYTQ2kraJh2NLn0rx1iqHqBpWiqrPt0Mk"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
