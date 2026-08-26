@@ -1,12 +1,11 @@
 import type { MetadataRoute } from 'next';
-import { WHISKEY_COLLECTION, BLOG_ARTICLES, JAPANESE_BRANDS } from '@/lib/whiskeys';
-import { ALL_SEARCH_KEYWORDS } from '@/lib/keyword-registry';
+import { WHISKEY_COLLECTION, BLOG_ARTICLES } from '@/lib/whiskeys';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://whiskeyeurope.org';
   const lastModified = new Date();
 
-  // Core Static Routes
+  // Core Canonical Static Routes
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
@@ -27,16 +26,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.98,
     },
     {
-      url: `${baseUrl}/about`,
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
       url: `${baseUrl}/how-to-crypto`,
       lastModified,
       changeFrequency: 'weekly',
       priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/about`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/blog`,
@@ -82,42 +81,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // Category Landing URLs
-  const categoryNames = [
-    'Japanese',
-    'Balvenie',
-    'Hennessy',
-    'Macallan',
-    'Old and Rare',
-    'Port Ellen',
-    'Bourbon',
-    "Ballantine's",
-  ];
-
-  const categoryRoutes: MetadataRoute.Sitemap = categoryNames.map((cat) => ({
-    url: `${baseUrl}/shop?category=${encodeURIComponent(cat)}`,
-    lastModified,
-    changeFrequency: 'daily',
-    priority: 0.9,
-  }));
-
-  // Japanese Brands Landing URLs
-  const japaneseBrandRoutes: MetadataRoute.Sitemap = JAPANESE_BRANDS.map((brand) => ({
-    url: `${baseUrl}/shop?category=Japanese&brand=${encodeURIComponent(brand.id)}`,
-    lastModified,
-    changeFrequency: 'daily',
-    priority: 0.88,
-  }));
-
-  // Keyword Cluster Search URLs for Search Engine Indexation
-  const keywordQueryRoutes: MetadataRoute.Sitemap = ALL_SEARCH_KEYWORDS.map((kw) => ({
-    url: `${baseUrl}/shop?q=${encodeURIComponent(kw.searchQuery)}`,
-    lastModified,
-    changeFrequency: 'weekly',
-    priority: 0.82,
-  }));
-
-  // Blog Article URLs
+  // Editorial Journal Guides
   const blogRoutes: MetadataRoute.Sitemap = BLOG_ARTICLES.map((article) => {
     const articleDate = new Date(article.date);
     const validDate = !isNaN(articleDate.getTime()) ? articleDate : lastModified;
@@ -139,10 +103,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...staticRoutes,
-    ...categoryRoutes,
-    ...japaneseBrandRoutes,
-    ...keywordQueryRoutes,
     ...blogRoutes,
     ...productRoutes,
   ];
 }
+
