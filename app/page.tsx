@@ -120,6 +120,22 @@ export default function HomePage() {
           text: 'Our vault features Balvenie DCS Compendium, Macallan 25/30/50 Sherry Oak, Karuizawa ghost distillery casks, Yamazaki 50 & Mizunara, Port Ellen Single Casks, Pappy Van Winkle 15/20/23, and Hennessy Paradis.',
         },
       },
+      {
+        '@type': 'Question',
+        name: 'What is the difference between mezcal and tequila?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'When considering tequila vs mezcal, tequila is made exclusively from Blue Weber agave in specific regions like Jalisco, while mezcal can be made from over 30 types of agave (mostly in Oaxaca) and is roasted in underground pits for a smoky flavor.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What are the most popular scotch brands?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The most popular scotch brands range from premium blended scotch whisky (like Johnnie Walker and Chivas Regal) to single malt scotch brands such as Macallan, Dalmore whiskey, Lagavulin, and Laphroaig (lafroy).',
+        },
+      },
     ],
   };
 

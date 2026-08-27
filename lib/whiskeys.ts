@@ -5428,5 +5428,36 @@ export const BLOG_ARTICLES: BlogArticle[] = [
       'At Whiskey Europe, all shipments are dispatched from our central bonded warehouse in Western Europe, pre-cleared for local VAT and excise duties.',
       'Every order is packaged in shock-absorbing climate-insulated timber or recycled pulp casing with live GPS tracking.'
     ]
+  },
+  {
+    slug: 'the-global-spirits-directory-scotch-tequila-rum',
+    title: 'The Global Spirits Directory: Exploring Scotch, Tequila, Rum & Fine Wine',
+    date: 'August 24, 2026',
+    author: 'Alistair Campbell, Senior Spirits Curator',
+    readTime: '12 min read',
+    category: 'Spirits & Liqueur Education',
+    excerpt: 'An exhaustive A-Z guide covering popular scotch brands, tequila vs mezcal, champagne names, and everything you need to know about global hard liquor names.',
+    thumbnail: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=800&auto=format&fit=crop',
+    content: [
+      'Whether you are browsing thewhiskyexchange.com, looking for alternatives to whisky exchange uk, or simply expanding your cellar, understanding the vast list of spirits drinks is crucial. Our directory covers all types of alcohol and major liquor brands list.',
+      
+      '### Scotch Whisky Brands List & Regions',
+      'The landscape of scotland whiskey brands is divided into distinct regions. For fans of smoky, peated whiskey flavor, a scotch whiskey from islay is unmatched. The top islay single malt scotch distilleries include Ardbeg (try the Ardbeg 10 or Ardbeg UK releases), Caol Ila Islay, Laphroaig (often searched as lafroy), and Lagavulin (famous for the Lagavulin Single Malt 16 / Lagavulin islay 16). For coastal brine, consider a campbeltown scotch whisky like Springbank. If you prefer floral and sweet profiles, explore single speyside malt whisky such as Macallan (Macallan UK / Macallan the / macintosh whiskey), Aberlour 12, 12 Glenlivet, Glen Spey, or Coleburn whisky. For balanced heather and honey, the highland region scotch shines through bottles like Dalwhinnie, Dalmore whiskey, Blair Athol whisky, and highland single malt scotch legends like Glindfich (Glenfiddich scotch / glenfinch whiskey). Finally, the gentle Lowland single malt scotch whisky region offers delicate, grassy drams.',
+      
+      'When exploring a list of scotch brands, you will encounter single malt scotch brands (like Macallan and Ardbeg) as well as premium blended scotch whisky. Popular scotch blends brands include Johnnie Walker, Ballantine\'s, and Chivas Regal. These blended scotch whisky brands mix single malt with grain whisky to create a smooth, consistent scotch whiskey blend.',
+
+      '### Global Whiskey: Irish, American, Japanese & Beyond',
+      'Beyond scotch whiskies, the world of whiskey companies is vast. Irish whisky brands (or irischer whisky single malt) are known for triple distillation. Midleton very rare irish, Green Spot pot still whiskey, Teeling Irish whiskey, and Irish whiskey blends like Jameson (including the mythical jameson blue label) dominate the irish whiskeys market. Across the pond, american whiskey brands (united states whiskey / whiskey from usa) like Jim Beam (look out for the jim beam christmas bottle) and tennessee viski like Jack Daniel\'s rule the bourbon scene. For Canadian whiskey, brands of canadian whiskey like Lot 40 Canadian stand out. Further east, japanese whiskey top performers (best whisky from japan / top rated japanese whisky) like Nikka from the barrel and Japanese single malt releases from Yamazaki are highly coveted. We are also seeing the rise of Australian whiskey and Indian scotch (Indian single malt), alongside emerging Chinese producers like Laizhou whisky.',
+      
+      '### Tequila, Mezcal & Rum',
+      'If you are looking for agave, you might ask about tequila ingredients or what is in a tequila. Understanding tequila vs mezcal (or difference between mezcal and tequila / mezcal mexico) is simple: tequila is a specific mezcal made only from Blue Weber agave. Popular tequila brands (brands types of tequila / tequilla brands / names of tequila / brands of tequila list) include Don Julio 1942. For rum, the rum brands list (brands of run / good rum brands / rum drinks brands) features Cuban rum, Diplomatico rum, and Admiral Rodney rum UK. In South America, Cachaca (cachaça / kashasha drink / cachaca alcohol) reigns supreme in Brazil.',
+
+      '### Cognac, Champagne, Wine & Liqueurs',
+      'For brandy lovers, the cognac brands list (brand of cognac) features heavyweights like Remy Louis 13 cognac (louis tres brandy) and T Hine. If you prefer clear spirits, different brands of vodka (vodka types list / vodka brand) like Belved (Belvedere) or a vodka beginning with s (Smirnoff) are essentials. Liqueur brands and whiskey liqueur like Jacker master (jaga master / Jägermeister), Cadello, and Safari liquor offer unique herbal profiles.',
+      'For wine enthusiasts, champagne names (champagne wine brands / french champagne brands / champagne brands) like Dom Pérignon represent luxury. When searching for wines that start with b or wines that begin with c, or simply looking for the best port (best port alcohol), understanding brands of wine and wine name origins is key to building a great cellar.',
+
+      '### Pop Culture & Spirits',
+      'Hard liquor names often intersect with pop culture. A frequent trivia topic is james bond movies actors in order (james bond movies actor) and their drinks of choice. From Sean Connery’s Vodka Martini to Daniel Craig’s Macallan whisky, the alcohol named in these films heavily influences alchohol brands and alcohol names worldwide. Whether you need alcohol that starts with j, liquor that starts with c, liquor that starts with a, alcohol that starts with r, alcohol that starts with an a, or alcohol that begins with d, the world of hard drinks name list (hard alcohol names) is endless.'
+    ]
   }
 ];

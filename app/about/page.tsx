@@ -271,6 +271,65 @@ export default function AboutPage() {
               </div>
             </div>
 
+            {/* Spirits Knowledge & FAQ */}
+            <div className="space-y-8 pt-6">
+              <div className="text-center space-y-2 max-w-2xl mx-auto">
+                <span className="text-amber-500 font-mono text-xs uppercase tracking-wider">
+                  KNOWLEDGE BASE
+                </span>
+                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#f8f3ed]">
+                  Frequently Asked Questions
+                </h2>
+                <p className="text-xs text-[#a39382]">
+                  Explore answers to common questions about global spirits, from what is cognac to the difference between mezcal and tequila.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+                <div className="bg-[#14100c] border border-[#282019] p-5 rounded-xl">
+                  <h3 className="font-serif font-bold text-[#f5f0ea] mb-2">What is the difference between mezcal and tequila?</h3>
+                  <p className="text-xs text-[#a39382] leading-relaxed">
+                    Wondering about <strong>tequila vs mezcal</strong>? Both are agave-based Mexican spirits, but they differ in production. <strong>What is tequila made of?</strong> It must be made from 100% Blue Weber Agave, mostly in Jalisco. <strong>What is mezcal?</strong> Mezcal can be made from over 30 agave types, and the piñas are traditionally roasted in underground pits, giving it a signature smoky flavor. Popular tequila brands include Don Julio 1942, while authentic mezcal liquor often comes from Oaxaca, Mexico.
+                  </p>
+                </div>
+                
+                <div className="bg-[#14100c] border border-[#282019] p-5 rounded-xl">
+                  <h3 className="font-serif font-bold text-[#f5f0ea] mb-2">What is Cognac and how does it differ from Brandy?</h3>
+                  <p className="text-xs text-[#a39382] leading-relaxed">
+                    <strong>What is cognac?</strong> Cognac is a specific type of premium brandy produced exclusively in the Cognac region of France. It is double-distilled in copper pot stills and aged in French oak barrels. The top <strong>cognac brands list</strong> is dominated by names like Hennessy, Rémy Martin (creators of the legendary Remy Louis 13 cognac), and T Hine.
+                  </p>
+                </div>
+
+                <div className="bg-[#14100c] border border-[#282019] p-5 rounded-xl">
+                  <h3 className="font-serif font-bold text-[#f5f0ea] mb-2">What are the most popular scotch brands?</h3>
+                  <p className="text-xs text-[#a39382] leading-relaxed">
+                    When looking at a <strong>list of scotch brands</strong>, there are two main categories: single malts and blended scotch. <strong>Single malt scotch brands</strong> like Macallan (Macallan UK), Dalmore whiskey, Glenfiddich (often misspelled glindfich), and Lagavulin Single Malt 16 dominate the premium tier. Popular <strong>blended scotch whisky brands</strong> include Johnnie Walker, Ballantine&apos;s, and Chivas Regal.
+                  </p>
+                </div>
+
+                <div className="bg-[#14100c] border border-[#282019] p-5 rounded-xl">
+                  <h3 className="font-serif font-bold text-[#f5f0ea] mb-2">How do you pronounce Laphroaig?</h3>
+                  <p className="text-xs text-[#a39382] leading-relaxed">
+                    A common question among beginners is <strong>Laphroaig pronounce</strong>. The famous Islay single malt scotch is pronounced &quot;La-FROYg&quot; (rhymes with boy). It is one of the most heavily peated <strong>scotch whiskey from Islay</strong>, sitting alongside Ardbeg 10 and Caol Ila Islay as a staple of the island&apos;s smoky whiskey flavor.
+                  </p>
+                </div>
+                
+                <div className="bg-[#14100c] border border-[#282019] p-5 rounded-xl">
+                  <h3 className="font-serif font-bold text-[#f5f0ea] mb-2">What is Soju vs Cachaca?</h3>
+                  <p className="text-xs text-[#a39382] leading-relaxed">
+                    <strong>What is soju?</strong> Soju is a clear, low-alcohol Korean distilled beverage traditionally made from rice or sweet potatoes. On the other hand, <strong>Cachaca</strong> (kashasha drink / cachaça) is the national spirit of Brazil, a spicy, fruity liquor made directly from fermented sugarcane juice, often compared to rum (but distinct from standard cuban rum).
+                  </p>
+                </div>
+                
+                <div className="bg-[#14100c] border border-[#282019] p-5 rounded-xl">
+                  <h3 className="font-serif font-bold text-[#f5f0ea] mb-2">Whats a sherry cask finish?</h3>
+                  <p className="text-xs text-[#a39382] leading-relaxed">
+                    <strong>Whats a sherry?</strong> Sherry is a fortified wine from Spain. In the whisky world, a &quot;sherry cask finish&quot; means aging single speyside malt whisky in barrels that previously held Oloroso or Pedro Ximénez sherry. This imparts deep flavors of raisins, dark chocolate, and figs—a signature whiskey flavor found in Aberlour 12, Dalwhinnie, and Macallan.
+                  </p>
+                </div>
+              </div>
+            </div>
+
             {/* Call to Action Banner */}
             <div className="bg-gradient-to-r from-amber-950/80 via-[#1a140f] to-[#120e0b] border border-amber-900/60 rounded-2xl p-8 text-center space-y-4 shadow-2xl">
               <h3 className="font-serif text-2xl font-bold text-[#f8f3ed]">
