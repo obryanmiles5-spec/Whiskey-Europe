@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Search, ShoppingBag, Menu, X, Award, MapPin, Wine, ChevronRight, Shield } from 'lucide-react';
+import { Search, ShoppingBag, Menu, X, Award, MapPin, ChevronRight } from 'lucide-react';
 import { useCart } from '@/lib/cart-context';
 import BrandLogo from '@/components/BrandLogo';
 
@@ -31,23 +31,13 @@ export default function Header() {
     { name: 'Contact', href: '/contact', id: 'nav-contact' },
   ];
 
-  const handleOrderNow = () => {
-    setIsMobileMenuOpen(false);
-    const collection = document.getElementById('collection');
-    if (collection) {
-      collection.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      window.location.href = '/shop';
-    }
-  };
-
   return (
     <header
       id="main-header"
       className={`sticky top-0 z-30 transition-all duration-300 border-b ${
         isScrolled
-          ? 'bg-white/95 backdrop-blur-md border-slate-200 shadow-md py-3'
-          : 'bg-white border-slate-200 py-4'
+          ? 'bg-white/95 backdrop-blur-md border-black/15 shadow-sm py-3'
+          : 'bg-white border-black/10 py-4'
       }`}
     >
       <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 2xl:px-16 flex items-center justify-between">
@@ -57,7 +47,7 @@ export default function Header() {
           <button
             id="mobile-menu-toggle-btn"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 text-slate-700 hover:text-amber-700 rounded-md focus:outline-none transition-colors hover:bg-slate-100"
+            className="lg:hidden p-2 text-black hover:text-zinc-600 rounded-md focus:outline-none transition-colors hover:bg-zinc-100"
             aria-label="Toggle Navigation Menu"
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -70,13 +60,13 @@ export default function Header() {
         </div>
 
         {/* Desktop Navigation Menu */}
-        <nav id="desktop-nav-menu" className="hidden lg:flex items-center space-x-6 text-sm font-semibold text-slate-700">
+        <nav id="desktop-nav-menu" className="hidden lg:flex items-center space-x-7 text-sm font-bold text-black tracking-wide">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               id={link.id}
               href={link.href}
-              className="hover:text-amber-700 transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-amber-600 hover:after:w-full after:transition-all"
+              className="hover:text-zinc-500 transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-black hover:after:w-full after:transition-all uppercase text-xs tracking-wider"
             >
               {link.name}
             </Link>
@@ -90,10 +80,10 @@ export default function Header() {
           <a
             id="cask-points-badge"
             href="#cask-club"
-            className="hidden sm:flex items-center gap-1.5 bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-900 px-3 py-1.5 rounded-full text-xs font-semibold transition-all shadow-xs"
+            className="hidden sm:flex items-center gap-1.5 bg-zinc-100 hover:bg-zinc-200 border border-zinc-300 text-black px-3 py-1.5 rounded-full text-xs font-bold transition-all shadow-xs"
             title="Your Cask Club Rewards Points"
           >
-            <Award className="w-3.5 h-3.5 text-amber-600" />
+            <Award className="w-3.5 h-3.5 text-black" />
             <span>{caskPoints} PTS</span>
           </a>
 
@@ -101,7 +91,7 @@ export default function Header() {
           <button
             id="header-search-trigger-btn"
             onClick={() => setIsSearchOpen(true)}
-            className="p-2 text-slate-700 hover:text-amber-700 transition-colors rounded-full hover:bg-slate-100 cursor-pointer"
+            className="p-2 text-black hover:text-zinc-600 transition-colors rounded-full hover:bg-zinc-100 cursor-pointer"
             aria-label="Search Whiskeys"
           >
             <Search className="w-5 h-5" />
@@ -111,12 +101,12 @@ export default function Header() {
           <button
             id="header-cart-drawer-trigger-btn"
             onClick={() => setIsCartOpen(true)}
-            className="relative p-2 text-slate-700 hover:text-amber-700 transition-colors rounded-full hover:bg-slate-100 cursor-pointer"
+            className="relative p-2 text-black hover:text-zinc-600 transition-colors rounded-full hover:bg-zinc-100 cursor-pointer"
             aria-label="Open Shopping Cart Drawer"
           >
             <ShoppingBag className="w-5 h-5" />
             {cartCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-gradient-to-r from-amber-600 to-amber-700 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white shadow-md animate-pulse">
+              <span className="absolute -top-1 -right-1 bg-black text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-white shadow-md animate-pulse">
                 {cartCount}
               </span>
             )}
@@ -126,7 +116,7 @@ export default function Header() {
           <Link
             id="header-order-now-cta-btn"
             href="/shop"
-            className="hidden sm:flex items-center gap-1.5 bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white font-bold text-xs sm:text-sm px-3.5 sm:px-4 py-2 rounded-md shadow-md hover:shadow-amber-900/20 transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+            className="hidden sm:flex items-center gap-1.5 bg-black hover:bg-zinc-800 text-white font-extrabold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full shadow-md transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer uppercase tracking-wider border border-black"
           >
             <span>Order Now</span>
             <ChevronRight className="w-4 h-4" />
@@ -136,13 +126,13 @@ export default function Header() {
 
       {/* Mobile Drawer Navigation */}
       {isMobileMenuOpen && (
-        <div id="mobile-drawer-menu" className="lg:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-6 space-y-4 animate-fadeIn shadow-xl">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-            <div className="flex items-center gap-2 text-amber-800 text-xs font-semibold">
-              <Award className="w-4 h-4 text-amber-600" />
+        <div id="mobile-drawer-menu" className="lg:hidden bg-white border-b-2 border-black px-4 pt-3 pb-6 space-y-4 animate-fadeIn shadow-2xl">
+          <div className="flex items-center justify-between pb-3 border-b border-zinc-200">
+            <div className="flex items-center gap-2 text-black text-xs font-bold">
+              <Award className="w-4 h-4 text-black" />
               <span>Cask Club: {caskPoints} Points</span>
             </div>
-            <span className="text-[10px] text-slate-500 font-mono">domain: whiskeyeurope.org</span>
+            <span className="text-[10px] text-zinc-500 font-mono">domain: whiskeyeurope.org</span>
           </div>
 
           <div className="grid grid-cols-1 gap-1.5">
@@ -152,31 +142,30 @@ export default function Header() {
                 id={`mobile-${link.id}`}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block text-sm font-medium text-slate-800 hover:text-amber-700 hover:bg-slate-50 px-3 py-2 rounded-md transition-colors"
+                className="block text-sm font-bold text-black hover:text-zinc-600 hover:bg-zinc-100 px-3 py-2 rounded-md transition-colors uppercase tracking-wider"
               >
                 {link.name}
               </Link>
             ))}
           </div>
 
-          <div className="pt-3 border-t border-slate-100 flex flex-col gap-2.5">
+          <div className="pt-3 border-t border-zinc-200 flex flex-col gap-2.5">
             <div className="flex items-center justify-between">
               <a
                 href="#shipping-faq"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-xs text-slate-600 flex items-center gap-1 hover:text-amber-700"
+                className="text-xs text-zinc-700 flex items-center gap-1 hover:text-black font-semibold"
               >
-                <MapPin className="w-3.5 h-3.5 text-amber-600" />
+                <MapPin className="w-3.5 h-3.5 text-black" />
                 <span>EU Bonded Transit (27 States)</span>
               </a>
-
               <button
                 id="mobile-search-trigger-btn"
                 onClick={() => {
                   setIsMobileMenuOpen(false);
                   setIsSearchOpen(true);
                 }}
-                className="text-xs text-amber-700 font-semibold hover:underline flex items-center gap-1 cursor-pointer"
+                className="text-xs text-black font-bold hover:underline flex items-center gap-1 cursor-pointer"
               >
                 <Search className="w-3.5 h-3.5" />
                 <span>Search</span>
@@ -188,21 +177,20 @@ export default function Header() {
                 id="mobile-order-now-cta-btn"
                 href="/shop"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="flex-1 bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white font-bold text-xs py-2.5 rounded-md text-center flex items-center justify-center gap-1"
+                className="flex-1 bg-black hover:bg-zinc-800 text-white font-extrabold text-xs py-3 rounded-full text-center flex items-center justify-center gap-1 uppercase tracking-wider"
               >
                 <span>Order Now</span>
                 <ChevronRight className="w-4 h-4" />
               </Link>
-
               <button
                 id="mobile-view-cart-btn"
                 onClick={() => {
                   setIsMobileMenuOpen(false);
                   setIsCartOpen(true);
                 }}
-                className="bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs px-4 py-2.5 rounded-md border border-slate-300 flex items-center gap-1"
+                className="bg-zinc-100 hover:bg-zinc-200 text-black font-bold text-xs px-4 py-3 rounded-full border border-black flex items-center gap-1"
               >
-                <ShoppingBag className="w-3.5 h-3.5 text-slate-700" />
+                <ShoppingBag className="w-3.5 h-3.5 text-black" />
                 <span>Cart ({cartCount})</span>
               </button>
             </div>

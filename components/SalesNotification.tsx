@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
-import { CheckCircle2, X, Sparkles, ExternalLink, ShieldCheck } from 'lucide-react';
+import { X, Sparkles, ExternalLink, ShieldCheck } from 'lucide-react';
 import { WHISKEY_COLLECTION } from '@/lib/whiskeys';
 
 interface SaleEvent {
@@ -48,7 +48,7 @@ const TIME_AGO_OPTIONS = [
 
 export default function SalesNotification() {
   const [isVisible, setIsVisible] = useState(false);
-  const [isDismissed, setIsDismissed] = useState(false);
+  const [isDismissed] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [currentSale, setCurrentSale] = useState<SaleEvent | null>(null);
 
@@ -78,7 +78,6 @@ export default function SalesNotification() {
   useEffect(() => {
     if (isDismissed) return;
 
-    // Initial popup display after 4 seconds
     const initialTimer = setTimeout(() => {
       setCurrentSale(getRandomSale());
       setIsVisible(true);
@@ -93,16 +92,14 @@ export default function SalesNotification() {
     let intervalTimer: NodeJS.Timeout;
 
     if (isVisible && !isPaused) {
-      // Keep visible for 6.5 seconds, then hide
       intervalTimer = setTimeout(() => {
         setIsVisible(false);
       }, 6500);
     } else if (!isVisible && !isDismissed) {
-      // Stay hidden for 9 seconds before showing next sale
       intervalTimer = setTimeout(() => {
         setCurrentSale(getRandomSale());
         setIsVisible(true);
-      }, 9000);
+      }, 10000);
     }
 
     return () => clearTimeout(intervalTimer);
@@ -116,7 +113,7 @@ export default function SalesNotification() {
     );
   }, [currentSale]);
 
-  if (isDismissed || !currentWhiskey) {
+  if (!currentWhiskey || isDismissed) {
     return null;
   }
 
@@ -134,16 +131,13 @@ export default function SalesNotification() {
             animate={{ opacity: 1, y: 0, scale: 1, x: 0 }}
             exit={{ opacity: 0, y: 20, scale: 0.94, x: -10 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="relative bg-[#16120e]/95 hover:bg-[#1b1612] border border-[#3d2f24] hover:border-amber-600/60 rounded-2xl p-3.5 shadow-2xl backdrop-blur-xl transition-colors duration-300"
+            className="relative bg-white border-2 border-black rounded-2xl p-3.5 shadow-2xl backdrop-blur-xl transition-colors duration-300"
           >
-            {/* Top accent glow line */}
-            <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-amber-500/50 to-transparent" />
-
             <div className="flex items-start gap-3.5">
               {/* Product Thumbnail */}
               <Link
                 href={`/shop/${currentWhiskey.slug}`}
-                className="relative w-16 h-16 sm:w-18 sm:h-18 flex-shrink-0 bg-[#0d0a08] border border-[#2e231b] rounded-xl overflow-hidden group/thumb flex items-center justify-center p-1"
+                className="relative w-16 h-16 sm:w-18 sm:h-18 flex-shrink-0 bg-zinc-100 border border-black rounded-xl overflow-hidden group/thumb flex items-center justify-center p-1"
                 aria-label={`View ${currentWhiskey.name}`}
               >
                 <Image
@@ -154,35 +148,34 @@ export default function SalesNotification() {
                   className="object-contain p-1.5 transition-transform duration-300 group-hover/thumb:scale-110"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-amber-500/0 group-hover/thumb:bg-amber-500/10 transition-colors" />
               </Link>
 
               {/* Sales Info */}
               <div className="flex-1 min-w-0 pr-4">
-                <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#b8a898] mb-0.5">
+                <div className="flex items-center gap-1.5 text-[11px] font-semibold text-zinc-600 mb-0.5">
                   <span className="text-sm">{currentSale?.flag}</span>
                   <span className="truncate">
-                    Someone in <strong className="text-[#f5f0ea] font-bold">{currentSale?.buyerLocation}</strong>
+                    Someone in <strong className="text-black font-black">{currentSale?.buyerLocation}</strong>
                   </span>
                 </div>
 
                 <Link
                   href={`/shop/${currentWhiskey.slug}`}
-                  className="block font-serif text-xs sm:text-sm font-semibold text-[#f5f0ea] hover:text-amber-400 line-clamp-1 transition-colors leading-snug"
+                  className="block font-serif text-xs sm:text-sm font-bold text-black hover:underline line-clamp-1 transition-colors leading-snug"
                 >
                   {currentWhiskey.name}
                 </Link>
 
                 <div className="flex items-center justify-between gap-2 mt-1.5">
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-xs font-bold text-amber-400">
+                    <span className="font-mono text-xs font-black text-black">
                       €{currentWhiskey.price.toFixed(2)}
                     </span>
-                    <span className="text-[10px] text-[#8a7b6d]">• {currentSale?.timeAgo}</span>
+                    <span className="text-[10px] text-zinc-500 font-semibold">• {currentSale?.timeAgo}</span>
                   </div>
 
-                  <div className="flex items-center gap-1 text-[10px] font-medium text-emerald-400 bg-emerald-950/60 border border-emerald-800/40 px-1.5 py-0.5 rounded-full">
-                    <ShieldCheck className="w-3 h-3 text-emerald-400" />
+                  <div className="flex items-center gap-1 text-[10px] font-bold text-white bg-black px-1.5 py-0.5 rounded-full border border-black">
+                    <ShieldCheck className="w-3 h-3 text-white" />
                     <span>Verified</span>
                   </div>
                 </div>
@@ -195,7 +188,7 @@ export default function SalesNotification() {
                   e.stopPropagation();
                   setIsVisible(false);
                 }}
-                className="absolute top-2.5 right-2.5 p-1 text-[#8c7d70] hover:text-[#f5f0ea] hover:bg-[#2a2019] rounded-lg transition-colors cursor-pointer"
+                className="absolute top-2.5 right-2.5 p-1 text-black hover:bg-zinc-100 rounded-lg transition-colors cursor-pointer"
                 title="Dismiss"
                 aria-label="Dismiss notification"
               >
@@ -204,14 +197,14 @@ export default function SalesNotification() {
             </div>
 
             {/* Bottom mini link bar */}
-            <div className="mt-2.5 pt-2 border-t border-[#2a2019] flex items-center justify-between text-[11px]">
-              <div className="flex items-center gap-1 text-[#9e8f81]">
-                <Sparkles className="w-3 h-3 text-amber-500 animate-pulse" />
+            <div className="mt-2.5 pt-2 border-t border-zinc-200 flex items-center justify-between text-[11px]">
+              <div className="flex items-center gap-1 text-zinc-600 font-medium">
+                <Sparkles className="w-3 h-3 text-black" />
                 <span className="text-[10px]">Insured Bonded EU Dispatch</span>
               </div>
               <Link
                 href={`/shop/${currentWhiskey.slug}`}
-                className="inline-flex items-center gap-1 text-amber-400 hover:text-amber-300 font-semibold text-[11px] hover:underline"
+                className="inline-flex items-center gap-1 text-black font-black text-[11px] hover:underline uppercase tracking-wider"
               >
                 <span>View allocation</span>
                 <ExternalLink className="w-2.5 h-2.5" />

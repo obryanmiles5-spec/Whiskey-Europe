@@ -4,7 +4,7 @@ import TawkToChat from '@/components/TawkToChat';
 import SalesNotification from '@/components/SalesNotification';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://whiskeyeurope.org'),
+  metadataBase: new URL('https://www.whiskeyeurope.org'),
   title: {
     default: 'Whiskey Europe | Rare Single Malts, Aged Whiskies & Collector Cellars',
     template: '%s | Whiskey Europe',
@@ -217,7 +217,7 @@ export const metadata: Metadata = {
     'Pappy Van Winkle 20 Year',
     'Pappy Van Winkle Family Reserve 23 Year',
   ],
-  authors: [{ name: 'Whiskey Europe Sommelier & Cellar Master Team', url: 'https://whiskeyeurope.org' }],
+  authors: [{ name: 'Whiskey Europe Sommelier & Cellar Master Team', url: 'https://www.whiskeyeurope.org' }],
   creator: 'Whiskey Europe',
   publisher: 'Whiskey Europe',
   formatDetection: {
@@ -226,21 +226,21 @@ export const metadata: Metadata = {
     telephone: false,
   },
   alternates: {
-    canonical: 'https://whiskeyeurope.org',
+    canonical: 'https://www.whiskeyeurope.org',
     languages: {
-      'en-GB': 'https://whiskeyeurope.org',
-      'en-US': 'https://whiskeyeurope.org',
-      'de-DE': 'https://whiskeyeurope.org',
-      'fr-FR': 'https://whiskeyeurope.org',
-      'nl-NL': 'https://whiskeyeurope.org',
-      'x-default': 'https://whiskeyeurope.org',
+      'en-GB': 'https://www.whiskeyeurope.org',
+      'en-US': 'https://www.whiskeyeurope.org',
+      'de-DE': 'https://www.whiskeyeurope.org',
+      'fr-FR': 'https://www.whiskeyeurope.org',
+      'nl-NL': 'https://www.whiskeyeurope.org',
+      'x-default': 'https://www.whiskeyeurope.org',
     },
   },
   openGraph: {
     title: 'Whiskey Europe | Rare Single Malts, Aged Whiskies & Collector Cellars',
     description:
       'Explore European bonded cellar allocations: Balvenie DCS Compendium, Macallan Sherry Oak, Karuizawa, Yamazaki 18/25/50, Hibiki, Port Ellen, Blanton\'s, Weller, and Pappy Van Winkle.',
-    url: 'https://whiskeyeurope.org',
+    url: 'https://www.whiskeyeurope.org',
     siteName: 'Whiskey Europe',
     images: [
       {
@@ -283,14 +283,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'Whiskey Europe',
-    url: 'https://whiskeyeurope.org',
+    url: 'https://www.whiskeyeurope.org',
     description:
       'European bonded online cellar for rare single malts, Japanese whiskies, vintage Scotches, Bourbons, and fine Cognacs.',
     potentialAction: {
       '@type': 'SearchAction',
       target: {
         '@type': 'EntryPoint',
-        urlTemplate: 'https://whiskeyeurope.org/shop?q={search_term_string}',
+        urlTemplate: 'https://www.whiskeyeurope.org/shop?q={search_term_string}',
       },
       'query-input': 'required name=search_term_string',
     },
@@ -301,8 +301,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     '@type': 'LiquorStore',
     name: 'Whiskey Europe',
     legalName: 'Whiskey Europe B.V.',
-    url: 'https://whiskeyeurope.org',
-    logo: 'https://whiskeyeurope.org/icon.png',
+    url: 'https://www.whiskeyeurope.org',
+    logo: 'https://www.whiskeyeurope.org/icon.png',
     image: 'https://lh3.googleusercontent.com/d/12Xn18KSHqyNIDRTEwZmH3-eIaT5LESZ6',
     email: 'contact@whiskeyeurope.org',
     telephone: '+31-10-890-4422',

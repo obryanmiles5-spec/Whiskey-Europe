@@ -30,9 +30,12 @@ import {
 import type { Metadata } from 'next';
 
 export async function generateStaticParams() {
-  return WHISKEY_COLLECTION.map((whiskey) => ({
-    slug: whiskey.id,
-  }));
+  const set = new Set<string>();
+  WHISKEY_COLLECTION.forEach((whiskey) => {
+    if (whiskey.slug) set.add(whiskey.slug);
+    if (whiskey.id) set.add(whiskey.id);
+  });
+  return Array.from(set).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -41,8 +44,13 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+  const decodedSlug = decodeURIComponent(slug).toLowerCase();
   const whiskey = WHISKEY_COLLECTION.find(
-    (w) => w.id === slug || w.id.toLowerCase() === slug.toLowerCase()
+    (w) =>
+      w.slug?.toLowerCase() === decodedSlug ||
+      w.id?.toLowerCase() === decodedSlug ||
+      w.slug === slug ||
+      w.id === slug
   );
 
   if (!whiskey) {
@@ -54,6 +62,8 @@ export async function generateMetadata({
 
   const title = `${whiskey.name} - ${whiskey.age > 0 ? `${whiskey.age} Year Old` : 'Rare Vintage'} ${whiskey.volumeMl}ml | Whiskey Europe`;
   const description = `Buy authentic ${whiskey.name} (${whiskey.abv}% ABV, ${whiskey.volumeMl}ml) matured in ${whiskey.caskType} casks at ${whiskey.distillery}. Tasting notes: Nose: ${whiskey.tastingNotes.nose} | Palate: ${whiskey.tastingNotes.palate}. Climate-controlled bonded shipping across Europe.`;
+
+  const canonicalUrl = `https://www.whiskeyeurope.org/shop/${whiskey.slug || whiskey.id}`;
 
   const keywords = [
     whiskey.name,
@@ -74,12 +84,12 @@ export async function generateMetadata({
     description,
     keywords,
     alternates: {
-      canonical: `https://whiskeyeurope.org/shop/${whiskey.id}`,
+      canonical: canonicalUrl,
     },
     openGraph: {
       title,
       description,
-      url: `https://whiskeyeurope.org/shop/${whiskey.id}`,
+      url: canonicalUrl,
       siteName: 'Whiskey Europe',
       images: [
         {
@@ -106,8 +116,13 @@ export default async function ProductPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  const decodedSlug = decodeURIComponent(slug).toLowerCase();
   const whiskey = WHISKEY_COLLECTION.find(
-    (w) => w.id === slug || w.id.toLowerCase() === slug.toLowerCase()
+    (w) =>
+      w.slug?.toLowerCase() === decodedSlug ||
+      w.id?.toLowerCase() === decodedSlug ||
+      w.slug === slug ||
+      w.id === slug
   );
 
   if (!whiskey) {
@@ -135,7 +150,7 @@ export default async function ProductPage({
     category: `Food, Beverages & Tobacco > Beverages > Alcoholic Beverages > Spirits > ${whiskey.category}`,
     offers: {
       '@type': 'Offer',
-      url: `https://whiskeyeurope.org/shop/${whiskey.id}`,
+      url: `https://www.whiskeyeurope.org/shop/${whiskey.slug || whiskey.id}`,
       priceCurrency: 'EUR',
       price: whiskey.price.toFixed(2),
       priceValidUntil: '2027-12-31',
@@ -144,7 +159,7 @@ export default async function ProductPage({
       seller: {
         '@type': 'LiquorStore',
         name: 'Whiskey Europe',
-        url: 'https://whiskeyeurope.org',
+        url: 'https://www.whiskeyeurope.org',
       },
       hasMerchantReturnPolicy: {
         '@type': 'MerchantReturnPolicy',
@@ -199,25 +214,25 @@ export default async function ProductPage({
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://whiskeyeurope.org',
+        item: 'https://www.whiskeyeurope.org',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Boutique Shop',
-        item: 'https://whiskeyeurope.org/shop',
+        item: 'https://www.whiskeyeurope.org/shop',
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: whiskey.category,
-        item: `https://whiskeyeurope.org/shop?category=${encodeURIComponent(whiskey.category)}`,
+        item: `https://www.whiskeyeurope.org/shop?category=${encodeURIComponent(whiskey.category)}`,
       },
       {
         '@type': 'ListItem',
         position: 4,
         name: whiskey.name,
-        item: `https://whiskeyeurope.org/shop/${whiskey.id}`,
+        item: `https://www.whiskeyeurope.org/shop/${whiskey.slug || whiskey.id}`,
       },
     ],
   };
@@ -233,29 +248,29 @@ export default async function ProductPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      <div className="min-h-screen bg-[#0f0d0b] text-[#f5f0ea] flex flex-col justify-between selection:bg-amber-600 selection:text-black">
+      <div className="min-h-screen bg-white text-black flex flex-col justify-between selection:bg-black selection:text-white">
         <div>
           <Header />
 
           <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-12">
             {/* Breadcrumb Navigation */}
-            <nav className="flex items-center gap-2 text-xs text-[#a39382] overflow-x-auto no-scrollbar pb-1">
-              <Link href="/" className="hover:text-amber-400 transition-colors">
+            <nav className="flex items-center gap-2 text-xs text-zinc-600 overflow-x-auto no-scrollbar pb-1">
+              <Link href="/" className="hover:text-black font-semibold transition-colors">
                 Home
               </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-[#54473d]" />
-              <Link href="/shop" className="hover:text-amber-400 transition-colors">
+              <ChevronRight className="w-3.5 h-3.5 text-zinc-400" />
+              <Link href="/shop" className="hover:text-black font-semibold transition-colors">
                 Shop
               </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-[#54473d]" />
+              <ChevronRight className="w-3.5 h-3.5 text-zinc-400" />
               <Link
                 href={`/shop?category=${encodeURIComponent(whiskey.category)}`}
-                className="hover:text-amber-400 transition-colors"
+                className="hover:text-black font-semibold transition-colors"
               >
                 {whiskey.category}
               </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-[#54473d]" />
-              <span className="text-[#f8f3ed] font-medium truncate max-w-[200px] sm:max-w-none">
+              <ChevronRight className="w-3.5 h-3.5 text-zinc-400" />
+              <span className="text-black font-bold truncate max-w-[200px] sm:max-w-none">
                 {whiskey.name}
               </span>
             </nav>
@@ -264,51 +279,51 @@ export default async function ProductPage({
             <ProductClientDetails whiskey={whiskey} />
 
             {/* Comprehensive Technical & Provenance Specifications */}
-            <section className="bg-[#140f0c] border border-[#2e241b] rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl">
-              <div className="border-b border-[#2b221a] pb-4">
-                <h2 className="font-serif text-2xl font-bold text-[#f8f3ed] flex items-center gap-2.5">
-                  <Award className="w-6 h-6 text-amber-500" />
+            <section className="bg-white border-2 border-black rounded-2xl p-6 sm:p-8 space-y-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+              <div className="border-b-2 border-zinc-200 pb-4">
+                <h2 className="font-serif text-2xl font-black text-black flex items-center gap-2.5">
+                  <Award className="w-6 h-6 text-black" />
                   <span>Curator Provenance &amp; Technical Specifications</span>
                 </h2>
-                <p className="text-xs text-[#a39382] mt-1">
+                <p className="text-xs text-zinc-600 mt-1 font-medium">
                   Verified by the Whiskey Europe Sommelier Panel &amp; Bonded Cellar Vault in Rotterdam.
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div className="bg-[#1b1511] p-4 rounded-xl border border-[#33281e] space-y-1">
-                  <span className="text-[11px] font-mono uppercase tracking-wider text-[#918170]">Distillery</span>
-                  <p className="font-serif font-bold text-amber-200 text-base">{whiskey.distillery}</p>
-                  <p className="text-xs text-[#a8998a]">{whiskey.region}, {whiskey.country}</p>
+                <div className="bg-zinc-50 p-4 rounded-xl border-2 border-black space-y-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-500 font-bold">Distillery</span>
+                  <p className="font-serif font-black text-black text-base">{whiskey.distillery}</p>
+                  <p className="text-xs text-zinc-600 font-medium">{whiskey.region}, {whiskey.country}</p>
                 </div>
 
-                <div className="bg-[#1b1511] p-4 rounded-xl border border-[#33281e] space-y-1">
-                  <span className="text-[11px] font-mono uppercase tracking-wider text-[#918170]">Maturation / Cask</span>
-                  <p className="font-serif font-bold text-amber-200 text-base">{whiskey.caskType}</p>
-                  <p className="text-xs text-[#a8998a]">{whiskey.type}</p>
+                <div className="bg-zinc-50 p-4 rounded-xl border-2 border-black space-y-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-500 font-bold">Maturation / Cask</span>
+                  <p className="font-serif font-black text-black text-base">{whiskey.caskType}</p>
+                  <p className="text-xs text-zinc-600 font-medium">{whiskey.type}</p>
                 </div>
 
-                <div className="bg-[#1b1511] p-4 rounded-xl border border-[#33281e] space-y-1">
-                  <span className="text-[11px] font-mono uppercase tracking-wider text-[#918170]">Age &amp; Strength</span>
-                  <p className="font-serif font-bold text-amber-200 text-base">
+                <div className="bg-zinc-50 p-4 rounded-xl border-2 border-black space-y-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-500 font-bold">Age &amp; Strength</span>
+                  <p className="font-serif font-black text-black text-base">
                     {whiskey.age > 0 ? `${whiskey.age} Years Old` : 'Prestige Release'} • {whiskey.abv}% ABV
                   </p>
-                  <p className="text-xs text-[#a8998a]">{whiskey.volumeMl}ml Bottling</p>
+                  <p className="text-xs text-zinc-600 font-medium">{whiskey.volumeMl}ml Bottling</p>
                 </div>
 
-                <div className="bg-[#1b1511] p-4 rounded-xl border border-[#33281e] space-y-1">
-                  <span className="text-[11px] font-mono uppercase tracking-wider text-[#918170]">Cellar Verification</span>
-                  <p className="font-serif font-bold text-emerald-400 text-base flex items-center gap-1.5">
-                    <ShieldCheck className="w-4 h-4" />
+                <div className="bg-zinc-50 p-4 rounded-xl border-2 border-black space-y-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-500 font-bold">Cellar Verification</span>
+                  <p className="font-serif font-black text-black text-base flex items-center gap-1.5">
+                    <ShieldCheck className="w-4 h-4 text-black" />
                     <span>100% Authenticated</span>
                   </p>
-                  <p className="text-xs text-[#a8998a]">Tamper-Proof NFC Hologram</p>
+                  <p className="text-xs text-zinc-600 font-medium">Tamper-Proof NFC Hologram</p>
                 </div>
               </div>
 
               {/* Flavor Profile Radar Matrix */}
-              <div className="pt-4 border-t border-[#281f18] space-y-4">
-                <h3 className="font-serif font-bold text-base text-[#f8f3ed]">
+              <div className="pt-4 border-t-2 border-zinc-200 space-y-4">
+                <h3 className="font-serif font-black text-base text-black">
                   Sensory Flavor Matrix (1-10 Scale)
                 </h3>
                 <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
@@ -319,14 +334,14 @@ export default async function ProductPage({
                     { label: 'Oak & Spice', val: whiskey.flavorProfile.oakSpicy },
                     { label: 'Vanilla & Caramel', val: whiskey.flavorProfile.vanillaCaramel },
                   ].map((fl) => (
-                    <div key={fl.label} className="bg-[#18130f] p-3 rounded-lg border border-[#2b221a] space-y-1.5">
+                    <div key={fl.label} className="bg-zinc-50 p-3 rounded-lg border-2 border-black space-y-1.5">
                       <div className="flex justify-between text-xs">
-                        <span className="text-[#a39382]">{fl.label}</span>
-                        <span className="font-mono font-bold text-amber-400">{fl.val}/10</span>
+                        <span className="text-zinc-700 font-bold">{fl.label}</span>
+                        <span className="font-mono font-black text-black">{fl.val}/10</span>
                       </div>
-                      <div className="w-full bg-[#241d17] h-2 rounded-full overflow-hidden">
+                      <div className="w-full bg-zinc-200 h-2 rounded-full overflow-hidden border border-zinc-400">
                         <div
-                          className="bg-gradient-to-r from-amber-600 to-amber-400 h-full rounded-full"
+                          className="bg-black h-full rounded-full"
                           style={{ width: `${(fl.val / 10) * 100}%` }}
                         />
                       </div>
@@ -341,16 +356,16 @@ export default async function ProductPage({
               <section className="space-y-6 pt-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#f8f3ed]">
+                    <h2 className="font-serif text-2xl sm:text-3xl font-black text-black">
                       Related Cellar Allocations
                     </h2>
-                    <p className="text-xs sm:text-sm text-[#a39382]">
+                    <p className="text-xs sm:text-sm text-zinc-600 font-medium">
                       Similar vintage bottlings from {whiskey.distillery} &amp; {whiskey.category}
                     </p>
                   </div>
                   <Link
                     href={`/shop?category=${encodeURIComponent(whiskey.category)}`}
-                    className="text-xs font-semibold text-amber-400 hover:text-amber-300 flex items-center gap-1"
+                    className="text-xs font-black text-black hover:underline flex items-center gap-1 uppercase tracking-wider"
                   >
                     <span>View All {whiskey.category}</span>
                     <ChevronRight className="w-4 h-4" />
@@ -361,10 +376,10 @@ export default async function ProductPage({
                   {relatedWhiskeys.map((rel) => (
                     <Link
                       key={rel.id}
-                      href={`/shop/${rel.id}`}
-                      className="bg-gradient-to-b from-[#1c1611] to-[#140f0c] border border-[#31271e] hover:border-amber-500/70 rounded-2xl overflow-hidden shadow-xl transition-all duration-300 flex flex-col group p-4 space-y-3"
+                      href={`/shop/${rel.slug || rel.id}`}
+                      className="bg-white border-2 border-black hover:border-black rounded-2xl overflow-hidden shadow-md hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 flex flex-col group p-4 space-y-3 cursor-pointer"
                     >
-                      <div className="relative h-48 w-full bg-[#100d0a] rounded-xl overflow-hidden border border-[#281f18]">
+                      <div className="relative h-48 w-full bg-zinc-50 rounded-xl overflow-hidden border border-zinc-300">
                         {rel.image ? (
                           <Image
                             src={rel.image}
@@ -376,22 +391,22 @@ export default async function ProductPage({
                             referrerPolicy="no-referrer"
                           />
                         ) : (
-                          <div className="w-full h-full flex items-center justify-center text-amber-500">
+                          <div className="w-full h-full flex items-center justify-center text-black">
                             <Wine className="w-8 h-8" />
                           </div>
                         )}
                         {rel.badge && (
-                          <span className="absolute top-2 left-2 bg-amber-600 text-black text-[9px] font-extrabold px-2 py-0.5 rounded">
+                          <span className="absolute top-2 left-2 bg-black text-white text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider">
                             {rel.badge}
                           </span>
                         )}
                       </div>
                       <div>
-                        <span className="text-[11px] font-mono text-amber-500">{rel.distillery}</span>
-                        <h4 className="font-serif font-bold text-sm text-[#f8f3ed] group-hover:text-amber-400 transition-colors line-clamp-1">
+                        <span className="text-[11px] font-mono text-zinc-500 font-bold">{rel.distillery}</span>
+                        <h4 className="font-serif font-black text-sm text-black group-hover:underline transition-all line-clamp-1">
                           {rel.name}
                         </h4>
-                        <p className="text-xs text-[#a39382] font-mono mt-1">€{rel.price.toFixed(2)}</p>
+                        <p className="text-xs text-black font-mono font-bold mt-1">€{rel.price.toFixed(2)}</p>
                       </div>
                     </Link>
                   ))}

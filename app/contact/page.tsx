@@ -21,13 +21,13 @@ export const metadata: Metadata = {
     'contact@whiskeyeurope.org',
   ],
   alternates: {
-    canonical: 'https://whiskeyeurope.org/contact',
+    canonical: 'https://www.whiskeyeurope.org/contact',
   },
   openGraph: {
     title: 'Contact Us | Whiskey Europe Bonded Cellars & Support',
     description:
       'Get in touch with our European sommelier team for order assistance, vintage bottle valuation, cask club consultations, or wholesale inquiries.',
-    url: 'https://whiskeyeurope.org/contact',
+    url: 'https://www.whiskeyeurope.org/contact',
     siteName: 'Whiskey Europe',
     type: 'website',
   },
@@ -48,13 +48,13 @@ export default function ContactPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://whiskeyeurope.org',
+        item: 'https://www.whiskeyeurope.org',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Contact Us',
-        item: 'https://whiskeyeurope.org/contact',
+        item: 'https://www.whiskeyeurope.org/contact',
       },
     ],
   };
@@ -63,7 +63,7 @@ export default function ContactPage() {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
     name: 'Contact Whiskey Europe',
-    url: 'https://whiskeyeurope.org/contact',
+    url: 'https://www.whiskeyeurope.org/contact',
     description:
       'Contact Whiskey Europe customer care and master sommelier panel for order tracking, bottle valuation, and private allocations.',
     mainEntity: {
@@ -85,7 +85,7 @@ export default function ContactPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
       />
-      <div className="min-h-screen bg-[#0f0d0b] text-[#f5f0ea] flex flex-col justify-between selection:bg-amber-600 selection:text-black">
+      <div className="min-h-screen bg-white text-black flex flex-col justify-between selection:bg-black selection:text-white">
         <div>
           <Header />
           <ContactClient />

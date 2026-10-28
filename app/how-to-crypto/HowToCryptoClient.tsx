@@ -76,7 +76,7 @@ export default function HowToCryptoClient() {
           <span>OFFICIAL CRYPTOCURRENCY PAYMENT GUIDE</span>
         </div>
 
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#f5f0ea] leading-tight">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-black leading-tight">
           How to Pay with <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500">Cryptocurrency</span>
         </h1>
 
@@ -86,28 +86,28 @@ export default function HowToCryptoClient() {
 
         {/* Quick Highlights Bar */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 max-w-3xl mx-auto text-left">
-          <div className="bg-[#18130f] border border-[#2d221a] rounded-xl p-3.5 flex items-start gap-2.5">
+          <div className="bg-white border border-zinc-300 rounded-xl p-3.5 flex items-start gap-2.5">
             <Zap className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
             <div>
               <div className="text-xs font-bold text-white">Instant Settlement</div>
               <div className="text-[11px] text-slate-400">No bank hold periods</div>
             </div>
           </div>
-          <div className="bg-[#18130f] border border-[#2d221a] rounded-xl p-3.5 flex items-start gap-2.5">
+          <div className="bg-white border border-zinc-300 rounded-xl p-3.5 flex items-start gap-2.5">
             <Lock className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
             <div>
               <div className="text-xs font-bold text-white">Confidential & Private</div>
               <div className="text-[11px] text-slate-400">Direct peer-to-peer</div>
             </div>
           </div>
-          <div className="bg-[#18130f] border border-[#2d221a] rounded-xl p-3.5 flex items-start gap-2.5">
+          <div className="bg-white border border-zinc-300 rounded-xl p-3.5 flex items-start gap-2.5">
             <Award className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
             <div>
               <div className="text-xs font-bold text-white">+50 Cask Points</div>
               <div className="text-[11px] text-slate-400">Bonus on all crypto orders</div>
             </div>
           </div>
-          <div className="bg-[#18130f] border border-[#2d221a] rounded-xl p-3.5 flex items-start gap-2.5">
+          <div className="bg-white border border-zinc-300 rounded-xl p-3.5 flex items-start gap-2.5">
             <ShieldCheck className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" />
             <div>
               <div className="text-xs font-bold text-white">Bonded Dispatch</div>
@@ -122,7 +122,7 @@ export default function HowToCryptoClient() {
         <div className="relative bg-gradient-to-b from-[#1c1611] to-[#14100c] border-2 border-amber-600/50 rounded-2xl p-6 sm:p-8 shadow-2xl overflow-hidden">
           <div className="absolute top-0 right-0 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
           
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-[#30241b]">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-zinc-300">
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-400 bg-amber-950/80 px-2.5 py-0.5 rounded border border-amber-700/50">
@@ -149,7 +149,7 @@ export default function HowToCryptoClient() {
                 Bitcoin SegWit Wallet Address
               </label>
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
-                <div className="flex-1 bg-[#0d0a08] border border-[#3d2f24] rounded-xl px-4 py-3 font-mono text-xs sm:text-sm text-amber-300 break-all select-all flex items-center justify-between">
+                <div className="flex-1 bg-white border border-zinc-300 rounded-xl px-4 py-3 font-mono text-xs sm:text-sm text-amber-300 break-all select-all flex items-center justify-between">
                   <span>{PAYMENT_CONFIG.crypto.walletAddress}</span>
                 </div>
                 <button
@@ -172,7 +172,7 @@ export default function HowToCryptoClient() {
               </div>
             </div>
 
-            <div className="bg-[#120e0b] border border-[#2b2018] rounded-xl p-4 text-xs text-slate-300 flex items-start gap-3">
+            <div className="bg-white border border-zinc-300 rounded-xl p-4 text-xs text-slate-300 flex items-start gap-3">
               <HelpCircle className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
               <div>
                 <strong className="text-white">Payment Proof Confirmation:</strong> After completing your transfer, send your TX hash or screenshot to{' '}
@@ -194,7 +194,7 @@ export default function HowToCryptoClient() {
       {/* Changelly Direct Card-to-Wallet Guide */}
       <section className="max-w-3xl mx-auto px-4">
         <div className="bg-gradient-to-r from-[#1d1610] via-[#221a13] to-[#1d1610] border border-amber-500/40 rounded-2xl p-6 sm:p-7 shadow-xl space-y-4">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3 border-b border-[#35281e]">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3 border-b border-zinc-300">
             <div className="flex items-center gap-2.5">
               <div className="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center">
                 <CreditCard className="w-5 h-5 text-amber-400" />
@@ -224,7 +224,7 @@ export default function HowToCryptoClient() {
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
-            <div className="bg-[#120e0b] border border-[#2b2018] rounded-xl p-3.5 space-y-1">
+            <div className="bg-white border border-zinc-300 rounded-xl p-3.5 space-y-1">
               <div className="text-[11px] font-mono font-bold text-amber-400">Step 1</div>
               <div className="text-xs font-bold text-white">Enter Order Amount</div>
               <p className="text-[11px] text-slate-400 leading-snug">
@@ -232,7 +232,7 @@ export default function HowToCryptoClient() {
               </p>
             </div>
 
-            <div className="bg-[#120e0b] border border-[#2b2018] rounded-xl p-3.5 space-y-1">
+            <div className="bg-white border border-zinc-300 rounded-xl p-3.5 space-y-1">
               <div className="text-[11px] font-mono font-bold text-amber-400">Step 2</div>
               <div className="text-xs font-bold text-white">Paste Our Shop Address</div>
               <p className="text-[11px] text-slate-400 leading-snug">
@@ -243,7 +243,7 @@ export default function HowToCryptoClient() {
               </p>
             </div>
 
-            <div className="bg-[#120e0b] border border-[#2b2018] rounded-xl p-3.5 space-y-1">
+            <div className="bg-white border border-zinc-300 rounded-xl p-3.5 space-y-1">
               <div className="text-[11px] font-mono font-bold text-amber-400">Step 3</div>
               <div className="text-xs font-bold text-white">Pay by Card & Confirm</div>
               <p className="text-[11px] text-slate-400 leading-snug">
@@ -256,8 +256,8 @@ export default function HowToCryptoClient() {
 
       {/* Interactive Rate Demonstrator */}
       <section className="max-w-3xl mx-auto px-4">
-        <div className="bg-[#17120e] border border-[#33261d] rounded-2xl p-6 sm:p-8 space-y-6">
-          <div className="flex items-center justify-between pb-4 border-b border-[#2d2118]">
+        <div className="bg-white border border-zinc-300 rounded-2xl p-6 sm:p-8 space-y-6">
+          <div className="flex items-center justify-between pb-4 border-b border-zinc-300">
             <div className="flex items-center gap-2">
               <Coins className="w-5 h-5 text-amber-500" />
               <h3 className="text-lg font-serif font-bold text-white">
@@ -279,7 +279,7 @@ export default function HowToCryptoClient() {
                 step="25"
                 value={calculatorEur}
                 onChange={(e) => setCalculatorEur(Number(e.target.value) || 0)}
-                className="w-full bg-[#0e0b08] border border-[#3d2e22] focus:border-amber-500 rounded-xl px-4 py-2.5 text-white font-mono text-base outline-none transition-colors"
+                className="w-full bg-white border border-zinc-300 focus:border-amber-500 rounded-xl px-4 py-2.5 text-white font-mono text-base outline-none transition-colors"
               />
             </div>
 
@@ -287,7 +287,7 @@ export default function HowToCryptoClient() {
               <label className="block text-xs font-semibold text-slate-400 mb-1.5">
                 Estimated Bitcoin (BTC) Amount
               </label>
-              <div className="bg-[#0e0b08] border border-[#3d2e22] rounded-xl px-4 py-2.5 text-amber-400 font-mono text-base font-bold flex items-center justify-between">
+              <div className="bg-white border border-zinc-300 rounded-xl px-4 py-2.5 text-amber-400 font-mono text-base font-bold flex items-center justify-between">
                 <span>≈ {calculatedBtc} BTC</span>
                 <span className="text-xs text-slate-500 font-sans">@ benchmark rate</span>
               </div>
@@ -317,7 +317,7 @@ export default function HowToCryptoClient() {
             return (
               <div
                 key={faq.q}
-                className="bg-[#16110d] border border-[#2b2018] rounded-xl overflow-hidden transition-colors"
+                className="bg-white border border-zinc-300 rounded-xl overflow-hidden transition-colors"
               >
                 <button
                   type="button"
@@ -333,7 +333,7 @@ export default function HowToCryptoClient() {
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 pb-4 pt-1 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-[#241a13]">
+                  <div className="px-5 pb-4 pt-1 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-zinc-300">
                     {faq.a}
                   </div>
                 )}
@@ -362,7 +362,7 @@ export default function HowToCryptoClient() {
             </Link>
             <Link
               href="/contact"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#17120e] hover:bg-[#201914] text-slate-200 hover:text-white border border-[#3d2e22] text-sm font-semibold px-6 py-3 rounded-xl transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-white text-slate-200 hover:text-white border border-zinc-300 text-sm font-semibold px-6 py-3 rounded-xl transition-all"
             >
               <span>Contact Sommelier Desk</span>
             </Link>

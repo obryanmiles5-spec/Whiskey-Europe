@@ -70,13 +70,13 @@ export const metadata: Metadata = {
     'Whiskey Stones', 'Whiskey Barrel Planters Aging Barrels'
   ],
   alternates: {
-    canonical: 'https://whiskeyeurope.org/rare-whiskey-index',
+    canonical: 'https://www.whiskeyeurope.org/rare-whiskey-index',
   },
   openGraph: {
     title: 'Rare Whisky, Bourbon & Spirits Index | Whiskey Europe',
     description:
       'Search and browse the complete index of 126+ famous whiskey brands, rare allocations, Japanese Mizunara, and collector gear stored in bonded cellars in Rotterdam.',
-    url: 'https://whiskeyeurope.org/rare-whiskey-index',
+    url: 'https://www.whiskeyeurope.org/rare-whiskey-index',
     siteName: 'Whiskey Europe',
     type: 'website',
   },
@@ -93,7 +93,7 @@ export default function RareWhiskeyIndexPage() {
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      url: `https://whiskeyeurope.org/rare-whiskey-index#${item.id}`,
+      url: `https://www.whiskeyeurope.org/rare-whiskey-index#${item.id}`,
       description: item.tastingNotes,
     })),
   };
@@ -179,23 +179,23 @@ export default function RareWhiskeyIndexPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsSchema) }}
       />
 
-      <div className="min-h-screen bg-[#0f0d0b] text-[#f5f0ea] flex flex-col justify-between selection:bg-amber-600 selection:text-black">
+      <div className="min-h-screen bg-white text-black flex flex-col justify-between selection:bg-black selection:text-white">
         <div>
           <Header />
 
           {/* Hero Header */}
-          <section className="bg-gradient-to-b from-[#1b140f] to-[#0f0d0b] border-b border-[#281f18] py-12 sm:py-16">
+          <section className="bg-gradient-to-b from-[#1b140f] to-[#0f0d0b] border-b border-zinc-300 py-12 sm:py-16">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 text-center">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#201812] border border-amber-900/60 text-amber-400 text-xs font-mono uppercase tracking-widest">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>GLOBAL SPIRITS DIRECTORY &amp; ALLOCATION INDEX</span>
               </div>
               
-              <h1 className="font-serif text-3xl sm:text-5xl font-bold text-[#f8f3ed]">
+              <h1 className="font-serif text-3xl sm:text-5xl font-bold text-black">
                 Whiskey, Bourbon &amp; Spirits Master Index
               </h1>
               
-              <p className="text-sm sm:text-base text-[#b0a090] max-w-3xl mx-auto font-light leading-relaxed">
+              <p className="text-sm sm:text-base text-zinc-600 max-w-3xl mx-auto font-light leading-relaxed">
                 Comprehensive search directory indexing 126+ world-renowned whiskey brands, rare allocated bourbons, Japanese Mizunara single malts, Scottish ghost distilleries, sommelier glassware, and specialty cellar provisions.
               </p>
               
@@ -209,13 +209,13 @@ export default function RareWhiskeyIndexPage() {
                 </Link>
                 <Link
                   href="/#distillery-map"
-                  className="bg-[#1e1712] hover:bg-[#281f18] text-[#e0d3c5] border border-[#33281e] font-medium px-5 py-2.5 rounded-full transition-all"
+                  className="bg-[#1e1712] hover:bg-white text-[#e0d3c5] border border-[#33281e] font-medium px-5 py-2.5 rounded-full transition-all"
                 >
                   Interactive Distillery Map
                 </Link>
                 <Link
                   href="/blog"
-                  className="bg-[#1e1712] hover:bg-[#281f18] text-[#e0d3c5] border border-[#33281e] font-medium px-5 py-2.5 rounded-full transition-all"
+                  className="bg-[#1e1712] hover:bg-white text-[#e0d3c5] border border-[#33281e] font-medium px-5 py-2.5 rounded-full transition-all"
                 >
                   Sommelier Tasting Journal
                 </Link>
@@ -229,13 +229,13 @@ export default function RareWhiskeyIndexPage() {
             <RareWhiskeyIndexClient />
 
             {/* Comprehensive AI & Google Search Knowledge FAQ */}
-            <section className="bg-[#140f0c] border border-[#2c2219] rounded-2xl p-6 sm:p-10 space-y-8 shadow-xl">
+            <section className="bg-white border border-[#2c2219] rounded-2xl p-6 sm:p-10 space-y-8 shadow-xl">
               <div className="space-y-2">
                 <div className="inline-flex items-center gap-1.5 text-xs font-mono text-amber-400 uppercase tracking-wider">
                   <HelpCircle className="w-4 h-4" />
                   <span>Curated Knowledge &amp; Allocation FAQ</span>
                 </div>
-                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#f8f3ed]">
+                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-black">
                   Search &amp; Collector Sourcing FAQ
                 </h2>
               </div>
@@ -245,7 +245,7 @@ export default function RareWhiskeyIndexPage() {
                   <h3 className="font-serif font-bold text-base text-amber-200">
                     How are allocated Bourbons (Blanton&apos;s, Pappy, Weller) sourced in Europe?
                   </h3>
-                  <p className="text-xs text-[#c4b5a6] leading-relaxed">
+                  <p className="text-xs text-zinc-600 leading-relaxed">
                     Our procurement team works directly with bonded distributors and certified private collections in Europe and Kentucky, guaranteeing 100% genuine provenance with tax-paid customs clearance across the 27 EU member states.
                   </p>
                 </div>
@@ -254,7 +254,7 @@ export default function RareWhiskeyIndexPage() {
                   <h3 className="font-serif font-bold text-base text-amber-200">
                     What makes Japanese Mizunara oak whiskies (Yamazaki 18, Chichibu, Hakushu) so rare?
                   </h3>
-                  <p className="text-xs text-[#c4b5a6] leading-relaxed">
+                  <p className="text-xs text-zinc-600 leading-relaxed">
                     Indigenous Japanese Mizunara oak trees require at least 200 years to reach maturity before coopering. The wood imparts distinct aromas of sandalwood, temple incense (kara), and oriental spice that cannot be replicated in American or European oak.
                   </p>
                 </div>
@@ -263,7 +263,7 @@ export default function RareWhiskeyIndexPage() {
                   <h3 className="font-serif font-bold text-base text-amber-200">
                     Why use official Glencairn crystal glassware for fine whisky?
                   </h3>
-                  <p className="text-xs text-[#c4b5a6] leading-relaxed">
+                  <p className="text-xs text-zinc-600 leading-relaxed">
                     Glencairn glasses feature a tapered mouth designed to concentrate complex volatile esters and aromas to the olfactory bulb while dispersing heavy ethanol vapours, maximizing sensory appreciation of vintage single malts.
                   </p>
                 </div>
@@ -272,7 +272,7 @@ export default function RareWhiskeyIndexPage() {
                   <h3 className="font-serif font-bold text-base text-amber-200">
                     How do Cask Club points and allocation reservations work?
                   </h3>
-                  <p className="text-xs text-[#c4b5a6] leading-relaxed">
+                  <p className="text-xs text-zinc-600 leading-relaxed">
                     Registered members earn 1 Cask Club point per €1 spent, unlocking early 48-hour vault allocation access for hyper-rare releases like Balvenie DCS, Karuizawa, and Macallan Red Collection before general public listing.
                   </p>
                 </div>

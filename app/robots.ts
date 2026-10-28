@@ -1,16 +1,32 @@
 import type { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
+  const domain = 'https://www.whiskeyeurope.org';
+
   return {
     rules: [
       {
         userAgent: '*',
-        allow: '/',
-        disallow: ['/api/'],
+        allow: [
+          '/',
+          '/_next/static/',
+          '/_next/image/',
+          '/favicon.ico',
+          '/icon.png',
+        ],
+        disallow: [
+          '/api/',
+          '/checkout',
+          '/admin',
+          '/private/',
+        ],
       },
+      // Search Engine Crawlers
       {
         userAgent: [
           'Googlebot',
+          'Googlebot-Image',
+          'Googlebot-Mobile',
           'Bingbot',
           'Applebot',
           'DuckDuckBot',
@@ -18,10 +34,21 @@ export default function robots(): MetadataRoute.Robots {
           'Baiduspider',
           'Slurp',
         ],
-        allow: '/',
-        disallow: ['/api/'],
+        allow: [
+          '/',
+          '/_next/static/',
+          '/_next/image/',
+          '/favicon.ico',
+          '/icon.png',
+        ],
+        disallow: [
+          '/api/',
+          '/checkout',
+          '/admin',
+          '/private/',
+        ],
       },
-      // AI Crawlers & LLM Search Engines
+      // AI Crawlers & Search Assistants
       {
         userAgent: [
           'GPTBot',
@@ -36,11 +63,22 @@ export default function robots(): MetadataRoute.Robots {
           'FacebookBot',
           'cohere-ai',
         ],
-        allow: '/',
-        disallow: ['/api/'],
+        allow: [
+          '/',
+          '/_next/static/',
+          '/_next/image/',
+          '/favicon.ico',
+          '/icon.png',
+        ],
+        disallow: [
+          '/api/',
+          '/checkout',
+          '/admin',
+          '/private/',
+        ],
       },
     ],
-    sitemap: 'https://whiskeyeurope.org/sitemap.xml',
-    host: 'https://whiskeyeurope.org',
+    sitemap: `${domain}/sitemap.xml`,
+    host: domain,
   };
 }

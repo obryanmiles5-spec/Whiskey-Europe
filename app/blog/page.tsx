@@ -24,13 +24,13 @@ export const metadata: Metadata = {
     'bonded spirits storage',
   ],
   alternates: {
-    canonical: 'https://whiskeyeurope.org/blog',
+    canonical: 'https://www.whiskeyeurope.org/blog',
   },
   openGraph: {
     title: 'The Whiskey Europe Journal | Spirits Sommelier & Market Insights',
     description:
       'Read the latest editorial guides, collector insights, masterclasses, and European spirits shipping regulations.',
-    url: 'https://whiskeyeurope.org/blog',
+    url: 'https://www.whiskeyeurope.org/blog',
     siteName: 'Whiskey Europe',
     type: 'website',
   },
@@ -51,13 +51,13 @@ export default function BlogPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://whiskeyeurope.org',
+        item: 'https://www.whiskeyeurope.org',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Journal & Insights',
-        item: 'https://whiskeyeurope.org/blog',
+        item: 'https://www.whiskeyeurope.org/blog',
       },
     ],
   };
@@ -66,12 +66,12 @@ export default function BlogPage() {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: 'The Whiskey Europe Journal',
-    url: 'https://whiskeyeurope.org/blog',
+    url: 'https://www.whiskeyeurope.org/blog',
     description: 'Editorial guides, collector insights, and sommelier masterclasses.',
     hasPart: BLOG_ARTICLES.map((article) => ({
       '@type': 'BlogPosting',
       headline: article.title,
-      url: `https://whiskeyeurope.org/blog/${article.slug}`,
+      url: `https://www.whiskeyeurope.org/blog/${article.slug}`,
       description: article.excerpt,
       datePublished: article.date,
       author: {
@@ -91,21 +91,21 @@ export default function BlogPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogCollectionSchema) }}
       />
-      <div className="min-h-screen bg-[#0f0d0b] text-[#f5f0ea] flex flex-col justify-between">
+      <div className="min-h-screen bg-white text-black flex flex-col justify-between">
         <div>
           <Header />
 
           {/* Hero Section */}
-          <section className="relative py-16 sm:py-20 border-b border-[#241d17] bg-gradient-to-b from-[#14100c] to-[#0f0d0b]">
+          <section className="relative py-16 sm:py-20 border-b border-zinc-300 bg-gradient-to-b from-[#14100c] to-[#0f0d0b]">
             <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 2xl:px-16 text-center max-w-4xl mx-auto space-y-4">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1c1612] border border-amber-900/50 text-amber-400 text-xs font-mono uppercase tracking-widest">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-amber-900/50 text-amber-400 text-xs font-mono uppercase tracking-widest">
                 <BookOpen className="w-3.5 h-3.5" />
                 <span>WHISKEY EUROPE JOURNAL & DISPATCHES</span>
               </div>
-              <h1 className="font-serif text-3xl sm:text-5xl font-bold text-[#f8f3ed] tracking-tight">
+              <h1 className="font-serif text-3xl sm:text-5xl font-bold text-black tracking-tight">
                 Curated Malt Insights & Collector Chronicles
               </h1>
-              <p className="text-sm sm:text-base text-[#b0a090] font-light max-w-2xl mx-auto leading-relaxed">
+              <p className="text-sm sm:text-base text-zinc-600 font-light max-w-2xl mx-auto leading-relaxed">
                 Expert analyses on rare Scotch single malts, Japanese Mizunara cask aging, European bonded cellar trade, and sommelier tasting masterclasses.
               </p>
             </div>
@@ -117,10 +117,10 @@ export default function BlogPage() {
               {BLOG_ARTICLES.map((article) => (
                 <article
                   key={article.slug}
-                  className="bg-[#14100c] border border-[#29221b] hover:border-amber-600/60 rounded-2xl overflow-hidden shadow-xl transition-all duration-300 flex flex-col group"
+                  className="bg-white border border-zinc-300 hover:border-amber-600/60 rounded-2xl overflow-hidden shadow-xl transition-all duration-300 flex flex-col group"
                 >
                   {/* Thumbnail */}
-                  <div className="relative h-56 w-full bg-[#18130f] overflow-hidden">
+                  <div className="relative h-56 w-full bg-white overflow-hidden">
                     <Image
                       src={article.thumbnail}
                       alt={article.title}
@@ -130,7 +130,7 @@ export default function BlogPage() {
                       className="object-cover object-center group-hover:scale-105 transition-transform duration-700 opacity-100"
                       referrerPolicy="no-referrer"
                     />
-                    <div className="absolute top-3 left-3 bg-[#0f0d0b]/85 backdrop-blur-sm text-amber-400 border border-amber-900/50 text-[11px] font-mono px-2.5 py-1 rounded">
+                    <div className="absolute top-3 left-3 bg-white/85 backdrop-blur-sm text-amber-400 border border-amber-900/50 text-[11px] font-mono px-2.5 py-1 rounded">
                       {article.category}
                     </div>
                   </div>
@@ -139,7 +139,7 @@ export default function BlogPage() {
                   <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                     <div className="space-y-3">
                       {/* Meta */}
-                      <div className="flex items-center gap-3 text-xs text-[#8c7e70]">
+                      <div className="flex items-center gap-3 text-xs text-zinc-600">
                         <span className="flex items-center gap-1">
                           <Calendar className="w-3.5 h-3.5 text-amber-500" />
                           {article.date}
@@ -152,22 +152,22 @@ export default function BlogPage() {
                       </div>
 
                       {/* Title */}
-                      <h2 className="font-serif font-bold text-xl text-[#f8f3ed] group-hover:text-amber-400 transition-colors leading-snug">
+                      <h2 className="font-serif font-bold text-xl text-black group-hover:text-amber-400 transition-colors leading-snug">
                         <Link href={`/blog/${article.slug}`}>
                           {article.title}
                         </Link>
                       </h2>
 
                       {/* Excerpt */}
-                      <p className="text-xs sm:text-sm text-[#a8998a] font-light leading-relaxed">
+                      <p className="text-xs sm:text-sm text-zinc-600 font-light leading-relaxed">
                         {article.excerpt}
                       </p>
                     </div>
 
                     {/* Author & CTA */}
-                    <div className="pt-4 border-t border-[#261f18] flex items-center justify-between">
-                      <div className="text-[11px] text-[#8c7e70]">
-                        By <span className="text-[#f5f0ea] font-medium">{article.author}</span>
+                    <div className="pt-4 border-t border-zinc-300 flex items-center justify-between">
+                      <div className="text-[11px] text-zinc-600">
+                        By <span className="text-black font-medium">{article.author}</span>
                       </div>
                       <Link
                         href={`/blog/${article.slug}`}

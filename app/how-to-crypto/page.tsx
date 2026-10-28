@@ -23,13 +23,13 @@ export const metadata: Metadata = {
     'btc whiskey store europe',
   ],
   alternates: {
-    canonical: 'https://whiskeyeurope.org/how-to-crypto',
+    canonical: 'https://www.whiskeyeurope.org/how-to-crypto',
   },
   openGraph: {
     title: 'How to Pay with Crypto | Whiskey Europe',
     description:
       'Step-by-step guide to purchasing rare whiskies with Bitcoin and digital assets with zero bank delays and bonus Cask Club points.',
-    url: 'https://whiskeyeurope.org/how-to-crypto',
+    url: 'https://www.whiskeyeurope.org/how-to-crypto',
     siteName: 'Whiskey Europe',
     type: 'website',
   },
@@ -50,13 +50,13 @@ export default function HowToCryptoPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://whiskeyeurope.org',
+        item: 'https://www.whiskeyeurope.org',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'How to Crypto',
-        item: 'https://whiskeyeurope.org/how-to-crypto',
+        item: 'https://www.whiskeyeurope.org/how-to-crypto',
       },
     ],
   };
@@ -101,7 +101,7 @@ export default function HowToCryptoPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
       />
-      <div className="min-h-screen bg-[#0f0d0b] text-[#f5f0ea] flex flex-col justify-between selection:bg-amber-600 selection:text-black">
+      <div className="min-h-screen bg-white text-black flex flex-col justify-between selection:bg-black selection:text-white">
         <div>
           <Header />
           <main className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 2xl:px-16">

@@ -15,13 +15,13 @@ export const metadata: Metadata = {
   description:
     'GDPR compliance, personal data protection, cookies management, and customer confidentiality under EU Regulation 2016/679.',
   alternates: {
-    canonical: 'https://whiskeyeurope.org/privacy',
+    canonical: 'https://www.whiskeyeurope.org/privacy',
   },
   openGraph: {
     title: 'Privacy Policy | Whiskey Europe',
     description:
       'GDPR compliance, personal data protection, cookies management, and customer confidentiality under EU Regulation 2016/679.',
-    url: 'https://whiskeyeurope.org/privacy',
+    url: 'https://www.whiskeyeurope.org/privacy',
     siteName: 'Whiskey Europe',
     type: 'website',
   },
@@ -42,13 +42,13 @@ export default function PrivacyPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://whiskeyeurope.org',
+        item: 'https://www.whiskeyeurope.org',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Privacy Policy',
-        item: 'https://whiskeyeurope.org/privacy',
+        item: 'https://www.whiskeyeurope.org/privacy',
       },
     ],
   };
@@ -59,35 +59,35 @@ export default function PrivacyPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(privacyBreadcrumbs) }}
       />
-      <div className="min-h-screen bg-[#0f0d0b] text-[#f5f0ea] flex flex-col justify-between">
+      <div className="min-h-screen bg-white text-black flex flex-col justify-between">
         <div>
           <Header />
 
           <main className="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-8">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-xs font-semibold text-amber-400 hover:text-amber-300 transition-colors bg-[#18130f] px-3.5 py-2 rounded-lg border border-[#2b221a]"
+              className="inline-flex items-center gap-2 text-xs font-semibold text-amber-400 hover:text-amber-300 transition-colors bg-white px-3.5 py-2 rounded-lg border border-zinc-300"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back to Home</span>
             </Link>
 
             <div className="space-y-3">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1c1612] border border-amber-900/50 text-amber-400 text-xs font-mono">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-amber-900/50 text-amber-400 text-xs font-mono">
                 <Lock className="w-3.5 h-3.5" />
                 <span>GDPR & DATA PRIVACY</span>
               </div>
-              <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#f8f3ed]">
+              <h1 className="font-serif text-3xl sm:text-4xl font-bold text-black">
                 Privacy & Data Protection Policy
               </h1>
-              <p className="text-xs text-[#8c7e70]">
+              <p className="text-xs text-zinc-600">
                 Compliant with General Data Protection Regulation (EU) 2016/679 (GDPR)
               </p>
             </div>
 
-            <div className="bg-[#14100c] border border-[#28211a] rounded-2xl p-6 sm:p-8 space-y-6 text-sm text-[#b8a898] leading-relaxed font-light">
+            <div className="bg-white border border-zinc-300 rounded-2xl p-6 sm:p-8 space-y-6 text-sm text-zinc-600 leading-relaxed font-light">
               <section className="space-y-2">
-                <h2 className="font-serif font-bold text-lg text-[#f8f3ed] flex items-center gap-2">
+                <h2 className="font-serif font-bold text-lg text-black flex items-center gap-2">
                   <Shield className="w-4 h-4 text-amber-500" />
                   1. Information We Collect
                 </h2>
@@ -97,7 +97,7 @@ export default function PrivacyPage() {
               </section>
 
               <section className="space-y-2">
-                <h2 className="font-serif font-bold text-lg text-[#f8f3ed]">
+                <h2 className="font-serif font-bold text-lg text-black">
                   2. Purpose of Data Processing
                 </h2>
                 <p>
@@ -106,7 +106,7 @@ export default function PrivacyPage() {
               </section>
 
               <section className="space-y-2">
-                <h2 className="font-serif font-bold text-lg text-[#f8f3ed]">
+                <h2 className="font-serif font-bold text-lg text-black">
                   3. Your Rights Under GDPR
                 </h2>
                 <p>

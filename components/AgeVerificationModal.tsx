@@ -20,54 +20,54 @@ export default function AgeVerificationModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden bg-[#0a0806]/95 backdrop-blur-xl flex items-center justify-center p-4 animate-fadeIn">
-      <div className="max-w-md w-full bg-[#14100c] border border-amber-900/60 rounded-2xl p-6 sm:p-8 shadow-2xl text-center space-y-6 relative text-[#f5f0ea]">
+    <div className="fixed inset-0 z-50 overflow-hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4 animate-fadeIn">
+      <div className="max-w-md w-full bg-white border-2 border-black rounded-2xl p-6 sm:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] text-center space-y-6 relative text-black">
         
         {/* Logo Emblem */}
-        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-amber-600 via-amber-700 to-amber-950 p-0.5 shadow-xl mx-auto flex items-center justify-center">
-          <div className="w-full h-full bg-[#0f0d0b] rounded-full flex items-center justify-center text-amber-500">
+        <div className="w-16 h-16 rounded-full bg-black p-0.5 shadow-xl mx-auto flex items-center justify-center">
+          <div className="w-full h-full bg-white rounded-full flex items-center justify-center text-black border-2 border-black">
             <Wine className="w-8 h-8" />
           </div>
         </div>
 
         <div className="space-y-2">
-          <span className="text-[11px] font-mono text-amber-400 tracking-widest uppercase bg-amber-950/60 px-3 py-1 rounded-full border border-amber-800/40">
+          <span className="text-[11px] font-mono text-white tracking-widest uppercase bg-black px-3 py-1 rounded-full font-bold">
             EU ALCOHOL COMPLIANCE DIRECTIVE
           </span>
-          <h2 className="font-serif text-2xl font-bold text-[#f8f3ed]">
+          <h2 className="font-serif text-3xl font-black text-black pt-1">
             Welcome to Whiskey Europe
           </h2>
-          <p className="text-xs text-[#b8a99a] leading-relaxed font-light">
+          <p className="text-xs text-zinc-600 leading-relaxed font-medium">
             You must be of legal drinking age in your country of residence to enter our European bonded cellars.
           </p>
         </div>
 
         {underageError ? (
-          <div className="p-4 bg-red-950/80 border border-red-800 rounded-xl text-red-200 text-xs space-y-2">
-            <AlertCircle className="w-6 h-6 text-red-400 mx-auto" />
-            <p className="font-bold">Access Denied</p>
-            <p>You must be at least 18 years old to view or purchase alcoholic spirits on whiskeyeurope.org.</p>
+          <div className="p-4 bg-zinc-100 border-2 border-black rounded-xl text-black text-xs space-y-2">
+            <AlertCircle className="w-6 h-6 text-black mx-auto" />
+            <p className="font-black uppercase tracking-wider">Access Denied</p>
+            <p className="font-medium">You must be at least 18 years old to view or purchase alcoholic spirits on whiskeyeurope.org.</p>
           </div>
         ) : (
           <div className="space-y-3 pt-2">
             <button
               onClick={verifyAge}
-              className="w-full bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-black font-bold text-sm py-3.5 rounded-lg shadow-xl cursor-pointer transition-transform transform hover:-translate-y-0.5"
+              className="w-full bg-black hover:bg-zinc-800 text-white font-black text-xs sm:text-sm py-3.5 rounded-full shadow-lg cursor-pointer transition-transform transform hover:-translate-y-0.5 uppercase tracking-wider border-2 border-black"
             >
               I am 18 Years of Age or Older
             </button>
 
             <button
               onClick={handleUnderageClick}
-              className="w-full bg-[#1b1612] hover:bg-[#261f1a] text-[#8c7e70] hover:text-[#c4b6a7] font-semibold text-xs py-3 rounded-lg border border-[#2b221a] cursor-pointer"
+              className="w-full bg-zinc-100 hover:bg-zinc-200 text-zinc-700 hover:text-black font-bold text-xs py-3 rounded-full border border-zinc-300 cursor-pointer uppercase tracking-wider"
             >
               I am Under 18
             </button>
           </div>
         )}
 
-        <div className="flex items-center justify-center gap-1.5 text-[10px] text-[#786c60] pt-2 border-t border-[#261f18]">
-          <ShieldCheck className="w-3.5 h-3.5 text-amber-500" />
+        <div className="flex items-center justify-center gap-1.5 text-[10px] text-zinc-500 pt-2 border-t border-zinc-200 font-bold">
+          <ShieldCheck className="w-3.5 h-3.5 text-black" />
           <span>Verified EU Bonded Spirits Store • domain: whiskeyeurope.org</span>
         </div>
 

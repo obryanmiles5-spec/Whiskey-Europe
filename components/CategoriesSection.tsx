@@ -4,7 +4,6 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronRight, Sparkles, Flame, Wine, Award, Globe, Compass } from 'lucide-react';
-
 import { WHISKEY_COLLECTION } from '@/lib/whiskeys';
 
 export interface Category {
@@ -22,7 +21,7 @@ const CATEGORIES: Category[] = [
     title: 'Japanese Whiskies',
     subtitle: 'Chichibu, Hakushu, Hibiki, Karuizawa & Yamazaki',
     image: 'https://lh3.googleusercontent.com/d/1V-8ZnKh63DPMGjXoPO89b_SVFg9CH_Vy',
-    icon: <Globe className="w-4 h-4 text-amber-400" />,
+    icon: <Globe className="w-4 h-4 text-black" />,
     tag: '5 Iconic Houses'
   },
   {
@@ -30,7 +29,7 @@ const CATEGORIES: Category[] = [
     title: 'Balvenie Casks',
     subtitle: 'PortWood & Caribbean Rum Finishes',
     image: 'https://lh3.googleusercontent.com/d/11ImUr9gk2vSnFBSdH_vYFaSLQbEIW_eU',
-    icon: <Wine className="w-4 h-4 text-amber-500" />,
+    icon: <Wine className="w-4 h-4 text-black" />,
     tag: 'Speyside Craft'
   },
   {
@@ -38,7 +37,7 @@ const CATEGORIES: Category[] = [
     title: 'The Macallan',
     subtitle: 'Sherry Oak 18 Year & Rare Cask Releases',
     image: 'https://lh3.googleusercontent.com/d/1xMKFTuCZRwv5rJw6HptO8BcZJOy11w5M',
-    icon: <Sparkles className="w-4 h-4 text-amber-400" />,
+    icon: <Sparkles className="w-4 h-4 text-black" />,
     tag: 'Sherry Oak Icon'
   },
   {
@@ -46,7 +45,7 @@ const CATEGORIES: Category[] = [
     title: 'Hennessy Cognac',
     subtitle: 'XO Extra Old & Paradis Reserve',
     image: 'https://lh3.googleusercontent.com/d/1tl5HxBwhTBOAJE-nRkJ2fi111JJjfZz9',
-    icon: <Award className="w-4 h-4 text-amber-300" />,
+    icon: <Award className="w-4 h-4 text-black" />,
     tag: 'French Heritage'
   },
   {
@@ -54,7 +53,7 @@ const CATEGORIES: Category[] = [
     title: 'Old and Rare',
     subtitle: 'Clés des Ducs 1930, Hermitage 1890 & Hine 250',
     image: 'https://lh3.googleusercontent.com/d/1delgvRWGGz32J-mr8kvjikZTXb0kacHq',
-    icon: <Sparkles className="w-4 h-4 text-orange-400" />,
+    icon: <Sparkles className="w-4 h-4 text-black" />,
     tag: 'Collector Choice'
   },
   {
@@ -62,7 +61,7 @@ const CATEGORIES: Category[] = [
     title: 'Port Ellen',
     subtitle: 'Lost Distillery Islay Single Casks 39-40 Yrs',
     image: 'https://lh3.googleusercontent.com/d/1THlfo9EWbT8mA4eAlIfhsINT-T5USH4y',
-    icon: <Compass className="w-4 h-4 text-red-400" />,
+    icon: <Compass className="w-4 h-4 text-black" />,
     tag: 'Ghost Distillery'
   },
   {
@@ -70,7 +69,7 @@ const CATEGORIES: Category[] = [
     title: 'Bourbon & Rye',
     subtitle: 'Pappy Van Winkle 15, Blanton’s & WhistlePig',
     image: 'https://lh3.googleusercontent.com/d/12Xn18KSHqyNIDRTEwZmH3-eIaT5LESZ6',
-    icon: <Flame className="w-4 h-4 text-amber-500" />,
+    icon: <Flame className="w-4 h-4 text-black" />,
     tag: 'Kentucky & Vermont'
   },
   {
@@ -78,7 +77,7 @@ const CATEGORIES: Category[] = [
     title: "Ballantine's Heritage",
     subtitle: '30 Year Old Masterpiece & 21 Year Old Reserve',
     image: 'https://lh3.googleusercontent.com/d/1VR7swVn2F86xZnIk7q6dyiyRAzDhMpkU',
-    icon: <Award className="w-4 h-4 text-amber-400" />,
+    icon: <Award className="w-4 h-4 text-black" />,
     tag: 'Blended Masterpiece'
   }
 ];
@@ -98,21 +97,22 @@ export default function CategoriesSection() {
     }).length;
     return `${count} Products`;
   };
+
   return (
-    <section className="py-16 bg-[#13100d] border-b border-[#261f18]" id="categories">
+    <section className="py-16 bg-zinc-50 border-b border-black/10" id="categories">
       <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 2xl:px-16">
         
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
           <div>
-            <div className="text-amber-500 font-mono text-xs uppercase tracking-widest mb-1 flex items-center gap-1.5">
+            <div className="text-black font-mono text-xs uppercase tracking-widest mb-1.5 flex items-center gap-1.5 font-bold">
               <span>EXPLORE BY CATEGORY</span>
             </div>
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#f5f0ea]">
+            <h2 className="font-serif text-3xl sm:text-4xl font-black text-black">
               Curated Cellar Categories
             </h2>
           </div>
-          <p className="text-sm text-[#a39382] max-w-md">
+          <p className="text-sm text-zinc-600 font-medium max-w-md">
             Hand-selected allocations categorized by Japanese rare bottlings, Speyside single malts, ghost distilleries, and small-batch bourbons.
           </p>
         </div>
@@ -123,7 +123,7 @@ export default function CategoriesSection() {
             <Link
               key={cat.id}
               href={`/shop?category=${encodeURIComponent(cat.id)}`}
-              className="group relative h-[250px] rounded-xl overflow-hidden bg-[#1a1511] border border-[#2e261f] hover:border-amber-600/70 cursor-pointer shadow-lg transition-all duration-300 transform hover:-translate-y-1 block"
+              className="group relative h-[250px] rounded-xl overflow-hidden bg-black border-2 border-black hover:border-black cursor-pointer shadow-md hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 transform hover:-translate-y-1 block"
             >
               {/* Image Background */}
               <Image
@@ -132,39 +132,37 @@ export default function CategoriesSection() {
                 fill
                 unoptimized
                 sizes="(max-width: 768px) 100vw, 33vw"
-                className="object-cover object-center group-hover:scale-110 transition-transform duration-700 opacity-60 group-hover:opacity-75"
+                className="object-cover object-center group-hover:scale-110 transition-transform duration-700 opacity-70 group-hover:opacity-85"
                 referrerPolicy="no-referrer"
               />
               
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0f0d0b] via-[#0f0d0b]/60 to-transparent" />
+              {/* Gradient Overlay for high-contrast legibility */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
 
               {/* Top Tag */}
               <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between z-10">
-                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#0f0d0b]/80 border border-amber-900/40 text-[11px] font-semibold text-amber-400 backdrop-blur-sm">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-white text-black text-[11px] font-bold border border-black shadow-xs">
                   {cat.icon}
                   <span>{cat.tag}</span>
                 </span>
-                <span className="text-[11px] font-mono text-[#c4b6a7] bg-[#0f0d0b]/80 px-2 py-0.5 rounded">
+                <span className="text-[11px] font-mono text-white bg-black/90 px-2 py-0.5 rounded font-bold border border-white/20">
                   {getCategoryCount(cat.id)}
                 </span>
               </div>
 
               {/* Bottom Details */}
               <div className="absolute bottom-4 left-4 right-4 z-10 space-y-1">
-                <h3 className="font-serif font-bold text-lg text-[#f8f3ed] group-hover:text-amber-400 transition-colors flex items-center justify-between">
+                <h3 className="font-serif font-black text-xl text-white group-hover:text-zinc-200 transition-colors flex items-center justify-between">
                   <span>{cat.title}</span>
-                  <ChevronRight className="w-4 h-4 text-amber-500 opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:translate-x-1" />
+                  <ChevronRight className="w-4 h-4 text-white opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:translate-x-1" />
                 </h3>
-                <p className="text-xs text-[#a8998a] font-light line-clamp-1">
+                <p className="text-xs text-zinc-300 font-medium line-clamp-1">
                   {cat.subtitle}
                 </p>
               </div>
-
             </Link>
           ))}
         </div>
-
       </div>
     </section>
   );

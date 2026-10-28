@@ -69,10 +69,10 @@ export default function ContactClient() {
         <span className="text-amber-500 font-mono text-xs uppercase tracking-widest bg-amber-950/60 px-3.5 py-1 rounded-full border border-amber-800/40">
           EUROPEAN CUSTOMER CARE & SOMMELIERS
         </span>
-        <h1 className="font-serif font-bold text-3xl sm:text-5xl text-[#f8f3ed]">
+        <h1 className="font-serif font-bold text-3xl sm:text-5xl text-black">
           Get in Touch
         </h1>
-        <p className="text-xs sm:text-sm text-[#b8a99a] leading-relaxed font-light">
+        <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-light">
           Have a question regarding rare allocations, order tracking, sommelier cask tasting, or custom laser box engraving? Our cellar team is at your service.
         </p>
       </div>
@@ -80,13 +80,13 @@ export default function ContactClient() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         
         {/* Left Column: Contact Form */}
-        <div className="lg:col-span-7 bg-[#14100c] border border-[#2b221a] p-6 sm:p-8 rounded-2xl shadow-2xl space-y-6">
+        <div className="lg:col-span-7 bg-white border border-zinc-300 p-6 sm:p-8 rounded-2xl shadow-2xl space-y-6">
           <div className="space-y-1">
-            <h2 className="font-serif font-bold text-2xl text-[#f8f3ed] flex items-center gap-2">
+            <h2 className="font-serif font-bold text-2xl text-black flex items-center gap-2">
               <MessageSquare className="w-5 h-5 text-amber-500" />
               <span>Send Us a Message</span>
             </h2>
-            <p className="text-xs text-[#a39382]">
+            <p className="text-xs text-zinc-600">
               Fill in your query details below. Emails are dispatched directly to our sommelier desk.
             </p>
           </div>
@@ -95,7 +95,7 @@ export default function ContactClient() {
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-[#f5f0ea] mb-1">
+                <label className="block text-xs font-semibold text-black mb-1">
                   Your Full Name <span className="text-amber-500">*</span>
                 </label>
                 <input
@@ -104,12 +104,12 @@ export default function ContactClient() {
                   placeholder="e.g. Lord Alexander Sinclair"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full bg-[#0d0b09] border border-[#332920] rounded-lg p-3 text-xs text-[#f5f0ea] placeholder-[#6e6256] focus:outline-none focus:border-amber-500"
+                  className="w-full bg-white border border-zinc-300 rounded-lg p-3 text-xs text-black placeholder-[#6e6256] focus:outline-none focus:border-amber-500"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-[#f5f0ea] mb-1">
+                <label className="block text-xs font-semibold text-black mb-1">
                   Email Address <span className="text-amber-500">*</span>
                 </label>
                 <input
@@ -118,19 +118,19 @@ export default function ContactClient() {
                   placeholder="e.g. alexander@domain.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full bg-[#0d0b09] border border-[#332920] rounded-lg p-3 text-xs text-[#f5f0ea] placeholder-[#6e6256] focus:outline-none focus:border-amber-500"
+                  className="w-full bg-white border border-zinc-300 rounded-lg p-3 text-xs text-black placeholder-[#6e6256] focus:outline-none focus:border-amber-500"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#f5f0ea] mb-1">
+              <label className="block text-xs font-semibold text-black mb-1">
                 Inquiry Topic
               </label>
               <select
                 value={formData.subject}
                 onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                className="w-full bg-[#0d0b09] border border-[#332920] rounded-lg p-3 text-xs text-[#f5f0ea] focus:outline-none focus:border-amber-500"
+                className="w-full bg-white border border-zinc-300 rounded-lg p-3 text-xs text-black focus:outline-none focus:border-amber-500"
               >
                 <option value="Order Support">Order Tracking & Delivery</option>
                 <option value="Sommelier Consultation">Sommelier Cask Consultation</option>
@@ -141,7 +141,7 @@ export default function ContactClient() {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#f5f0ea] mb-1">
+              <label className="block text-xs font-semibold text-black mb-1">
                 Message <span className="text-amber-500">*</span>
               </label>
               <textarea
@@ -150,7 +150,7 @@ export default function ContactClient() {
                 placeholder="How can our cellar team assist you today?"
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full bg-[#0d0b09] border border-[#332920] rounded-lg p-3 text-xs text-[#f5f0ea] placeholder-[#6e6256] focus:outline-none focus:border-amber-500"
+                className="w-full bg-white border border-zinc-300 rounded-lg p-3 text-xs text-black placeholder-[#6e6256] focus:outline-none focus:border-amber-500"
               />
             </div>
 
@@ -182,38 +182,38 @@ export default function ContactClient() {
         {/* Right Column: Information Cards */}
         <div className="lg:col-span-5 space-y-6">
           
-          <div className="bg-[#14100c] border border-[#2b221a] p-6 rounded-2xl space-y-4">
-            <h3 className="font-serif font-bold text-lg text-[#f8f3ed]">
+          <div className="bg-white border border-zinc-300 p-6 rounded-2xl space-y-4">
+            <h3 className="font-serif font-bold text-lg text-black">
               Cellar Desk Information
             </h3>
 
-            <div className="space-y-3 text-xs text-[#b0a090]">
-              <div className="flex items-start gap-3 p-3 bg-[#18130f] border border-[#231c16] rounded-xl">
+            <div className="space-y-3 text-xs text-zinc-600">
+              <div className="flex items-start gap-3 p-3 bg-white border border-zinc-300 rounded-xl">
                 <Mail className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
                 <div>
-                  <strong className="text-[#f5f0ea] block">Email Inbox:</strong>
+                  <strong className="text-black block">Email Inbox:</strong>
                   <a href="mailto:contact@whiskeyeurope.org" className="text-amber-400 hover:underline">
                     contact@whiskeyeurope.org
                   </a>
-                  <p className="text-[10px] text-[#8c7e70]">Dedicated European cellar desk</p>
+                  <p className="text-[10px] text-zinc-600">Dedicated European cellar desk</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 p-3 bg-[#18130f] border border-[#231c16] rounded-xl">
+              <div className="flex items-start gap-3 p-3 bg-white border border-zinc-300 rounded-xl">
                 <MapPin className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
                 <div>
-                  <strong className="text-[#f5f0ea] block">Bonded Vault Location:</strong>
+                  <strong className="text-black block">Bonded Vault Location:</strong>
                   <span>Rotterdam European Spirits Hub</span>
-                  <p className="text-[10px] text-[#8c7e70]">Port Hub Area, Netherlands (EU Bonded)</p>
+                  <p className="text-[10px] text-zinc-600">Port Hub Area, Netherlands (EU Bonded)</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 p-3 bg-[#18130f] border border-[#231c16] rounded-xl">
+              <div className="flex items-start gap-3 p-3 bg-white border border-zinc-300 rounded-xl">
                 <Clock className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
                 <div>
-                  <strong className="text-[#f5f0ea] block">Sommelier Hours:</strong>
+                  <strong className="text-black block">Sommelier Hours:</strong>
                   <span>Monday – Saturday: 08:00 – 19:00 CET</span>
-                  <p className="text-[10px] text-[#8c7e70]">Response time guaranteed within 4 hours</p>
+                  <p className="text-[10px] text-zinc-600">Response time guaranteed within 4 hours</p>
                 </div>
               </div>
             </div>
@@ -221,10 +221,10 @@ export default function ContactClient() {
 
           <div className="bg-gradient-to-br from-[#1a1511] to-[#120e0b] border border-amber-900/50 p-6 rounded-2xl text-xs space-y-2">
             <ShieldCheck className="w-6 h-6 text-amber-500" />
-            <h4 className="font-serif font-bold text-sm text-[#f5f0ea]">
+            <h4 className="font-serif font-bold text-sm text-black">
               100% Tax & Duty Transparency
             </h4>
-            <p className="text-[#a39382] leading-relaxed">
+            <p className="text-zinc-600 leading-relaxed">
               Every shipment departing our Rotterdam vault includes European alcohol excise stamps and pre-paid VAT across all 27 EU member states.
             </p>
           </div>
@@ -234,10 +234,10 @@ export default function ContactClient() {
       </div>
 
       {/* Frequently Asked Questions */}
-      <div className="space-y-6 pt-8 border-t border-[#261f18]">
+      <div className="space-y-6 pt-8 border-t border-zinc-300">
         <div className="text-center space-y-2 max-w-xl mx-auto">
           <span className="text-amber-500 font-mono text-xs uppercase tracking-wider">FAQ</span>
-          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#f8f3ed]">
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-black">
             Frequently Asked Questions
           </h2>
         </div>
@@ -248,18 +248,18 @@ export default function ContactClient() {
             return (
               <div
                 key={i}
-                className="bg-[#14100c] border border-[#282019] rounded-xl overflow-hidden transition-colors"
+                className="bg-white border border-zinc-300 rounded-xl overflow-hidden transition-colors"
               >
                 <button
                   onClick={() => setOpenFaqIndex(isOpen ? null : i)}
-                  className="w-full text-left p-4 flex items-center justify-between text-sm font-semibold text-[#f5f0ea] hover:text-amber-400 gap-4"
+                  className="w-full text-left p-4 flex items-center justify-between text-sm font-semibold text-black hover:text-amber-400 gap-4"
                 >
                   <span>{faq.question}</span>
                   <ChevronDown className={`w-4 h-4 text-amber-500 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
                 </button>
 
                 {isOpen && (
-                  <div className="px-4 pb-4 text-xs text-[#a39382] leading-relaxed font-light border-t border-[#231c16] pt-3">
+                  <div className="px-4 pb-4 text-xs text-zinc-600 leading-relaxed font-light border-t border-zinc-300 pt-3">
                     {faq.answer}
                   </div>
                 )}

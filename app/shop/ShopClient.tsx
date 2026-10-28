@@ -207,10 +207,10 @@ export default function ShopClient() {
             BONDED CELLAR ALLOCATIONS
           </span>
         </div>
-        <h1 className="font-serif font-bold text-3xl sm:text-5xl text-[#f8f3ed] tracking-tight">
+        <h1 className="font-serif font-bold text-3xl sm:text-5xl text-black tracking-tight">
           {getCategoryHeaderTitle()}
         </h1>
-        <p className="text-xs sm:text-sm text-[#bcaea0] leading-relaxed font-light">
+        <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-light">
           Sommelier-verified bottles, single cask allocations, and collectible rare releases. Fully insured, temperature-controlled transit across all 27 EU member states.
         </p>
 
@@ -222,7 +222,7 @@ export default function ShopClient() {
             </span>
             <button
               onClick={() => handleCategoryChange('All')}
-              className="text-xs text-[#a39382] hover:text-amber-400 underline underline-offset-4 transition-colors cursor-pointer"
+              className="text-xs text-zinc-600 hover:text-amber-400 underline underline-offset-4 transition-colors cursor-pointer"
             >
               View All Categories
             </button>
@@ -231,11 +231,11 @@ export default function ShopClient() {
       </div>
 
       {/* Filter & Search Bar Toolbar */}
-      <div className="bg-gradient-to-b from-[#1c1611] to-[#14100d] border border-[#362b21] p-4 sm:p-6 rounded-2xl shadow-2xl space-y-5">
+      <div className="bg-gradient-to-b from-[#1c1611] to-[#14100d] border border-zinc-300 p-4 sm:p-6 rounded-2xl shadow-2xl space-y-5">
         
         {/* Category Switcher Pills */}
         <div className="space-y-2">
-          <div className="flex items-center justify-between text-xs text-[#a39382] font-mono px-1">
+          <div className="flex items-center justify-between text-xs text-zinc-600 font-mono px-1">
             <span>SELECT CATEGORY</span>
             <span>{categories.length - 1} Special Collections</span>
           </div>
@@ -250,12 +250,12 @@ export default function ShopClient() {
                   className={`text-xs font-semibold px-4 py-2.5 rounded-xl transition-all cursor-pointer whitespace-nowrap flex items-center gap-2 border ${
                     isSelected
                       ? 'bg-gradient-to-r from-amber-600 to-amber-500 text-black border-amber-400 shadow-lg shadow-amber-950/40 font-bold scale-[1.02]'
-                      : 'bg-[#18130f] text-[#c4b5a6] hover:text-[#f8f3ed] hover:bg-[#231b15] border-[#31271e]'
+                      : 'bg-white text-zinc-600 hover:text-black hover:bg-white border-zinc-300'
                   }`}
                 >
                   <span>{cat}</span>
                   <span className={`text-[10px] px-1.5 py-0.5 rounded font-mono ${
-                    isSelected ? 'bg-black/25 text-black font-bold' : 'bg-[#100d0a] text-[#8c7d6e]'
+                    isSelected ? 'bg-black/25 text-black font-bold' : 'bg-white text-zinc-600'
                   }`}>
                     {count}
                   </span>
@@ -267,13 +267,13 @@ export default function ShopClient() {
 
         {/* JAPANESE BRANDS SUB-NAVIGATION (Active when Japanese category is selected) */}
         {selectedCategory === 'Japanese' && (
-          <div className="pt-4 border-t border-[#2d231b] space-y-3">
+          <div className="pt-4 border-t border-zinc-300 space-y-3">
             <div className="flex items-center justify-between text-xs px-1">
               <div className="flex items-center gap-1.5 text-amber-400 font-mono font-bold tracking-wider uppercase text-[11px]">
                 <Globe className="w-3.5 h-3.5 text-amber-500" />
                 <span>JAPANESE WHISKY BRANDS & HOUSES</span>
               </div>
-              <span className="text-[10px] text-[#918171] font-mono">5 Master Brands</span>
+              <span className="text-[10px] text-zinc-600 font-mono">5 Master Brands</span>
             </div>
 
             {/* Brand Pills */}
@@ -284,12 +284,12 @@ export default function ShopClient() {
                 className={`text-xs font-semibold px-3.5 py-2 rounded-xl transition-all cursor-pointer whitespace-nowrap flex items-center gap-2 border ${
                   selectedBrand === 'All'
                     ? 'bg-amber-500 text-black border-amber-300 font-bold shadow-md shadow-amber-950/40'
-                    : 'bg-[#120f0c] text-[#bdae9f] hover:text-[#f8f3ed] hover:bg-[#1f1813] border-[#2e241c]'
+                    : 'bg-white text-zinc-600 hover:text-black hover:bg-white border-zinc-300'
                 }`}
               >
                 <span>All Japanese Brands</span>
                 <span className={`text-[10px] px-1.5 py-0.2 rounded font-mono ${
-                  selectedBrand === 'All' ? 'bg-black/20 text-black font-bold' : 'bg-[#0b0907] text-[#857667]'
+                  selectedBrand === 'All' ? 'bg-black/20 text-black font-bold' : 'bg-white text-zinc-600'
                 }`}>
                   {getJapaneseBrandCount('All')}
                 </span>
@@ -306,12 +306,12 @@ export default function ShopClient() {
                     className={`text-xs font-semibold px-3.5 py-2 rounded-xl transition-all cursor-pointer whitespace-nowrap flex items-center gap-2 border ${
                       isBrandSelected
                         ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-black border-amber-300 font-bold shadow-md shadow-amber-950/40 scale-[1.02]'
-                        : 'bg-[#120f0c] text-[#bdae9f] hover:text-[#f8f3ed] hover:bg-[#1f1813] border-[#2e241c]'
+                        : 'bg-white text-zinc-600 hover:text-black hover:bg-white border-zinc-300'
                     }`}
                   >
                     <span>{brand.name}</span>
                     <span className={`text-[10px] px-1.5 py-0.2 rounded font-mono ${
-                      isBrandSelected ? 'bg-black/20 text-black font-bold' : 'bg-[#0b0907] text-[#857667]'
+                      isBrandSelected ? 'bg-black/20 text-black font-bold' : 'bg-white text-zinc-600'
                     }`}>
                       {count}
                     </span>
@@ -330,7 +330,7 @@ export default function ShopClient() {
                       Est. {activeJapaneseBrandInfo.established} • {activeJapaneseBrandInfo.region}
                     </span>
                   </div>
-                  <p className="text-[11px] text-[#baa998] font-light">
+                  <p className="text-[11px] text-zinc-600 font-light">
                     {activeJapaneseBrandInfo.subtitle} — {activeJapaneseBrandInfo.specialty}
                   </p>
                 </div>
@@ -347,13 +347,13 @@ export default function ShopClient() {
                   <div
                     key={b.id}
                     onClick={() => handleBrandChange(b.id)}
-                    className="p-2.5 rounded-lg bg-[#140f0c] border border-[#2a2017] hover:border-amber-600/60 transition-all cursor-pointer group"
+                    className="p-2.5 rounded-lg bg-white border border-zinc-300 hover:border-amber-600/60 transition-all cursor-pointer group"
                   >
-                    <div className="font-bold text-[#f5efe8] group-hover:text-amber-400 flex items-center justify-between">
+                    <div className="font-bold text-black group-hover:text-amber-400 flex items-center justify-between">
                       <span>{b.name}</span>
                       <span className="text-[10px] text-amber-500 font-mono">{getJapaneseBrandCount(b.id)}</span>
                     </div>
-                    <div className="text-[10px] text-[#8a7a6b] line-clamp-1 mt-0.5 font-light">
+                    <div className="text-[10px] text-zinc-600 line-clamp-1 mt-0.5 font-light">
                       {b.region.split(',')[0]}
                     </div>
                   </div>
@@ -364,14 +364,14 @@ export default function ShopClient() {
         )}
 
         {/* Search & Reset Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-[#2a2118]">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-zinc-300">
           <div className="w-full sm:flex-1 relative">
             <input
               type="text"
               placeholder="Search distillery, age, cask finish, tasting notes (e.g., Hennessy, Balvenie, Sherry, Mizunara)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-[#100d0a] border border-[#3b2f24] focus:border-amber-500 rounded-xl px-4 py-2.5 text-xs text-[#f5f0ea] placeholder-[#786b5e] focus:outline-none transition-colors"
+              className="w-full bg-white border border-zinc-300 focus:border-amber-500 rounded-xl px-4 py-2.5 text-xs text-black placeholder-[#786b5e] focus:outline-none transition-colors"
             />
           </div>
 
@@ -385,7 +385,7 @@ export default function ShopClient() {
                 setSearchQuery('');
                 setSortBy('featured');
               }}
-              className="px-4 py-2.5 bg-[#231a14] hover:bg-[#2f231b] border border-amber-800/40 text-amber-400 text-xs rounded-xl flex items-center gap-1.5 shrink-0 transition-colors cursor-pointer"
+              className="px-4 py-2.5 bg-white hover:bg-white border border-amber-800/40 text-amber-400 text-xs rounded-xl flex items-center gap-1.5 shrink-0 transition-colors cursor-pointer"
               title="Reset All Filters"
             >
               <RotateCcw className="w-3.5 h-3.5" />
@@ -395,15 +395,15 @@ export default function ShopClient() {
         </div>
 
         {/* Detailed Filters & Sort Controls */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-[#261e16] text-xs text-[#a39382]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-zinc-300 text-xs text-zinc-600">
           
           {/* Region Select */}
           <div className="space-y-1.5">
-            <label className="block text-[11px] font-semibold text-[#f5f0ea] uppercase tracking-wider font-mono">Origin Region</label>
+            <label className="block text-[11px] font-semibold text-black uppercase tracking-wider font-mono">Origin Region</label>
             <select
               value={selectedRegion}
               onChange={(e) => setSelectedRegion(e.target.value)}
-              className="w-full bg-[#100d0a] border border-[#3b2f24] rounded-xl p-2.5 text-[#f5f0ea] focus:outline-none focus:border-amber-500"
+              className="w-full bg-white border border-zinc-300 rounded-xl p-2.5 text-black focus:outline-none focus:border-amber-500"
             >
               {regions.map((r) => (
                 <option key={r} value={r}>{r === 'All' ? 'All European & World Terroirs' : r}</option>
@@ -414,7 +414,7 @@ export default function ShopClient() {
           {/* Min Age Slider */}
           <div className="space-y-1.5">
             <div className="flex justify-between text-[11px]">
-              <span className="font-semibold text-[#f5f0ea] uppercase tracking-wider font-mono">Minimum Aging</span>
+              <span className="font-semibold text-black uppercase tracking-wider font-mono">Minimum Aging</span>
               <span className="text-amber-400 font-mono font-bold">{minAge > 0 ? `${minAge}+ Years` : 'Any Statement'}</span>
             </div>
             <input
@@ -424,14 +424,14 @@ export default function ShopClient() {
               step={1}
               value={minAge}
               onChange={(e) => setMinAge(Number(e.target.value))}
-              className="w-full accent-amber-500 cursor-pointer bg-[#100d0a]"
+              className="w-full accent-amber-500 cursor-pointer bg-white"
             />
           </div>
 
           {/* Max Price Slider */}
           <div className="space-y-1.5">
             <div className="flex justify-between text-[11px]">
-              <span className="font-semibold text-[#f5f0ea] uppercase tracking-wider font-mono">Max Allocation (€)</span>
+              <span className="font-semibold text-black uppercase tracking-wider font-mono">Max Allocation (€)</span>
               <span className="text-amber-400 font-mono font-bold">
                 {maxPrice >= 100000 ? '€100,000+ (Uncapped)' : `€${maxPrice.toLocaleString()}`}
               </span>
@@ -443,19 +443,19 @@ export default function ShopClient() {
               step={500}
               value={maxPrice}
               onChange={(e) => setMaxPrice(Number(e.target.value))}
-              className="w-full accent-amber-500 cursor-pointer bg-[#100d0a]"
+              className="w-full accent-amber-500 cursor-pointer bg-white"
             />
           </div>
 
           {/* Sort By */}
           <div className="space-y-1.5">
-            <label className="block text-[11px] font-semibold text-[#f5f0ea] flex items-center gap-1 uppercase tracking-wider font-mono">
+            <label className="block text-[11px] font-semibold text-black flex items-center gap-1 uppercase tracking-wider font-mono">
               <ArrowUpDown className="w-3 h-3 text-amber-500" /> Sort Bottles
             </label>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="w-full bg-[#100d0a] border border-[#3b2f24] rounded-xl p-2.5 text-[#f5f0ea] focus:outline-none focus:border-amber-500"
+              className="w-full bg-white border border-zinc-300 rounded-xl p-2.5 text-black focus:outline-none focus:border-amber-500"
             >
               <option value="featured">Featured Sommelier Picks</option>
               <option value="price-asc">Price: Low to High</option>
@@ -470,20 +470,20 @@ export default function ShopClient() {
       </div>
 
       {/* Results Summary Bar */}
-      <div className="flex items-center justify-between text-xs text-[#a39382] px-2 font-mono">
+      <div className="flex items-center justify-between text-xs text-zinc-600 px-2 font-mono">
         <span>Showing {filteredBottles.length} of {WHISKEY_COLLECTION.length} Cellar Allocations</span>
         <div className="flex items-center gap-2">
           <ShieldCheck className="w-4 h-4 text-amber-500" />
-          <span className="text-[#8c7d6e] hidden sm:inline">100% Bonded Authenticity Guaranteed</span>
+          <span className="text-zinc-600 hidden sm:inline">100% Bonded Authenticity Guaranteed</span>
         </div>
       </div>
 
       {/* Products Grid - 4 per row */}
       {filteredBottles.length === 0 ? (
-        <div className="text-center py-20 bg-[#16110d] border border-[#2e241b] rounded-2xl space-y-4 shadow-xl">
+        <div className="text-center py-20 bg-white border border-zinc-300 rounded-2xl space-y-4 shadow-xl">
           <SlidersHorizontal className="w-12 h-12 text-amber-600/60 mx-auto" />
-          <h3 className="font-serif font-bold text-xl text-[#f8f3ed]">No bottles match your specific criteria</h3>
-          <p className="text-xs text-[#a39382] max-w-md mx-auto leading-relaxed">
+          <h3 className="font-serif font-bold text-xl text-black">No bottles match your specific criteria</h3>
+          <p className="text-xs text-zinc-600 max-w-md mx-auto leading-relaxed">
             Try adjusting your search terms, price threshold, or region filters to explore other rare allocations.
           </p>
           <button
@@ -508,7 +508,7 @@ export default function ShopClient() {
             return (
               <div
                 key={whiskey.id}
-                className="bg-gradient-to-b from-[#1c1611] to-[#140f0c] border border-[#31271e] hover:border-amber-500/70 rounded-2xl p-4 flex flex-col justify-between group transition-all duration-300 hover:shadow-2xl hover:shadow-amber-950/30 relative"
+                className="bg-gradient-to-b from-[#1c1611] to-[#140f0c] border border-zinc-300 hover:border-amber-500/70 rounded-2xl p-4 flex flex-col justify-between group transition-all duration-300 hover:shadow-2xl hover:shadow-amber-950/30 relative"
               >
                 {/* Badge */}
                 {whiskey.badge && (
@@ -518,7 +518,7 @@ export default function ShopClient() {
                 )}
 
                 {/* Bottle Image with Quick View Hover Overlay */}
-                <div className="relative h-64 w-full rounded-xl overflow-hidden bg-[#100d0a] mb-4 group-hover:scale-[1.02] transition-transform border border-[#281f18]">
+                <div className="relative h-64 w-full rounded-xl overflow-hidden bg-white mb-4 group-hover:scale-[1.02] transition-transform border border-zinc-300">
                   {whiskey.image && !imageErrors[whiskey.id] ? (
                     <Image
                       src={whiskey.image}
@@ -531,14 +531,14 @@ export default function ShopClient() {
                       onError={() => setImageErrors((prev) => ({ ...prev, [whiskey.id]: true }))}
                     />
                   ) : (
-                    <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-b from-[#221a14] via-[#17120e] to-[#0d0a08] p-4 text-center border border-[#2d241c]">
+                    <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-b from-[#221a14] via-[#17120e] to-[#0d0a08] p-4 text-center border border-zinc-300">
                       <div className="w-14 h-14 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mb-3 text-amber-500">
                         <Wine className="w-7 h-7" />
                       </div>
                       <span className="font-serif font-bold text-amber-200/90 text-sm tracking-wider uppercase">
                         {whiskey.distillery}
                       </span>
-                      <span className="text-[11px] text-[#a39382] font-mono mt-1">
+                      <span className="text-[11px] text-zinc-600 font-mono mt-1">
                         {whiskey.age > 0 ? `${whiskey.age} Year Old` : 'Prestige Release'} • {whiskey.volumeMl}ml
                       </span>
                     </div>
@@ -547,7 +547,7 @@ export default function ShopClient() {
                   {/* Quick View Button */}
                   <button
                     onClick={() => setQuickViewWhiskey(whiskey)}
-                    className="absolute inset-x-4 bottom-4 bg-[#0f0d0b]/90 hover:bg-amber-600 hover:text-black text-[#f5f0ea] font-bold text-xs py-2.5 rounded-xl border border-[#3d3126] flex items-center justify-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm shadow-xl cursor-pointer"
+                    className="absolute inset-x-4 bottom-4 bg-white/90 hover:bg-amber-600 hover:text-black text-black font-bold text-xs py-2.5 rounded-xl border border-zinc-300 flex items-center justify-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm shadow-xl cursor-pointer"
                   >
                     <Eye className="w-4 h-4" />
                     <span>Quick View Tasting Notes</span>
@@ -562,8 +562,8 @@ export default function ShopClient() {
                       <span>{whiskey.region}</span>
                     </div>
 
-                    <h3 className="font-serif font-bold text-base text-[#f8f3ed] group-hover:text-amber-400 transition-colors line-clamp-1">
-                      <Link href={`/shop/${whiskey.id}`} className="hover:underline">
+                    <h3 className="font-serif font-bold text-base text-white group-hover:text-amber-400 transition-colors line-clamp-2">
+                      <Link href={`/shop/${whiskey.slug || whiskey.id}`} className="text-white hover:text-amber-400 hover:underline">
                         {whiskey.name}
                       </Link>
                     </h3>
@@ -572,29 +572,29 @@ export default function ShopClient() {
                     <div className="flex items-center gap-1.5 text-xs text-amber-400 mt-1">
                       <Star className="w-3.5 h-3.5 fill-amber-400" />
                       <span className="font-bold">{whiskey.rating}</span>
-                      <span className="text-[10px] text-[#8c7e70]">({whiskey.reviewsCount} Verified Reviews)</span>
+                      <span className="text-[10px] text-zinc-400">({whiskey.reviewsCount} Verified Reviews)</span>
                     </div>
 
                     {/* Key Specs */}
-                    <p className="text-[11px] text-[#a89a8c] mt-2 line-clamp-2 font-light leading-relaxed">
+                    <p className="text-[11px] text-zinc-300 mt-2 line-clamp-2 font-light leading-relaxed">
                       {whiskey.description}
                     </p>
                   </div>
 
                   {/* Price & Action */}
-                  <div className="pt-4 border-t border-[#281f18] mt-3 space-y-3">
+                  <div className="pt-4 border-t border-zinc-700/60 mt-3 space-y-3">
                     <div className="flex items-baseline justify-between">
                       <div className="flex items-baseline gap-2">
                         <span className="font-serif text-xl font-bold text-amber-400">
                           €{whiskey.price.toFixed(2)}
                         </span>
                         {whiskey.originalPrice && (
-                          <span className="text-xs text-[#786b5e] line-through font-mono">
+                          <span className="text-xs text-zinc-400 line-through font-mono">
                             €{whiskey.originalPrice.toFixed(2)}
                           </span>
                         )}
                       </div>
-                      <span className="text-[10px] text-[#8c7e70] font-mono">
+                      <span className="text-[10px] text-zinc-400 font-mono">
                         {whiskey.volumeMl}ml • {whiskey.abv}% ABV
                       </span>
                     </div>

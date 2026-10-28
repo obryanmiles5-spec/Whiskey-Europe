@@ -2,10 +2,10 @@ import type { MetadataRoute } from 'next';
 import { WHISKEY_COLLECTION, BLOG_ARTICLES } from '@/lib/whiskeys';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://whiskeyeurope.org';
+  const baseUrl = 'https://www.whiskeyeurope.org';
   const lastModified = new Date();
 
-  // Core Canonical Static Routes
+  // Core Static Pages
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
@@ -23,10 +23,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/rare-whiskey-index`,
       lastModified,
       changeFrequency: 'daily',
-      priority: 0.98,
+      priority: 0.95,
     },
     {
       url: `${baseUrl}/how-to-crypto`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/blog`,
       lastModified,
       changeFrequency: 'weekly',
       priority: 0.85,
@@ -36,12 +42,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: 'monthly',
       priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog`,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.8,
     },
     {
       url: `${baseUrl}/contact`,
@@ -62,16 +62,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
     },
     {
-      url: `${baseUrl}/privacy`,
-      lastModified,
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-    {
       url: `${baseUrl}/terms`,
       lastModified,
       changeFrequency: 'yearly',
-      priority: 0.3,
+      priority: 0.4,
+    },
+    {
+      url: `${baseUrl}/privacy`,
+      lastModified,
+      changeFrequency: 'yearly',
+      priority: 0.4,
     },
     {
       url: `${baseUrl}/cookies`,
@@ -81,30 +81,52 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // Editorial Journal Guides
+  // Curated Cellar Category Landing URLs
+  const categorySlugs = [
+    'Japanese',
+    'Balvenie',
+    'Macallan',
+    'Hennessy',
+    'Old and Rare',
+    'Port Ellen',
+    'Bourbon',
+    "Ballantine's",
+  ];
+
+  const categoryRoutes: MetadataRoute.Sitemap = categorySlugs.map((cat) => ({
+    url: `${baseUrl}/shop?category=${encodeURIComponent(cat)}`,
+    lastModified,
+    changeFrequency: 'daily',
+    priority: 0.9,
+  }));
+
+  // Editorial Journal Articles
   const blogRoutes: MetadataRoute.Sitemap = BLOG_ARTICLES.map((article) => {
     const articleDate = new Date(article.date);
     const validDate = !isNaN(articleDate.getTime()) ? articleDate : lastModified;
     return {
       url: `${baseUrl}/blog/${article.slug}`,
       lastModified: validDate,
-      changeFrequency: 'monthly',
+      changeFrequency: 'weekly',
       priority: 0.8,
     };
   });
 
-  // Every Individual Bottle Product URL (All 165+ rare whiskies)
-  const productRoutes: MetadataRoute.Sitemap = WHISKEY_COLLECTION.map((whiskey) => ({
-    url: `${baseUrl}/shop/${whiskey.id}`,
-    lastModified,
-    changeFrequency: 'daily',
-    priority: whiskey.isRare || whiskey.isFeatured ? 0.95 : 0.85,
-  }));
+  // Every Individual Bottle Product URL (Using canonical primary slug)
+  const productRoutes: MetadataRoute.Sitemap = WHISKEY_COLLECTION.map((whiskey) => {
+    const primarySlug = whiskey.slug || whiskey.id;
+    return {
+      url: `${baseUrl}/shop/${primarySlug}`,
+      lastModified,
+      changeFrequency: 'daily',
+      priority: whiskey.isRare || whiskey.isFeatured ? 0.95 : 0.85,
+    };
+  });
 
   return [
     ...staticRoutes,
+    ...categoryRoutes,
     ...blogRoutes,
     ...productRoutes,
   ];
 }
-

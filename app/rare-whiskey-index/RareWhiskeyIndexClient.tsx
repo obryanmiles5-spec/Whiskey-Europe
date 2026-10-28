@@ -64,7 +64,7 @@ export default function RareWhiskeyIndexClient() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search by whiskey name, brand (e.g. Jameson, Blanton's, Yamazaki, Weller, Glencairn)..."
-              className="w-full bg-[#1e1712] border border-[#382b1f] focus:border-amber-500 rounded-xl pl-12 pr-4 py-3.5 text-sm text-[#f5f0ea] placeholder-[#807264] outline-none transition-all"
+              className="w-full bg-[#1e1712] border border-[#382b1f] focus:border-amber-500 rounded-xl pl-12 pr-4 py-3.5 text-sm text-black placeholder-[#807264] outline-none transition-all"
             />
             {searchTerm && (
               <button
@@ -109,7 +109,7 @@ export default function RareWhiskeyIndexClient() {
           <div
             key={entry.id}
             id={entry.id}
-            className="bg-[#140f0c] border border-[#2b2118] hover:border-amber-500/60 rounded-2xl p-6 transition-all duration-200 flex flex-col justify-between space-y-4 shadow-lg group"
+            className="bg-white border border-[#2b2118] hover:border-amber-500/60 rounded-2xl p-6 transition-all duration-200 flex flex-col justify-between space-y-4 shadow-lg group"
           >
             <div className="space-y-3">
               {/* Header Meta */}
@@ -135,10 +135,10 @@ export default function RareWhiskeyIndexClient() {
 
               {/* Title & Brand */}
               <div>
-                <h3 className="font-serif font-bold text-lg text-[#f8f3ed] group-hover:text-amber-300 transition-colors leading-snug">
+                <h3 className="font-serif font-bold text-lg text-black group-hover:text-amber-300 transition-colors leading-snug">
                   {entry.name}
                 </h3>
-                <div className="flex items-center gap-2 mt-1 text-xs text-[#a39382]">
+                <div className="flex items-center gap-2 mt-1 text-xs text-zinc-600">
                   <Globe2 className="w-3.5 h-3.5 text-amber-500 shrink-0" />
                   <span>{entry.origin}</span>
                   <span>•</span>
@@ -147,7 +147,7 @@ export default function RareWhiskeyIndexClient() {
               </div>
 
               {/* Sommelier Tasting & Profile Notes */}
-              <div className="bg-[#1c1611] border border-[#30241a] rounded-xl p-3.5 text-xs text-[#d1c2b4] leading-relaxed">
+              <div className="bg-white border border-[#30241a] rounded-xl p-3.5 text-xs text-[#d1c2b4] leading-relaxed">
                 <strong className="text-amber-200 block mb-1 font-mono uppercase text-[10px] tracking-wider">
                   Sommelier Profile &amp; Provenance:
                 </strong>
@@ -190,10 +190,10 @@ export default function RareWhiskeyIndexClient() {
       </div>
 
       {filteredEntries.length === 0 && (
-        <div className="text-center py-16 bg-[#140f0c] border border-[#2b2118] rounded-2xl space-y-3">
+        <div className="text-center py-16 bg-white border border-[#2b2118] rounded-2xl space-y-3">
           <Wine className="w-12 h-12 text-[#6e6052] mx-auto" />
           <h3 className="font-serif font-bold text-lg text-amber-200">No keyword matches found</h3>
-          <p className="text-xs text-[#8c7e70]">
+          <p className="text-xs text-zinc-600">
             Try searching for &quot;Jameson&quot;, &quot;Jack Daniel&apos;s&quot;, &quot;Blanton&apos;s&quot;, &quot;Yamazaki&quot;, or &quot;Glencairn&quot;.
           </p>
           <button

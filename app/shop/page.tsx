@@ -26,13 +26,13 @@ export const metadata: Metadata = {
     'bonded cellar shop rotterdam',
   ],
   alternates: {
-    canonical: 'https://whiskeyeurope.org/shop',
+    canonical: 'https://www.whiskeyeurope.org/shop',
   },
   openGraph: {
     title: 'Boutique Bottle Shop | Whiskey Europe',
     description:
       'Explore certified authentic rare single malts, aged Scotches, Bourbons, and Japanese whiskies stored in bonded cellars in Rotterdam.',
-    url: 'https://whiskeyeurope.org/shop',
+    url: 'https://www.whiskeyeurope.org/shop',
     siteName: 'Whiskey Europe',
     type: 'website',
   },
@@ -53,13 +53,13 @@ export default function ShopPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://whiskeyeurope.org',
+        item: 'https://www.whiskeyeurope.org',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Boutique Bottle Shop',
-        item: 'https://whiskeyeurope.org/shop',
+        item: 'https://www.whiskeyeurope.org/shop',
       },
     ],
   };
@@ -70,14 +70,14 @@ export default function ShopPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(shopBreadcrumbs) }}
       />
-      <div className="min-h-screen bg-[#0f0d0b] text-[#f5f0ea] flex flex-col justify-between selection:bg-amber-600 selection:text-black">
+      <div className="min-h-screen bg-white text-black flex flex-col justify-between selection:bg-black selection:text-white">
         <div>
           <Header />
           <Suspense fallback={
             <div className="min-h-[50vh] flex items-center justify-center text-amber-400">
               <div className="text-center space-y-2">
                 <div className="w-8 h-8 border-2 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto" />
-                <p className="font-mono text-xs uppercase tracking-widest text-[#a39382]">Opening Bonded Cellar...</p>
+                <p className="font-mono text-xs uppercase tracking-widest text-zinc-600">Opening Bonded Cellar...</p>
               </div>
             </div>
           }>

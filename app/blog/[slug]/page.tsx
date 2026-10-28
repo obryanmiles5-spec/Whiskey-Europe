@@ -14,26 +14,34 @@ import { ArrowLeft, Calendar, Clock, BookOpen, Share2 } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export async function generateStaticParams() {
-  return BLOG_ARTICLES.map((article) => ({
-    slug: article.slug,
-  }));
+  const set = new Set<string>();
+  BLOG_ARTICLES.forEach((article) => {
+    if (article.slug) set.add(article.slug);
+    if ((article as any).id) set.add((article as any).id);
+  });
+  return Array.from(set).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const article = BLOG_ARTICLES.find((a) => a.slug === slug);
+  const decodedSlug = decodeURIComponent(slug).toLowerCase();
+  const article = BLOG_ARTICLES.find(
+    (a) => a.slug === slug || a.slug.toLowerCase() === decodedSlug || (a as any).id === slug
+  );
   if (!article) return { title: 'Article Not Found | Whiskey Europe' };
+
+  const canonicalUrl = `https://www.whiskeyeurope.org/blog/${article.slug}`;
 
   return {
     title: `${article.title} | Whiskey Europe Journal`,
     description: article.excerpt,
     alternates: {
-      canonical: `https://whiskeyeurope.org/blog/${article.slug}`,
+      canonical: canonicalUrl,
     },
     openGraph: {
       title: `${article.title} | Whiskey Europe Journal`,
       description: article.excerpt,
-      url: `https://whiskeyeurope.org/blog/${article.slug}`,
+      url: canonicalUrl,
       siteName: 'Whiskey Europe',
       images: [
         {
@@ -56,7 +64,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function BlogArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const article = BLOG_ARTICLES.find((a) => a.slug === slug);
+  const decodedSlug = decodeURIComponent(slug).toLowerCase();
+  const article = BLOG_ARTICLES.find(
+    (a) => a.slug === slug || a.slug.toLowerCase() === decodedSlug || (a as any).id === slug
+  );
 
   if (!article) {
     notFound();
@@ -79,12 +90,12 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
       name: 'Whiskey Europe',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://whiskeyeurope.org/icon.png',
+        url: 'https://www.whiskeyeurope.org/icon.png',
       },
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://whiskeyeurope.org/blog/${article.slug}`,
+      '@id': `https://www.whiskeyeurope.org/blog/${article.slug}`,
     },
   };
 
@@ -94,7 +105,7 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
-      <div className="min-h-screen bg-[#0f0d0b] text-[#f5f0ea] flex flex-col justify-between selection:bg-amber-600 selection:text-black">
+      <div className="min-h-screen bg-white text-black flex flex-col justify-between selection:bg-black selection:text-white">
         <div>
           <Header />
 
@@ -104,7 +115,7 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
             {/* Back Button */}
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-xs font-semibold text-amber-400 hover:text-amber-300 transition-colors bg-[#18130f] px-3.5 py-2 rounded-lg border border-[#2b221a]"
+              className="inline-flex items-center gap-2 text-xs font-semibold text-amber-400 hover:text-amber-300 transition-colors bg-white px-3.5 py-2 rounded-lg border border-zinc-300"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back to Journal</span>
@@ -116,12 +127,12 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
                 {article.category}
               </span>
 
-              <h1 className="font-serif text-3xl sm:text-5xl font-bold text-[#f8f3ed] leading-tight">
+              <h1 className="font-serif text-3xl sm:text-5xl font-bold text-black leading-tight">
                 {article.title}
               </h1>
 
-              <div className="flex flex-wrap items-center gap-4 text-xs text-[#a39382] border-y border-[#261f18] py-3">
-                <span>By <strong className="text-[#f5f0ea]">{article.author}</strong></span>
+              <div className="flex flex-wrap items-center gap-4 text-xs text-zinc-600 border-y border-zinc-300 py-3">
+                <span>By <strong className="text-black">{article.author}</strong></span>
                 <span>•</span>
                 <span className="flex items-center gap-1">
                   <Calendar className="w-3.5 h-3.5 text-amber-500" /> {article.date}
@@ -134,7 +145,7 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
             </div>
 
             {/* Article Thumbnail */}
-            <div className="relative h-[360px] sm:h-[450px] w-full rounded-2xl overflow-hidden border border-[#2e261f]">
+            <div className="relative h-[360px] sm:h-[450px] w-full rounded-2xl overflow-hidden border border-zinc-300">
               <Image
                 src={article.thumbnail}
                 alt={article.title}
@@ -148,8 +159,8 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
             </div>
 
             {/* Article Content Paragraphs */}
-            <div className="prose prose-invert max-w-none text-base text-[#c4b6a7] leading-relaxed space-y-6 font-light">
-              <p className="text-lg text-[#f5f0ea] font-normal italic border-l-2 border-amber-500 pl-4 py-1">
+            <div className="prose prose-invert max-w-none text-base text-zinc-600 leading-relaxed space-y-6 font-light">
+              <p className="text-lg text-black font-normal italic border-l-2 border-amber-500 pl-4 py-1">
                 {article.excerpt}
               </p>
 
@@ -159,11 +170,11 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
             </div>
 
             {/* Footer Author Card */}
-            <div className="bg-[#171310] border border-[#2b221a] p-6 rounded-xl flex items-center justify-between gap-4 mt-12">
+            <div className="bg-white border border-zinc-300 p-6 rounded-xl flex items-center justify-between gap-4 mt-12">
               <div>
                 <span className="text-[10px] text-amber-400 font-mono uppercase">PUBLISHED BY WHISKEY EUROPE</span>
-                <h4 className="font-serif font-bold text-base text-[#f5f0ea]">{article.author}</h4>
-                <p className="text-xs text-[#8c7e70]">Sommelier &amp; Spirits Curator • domain: whiskeyeurope.org</p>
+                <h4 className="font-serif font-bold text-base text-black">{article.author}</h4>
+                <p className="text-xs text-zinc-600">Sommelier &amp; Spirits Curator • domain: whiskeyeurope.org</p>
               </div>
 
               <Link

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { DISTILLERIES, Distillery } from '@/lib/distilleries';
-import { MapPin, Compass, Calendar, Droplets, Award, ArrowRight, Wine, Sparkles } from 'lucide-react';
+import { MapPin, Compass, Calendar, Droplets, Award, ArrowRight, Wine } from 'lucide-react';
 import { useCart } from '@/lib/cart-context';
 
 export default function DistilleryMapSection() {
@@ -16,19 +16,19 @@ export default function DistilleryMapSection() {
   };
 
   return (
-    <section className="py-16 bg-[#110e0b] border-b border-[#241d17]" id="distillery-map">
+    <section className="py-16 bg-zinc-50 border-b border-black/10" id="distillery-map">
       <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 2xl:px-16">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1b1612] border border-amber-900/50 text-amber-400 text-xs font-mono uppercase tracking-widest">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black text-white text-xs font-mono uppercase tracking-widest font-bold">
             <Compass className="w-3.5 h-3.5" />
             <span>TERROIR & ORIGINS MAP</span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#f8f3ed]">
+          <h2 className="font-serif text-3xl sm:text-4xl font-black text-black">
             Interactive European Distillery Map
           </h2>
-          <p className="text-sm text-[#b0a090] font-light">
+          <p className="text-sm text-zinc-600 font-medium">
             Explore famous malt origins across Scotland, Ireland, Sweden, France, and Germany. Click any distillery pin to discover its history, water sources, and signature bottlings.
           </p>
         </div>
@@ -36,20 +36,19 @@ export default function DistilleryMapSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Interactive Visual Map Column */}
-          <div className="lg:col-span-7 bg-[#17130f] border border-[#2b221a] rounded-2xl p-4 sm:p-6 shadow-2xl relative overflow-hidden">
+          <div className="lg:col-span-7 bg-white border-2 border-black rounded-2xl p-4 sm:p-6 shadow-md relative overflow-hidden">
             
             {/* Map Header */}
-            <div className="flex items-center justify-between pb-4 mb-4 border-b border-[#282018] text-xs text-[#a39382]">
-              <span className="flex items-center gap-1.5 text-amber-400 font-mono font-semibold">
+            <div className="flex items-center justify-between pb-4 mb-4 border-b border-zinc-200 text-xs text-zinc-600">
+              <span className="flex items-center gap-1.5 text-black font-mono font-bold">
                 <MapPin className="w-4 h-4" /> Europe & British Isles Terroir
               </span>
-              <span>8 Featured Distilleries</span>
+              <span className="font-bold text-black">8 Featured Distilleries</span>
             </div>
 
-            {/* Visual Europe Map Container with Provided Map Image & Custom Pins */}
-            <div className="relative w-full h-[380px] sm:h-[480px] bg-[#0d0b09] rounded-xl border-2 border-amber-600/50 shadow-2xl flex items-center justify-center overflow-hidden">
+            {/* Visual Europe Map Container */}
+            <div className="relative w-full h-[380px] sm:h-[480px] bg-zinc-100 rounded-xl border-2 border-black shadow-inner flex items-center justify-center overflow-hidden">
               
-              {/* Provided European Map Image */}
               <Image
                 src="https://lh3.googleusercontent.com/d/1knkbCnmvVz52nfDUj81UILYUsrCtCloj"
                 alt="Interactive European Distillery Terroir Map"
@@ -61,18 +60,13 @@ export default function DistilleryMapSection() {
                 referrerPolicy="no-referrer"
               />
 
-              {/* Light gradient vignette to keep the map image clearly seen while giving depth */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 pointer-events-none" />
-              <div className="absolute inset-0 bg-radial from-transparent via-black/15 to-black/50 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
 
               {/* Pins Layer */}
               <div className="absolute inset-0 pointer-events-auto z-10">
                 {DISTILLERIES.map((dist) => {
                   const isSelected = selectedDistillery.id === dist.id;
                   
-                  // Map coordinates normalization relative to viewBox
-                  // lat range ~47 to 61 -> y range ~500 to 80
-                  // lng range ~-8 to 18 -> x range ~150 to 650
                   const mapY = Math.max(12, Math.min(88, ((61 - dist.lat) / (61 - 47)) * 72 + 14));
                   const mapX = Math.max(12, Math.min(88, ((dist.lng + 9) / (18 + 9)) * 72 + 14));
 
@@ -88,17 +82,16 @@ export default function DistilleryMapSection() {
                     >
                       <div className="relative flex flex-col items-center">
                         
-                        {/* Pulse Ring if selected */}
                         {isSelected && (
-                          <span className="absolute -inset-2 rounded-full bg-amber-400/50 animate-ping pointer-events-none" />
+                          <span className="absolute -inset-2 rounded-full bg-black/40 animate-ping pointer-events-none" />
                         )}
 
                         {/* Pin Marker */}
                         <div
                           className={`w-7 h-7 rounded-full flex items-center justify-center shadow-xl border-2 transition-all ${
                             isSelected
-                              ? 'bg-amber-500 border-white text-black shadow-amber-500/80 scale-110'
-                              : 'bg-[#1b1612]/95 border-amber-400/90 text-amber-300 group-hover:bg-amber-500 group-hover:text-black group-hover:border-white shadow-black/80'
+                              ? 'bg-black border-white text-white scale-110 ring-2 ring-black'
+                              : 'bg-white border-black text-black group-hover:bg-black group-hover:text-white group-hover:border-white shadow-black/40'
                           }`}
                         >
                           <Wine className="w-3.5 h-3.5" />
@@ -108,8 +101,8 @@ export default function DistilleryMapSection() {
                         <span
                           className={`mt-1 text-[10px] font-bold px-2 py-0.5 rounded shadow-lg whitespace-nowrap transition-colors backdrop-blur-md ${
                             isSelected
-                              ? 'bg-amber-500 text-black border border-amber-300'
-                              : 'bg-black/90 text-[#f5ede4] border border-amber-800/80 group-hover:text-amber-300 group-hover:border-amber-500'
+                              ? 'bg-black text-white border border-white'
+                              : 'bg-white/95 text-black border border-black group-hover:bg-black group-hover:text-white'
                           }`}
                         >
                           {dist.name.split(' ')[0]}
@@ -124,15 +117,15 @@ export default function DistilleryMapSection() {
             </div>
 
             {/* Quick List Selector */}
-            <div className="mt-4 flex items-center gap-2 overflow-x-auto no-scrollbar pt-2 border-t border-[#231d17]">
+            <div className="mt-4 flex items-center gap-2 overflow-x-auto no-scrollbar pt-2 border-t border-zinc-200">
               {DISTILLERIES.map((d) => (
                 <button
                   key={d.id}
                   onClick={() => setSelectedDistillery(d)}
-                  className={`px-3 py-1.5 rounded-md text-xs font-medium whitespace-nowrap transition-colors ${
+                  className={`px-3 py-1.5 rounded-md text-xs font-bold whitespace-nowrap transition-colors ${
                     selectedDistillery.id === d.id
-                      ? 'bg-amber-600 text-black font-bold'
-                      : 'bg-[#1b1612] text-[#a39382] hover:text-amber-400 border border-[#29221b]'
+                      ? 'bg-black text-white shadow-xs'
+                      : 'bg-zinc-100 text-zinc-700 hover:text-black hover:bg-zinc-200 border border-zinc-300'
                   }`}
                 >
                   {d.name} ({d.country})
@@ -143,9 +136,9 @@ export default function DistilleryMapSection() {
           </div>
 
           {/* Distillery Detail Information Panel */}
-          <div className="lg:col-span-5 bg-[#17130f] border border-[#2b221a] rounded-2xl p-6 shadow-2xl space-y-6">
+          <div className="lg:col-span-5 bg-white border-2 border-black rounded-2xl p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] space-y-6">
             
-            <div className="relative h-48 w-full rounded-xl overflow-hidden bg-[#120f0c]">
+            <div className="relative h-48 w-full rounded-xl overflow-hidden bg-zinc-100 border border-zinc-300">
               <Image
                 src={selectedDistillery.image}
                 alt={selectedDistillery.name}
@@ -154,48 +147,48 @@ export default function DistilleryMapSection() {
                 className="object-cover object-center"
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#17130f] via-transparent to-transparent opacity-90" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
               
               <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
-                <span className="bg-amber-500 text-black text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">
+                <span className="bg-white text-black text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded border border-black shadow-xs">
                   {selectedDistillery.region}, {selectedDistillery.country}
                 </span>
-                <span className="bg-[#0f0d0b]/90 text-amber-400 text-xs font-mono px-2 py-0.5 rounded border border-amber-900/40">
+                <span className="bg-black text-white text-xs font-mono font-bold px-2 py-0.5 rounded border border-white/30">
                   Est. {selectedDistillery.founded}
                 </span>
               </div>
             </div>
 
             <div className="space-y-3">
-              <h3 className="font-serif font-bold text-2xl text-[#f8f3ed]">
+              <h3 className="font-serif font-black text-2xl text-black">
                 {selectedDistillery.name}
               </h3>
-              <p className="text-xs sm:text-sm text-[#b8a99a] leading-relaxed font-light">
+              <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-medium">
                 {selectedDistillery.description}
               </p>
             </div>
 
             {/* Spec Cards */}
             <div className="grid grid-cols-2 gap-3 text-xs">
-              <div className="bg-[#120e0b] p-3 rounded-lg border border-[#261f18] space-y-1">
-                <span className="text-[#8c7e70] flex items-center gap-1">
-                  <Calendar className="w-3.5 h-3.5 text-amber-500" /> Founded Year
+              <div className="bg-zinc-50 p-3 rounded-lg border border-zinc-300 space-y-1">
+                <span className="text-zinc-600 flex items-center gap-1 font-semibold">
+                  <Calendar className="w-3.5 h-3.5 text-black" /> Founded Year
                 </span>
-                <span className="font-bold text-[#f5f0ea]">{selectedDistillery.founded}</span>
+                <span className="font-black text-black">{selectedDistillery.founded}</span>
               </div>
 
-              <div className="bg-[#120e0b] p-3 rounded-lg border border-[#261f18] space-y-1">
-                <span className="text-[#8c7e70] flex items-center gap-1">
-                  <Droplets className="w-3.5 h-3.5 text-amber-500" /> Water Source
+              <div className="bg-zinc-50 p-3 rounded-lg border border-zinc-300 space-y-1">
+                <span className="text-zinc-600 flex items-center gap-1 font-semibold">
+                  <Droplets className="w-3.5 h-3.5 text-black" /> Water Source
                 </span>
-                <span className="font-bold text-[#f5f0ea]">{selectedDistillery.waterSource}</span>
+                <span className="font-black text-black">{selectedDistillery.waterSource}</span>
               </div>
 
-              <div className="bg-[#120e0b] p-3 rounded-lg border border-[#261f18] space-y-1 col-span-2">
-                <span className="text-[#8c7e70] flex items-center gap-1">
-                  <Award className="w-3.5 h-3.5 text-amber-500" /> Master Distiller / Signature Bottling
+              <div className="bg-zinc-50 p-3 rounded-lg border border-zinc-300 space-y-1 col-span-2">
+                <span className="text-zinc-600 flex items-center gap-1 font-semibold">
+                  <Award className="w-3.5 h-3.5 text-black" /> Master Distiller / Signature Bottling
                 </span>
-                <span className="font-bold text-amber-400">
+                <span className="font-black text-black">
                   {selectedDistillery.masterDistiller} • {selectedDistillery.signatureBottle}
                 </span>
               </div>
@@ -204,10 +197,10 @@ export default function DistilleryMapSection() {
             {/* Action CTA Button */}
             <button
               onClick={() => handleFilterBottles(selectedDistillery.name.split(' ')[0])}
-              className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-black font-bold text-sm py-3 px-4 rounded-lg shadow-lg transition-all cursor-pointer"
+              className="w-full inline-flex items-center justify-center gap-2 bg-black hover:bg-zinc-800 text-white font-extrabold text-xs sm:text-sm py-3.5 px-4 rounded-xl shadow-md transition-all cursor-pointer uppercase tracking-wider border border-black"
             >
               <span>View Bottlings from {selectedDistillery.name}</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 text-white" />
             </button>
 
           </div>

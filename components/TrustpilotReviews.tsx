@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Star, ShieldCheck, ChevronLeft, ChevronRight, CheckCircle, Award } from 'lucide-react';
+import { Star, ShieldCheck, ChevronLeft, ChevronRight, CheckCircle } from 'lucide-react';
 
 interface Review {
   id: string;
@@ -74,44 +74,44 @@ export default function TrustpilotReviews() {
   };
 
   return (
-    <section className="py-16 bg-[#120e0b] border-b border-[#261f18]" id="reviews">
+    <section className="py-16 bg-white border-b border-black/10" id="reviews">
       <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 2xl:px-16">
         
         {/* Section Header with TrustScore Badge */}
-        <div className="bg-[#18130f] border border-amber-900/40 rounded-2xl p-6 sm:p-8 shadow-2xl mb-12 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="bg-black text-white rounded-2xl p-6 sm:p-8 shadow-xl mb-12 flex flex-col md:flex-row items-center justify-between gap-6 border-2 border-black">
           
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-xl bg-emerald-950 border border-emerald-800/60 flex items-center justify-center shrink-0">
+            <div className="w-14 h-14 rounded-xl bg-zinc-900 border border-zinc-700 flex items-center justify-center shrink-0">
               <Star className="w-8 h-8 text-emerald-400 fill-emerald-400" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-serif text-2xl font-bold text-white">Trustpilot</span>
-                <span className="bg-emerald-900/80 text-emerald-300 border border-emerald-700/50 text-xs px-2 py-0.5 rounded font-mono font-bold">
+                <span className="font-serif text-2xl font-black text-white">Trustpilot</span>
+                <span className="bg-emerald-500 text-black text-xs px-2 py-0.5 rounded font-mono font-black">
                   EXCELLENT
                 </span>
               </div>
               <div className="flex items-center gap-2 mt-1">
                 <div className="flex text-emerald-400 text-sm">★★★★★</div>
-                <span className="text-sm font-bold text-[#f5f0ea]">4.98 / 5.0</span>
-                <span className="text-xs text-[#8c7e70]">(2,840 Verified EU Connoisseurs)</span>
+                <span className="text-sm font-black text-white">4.98 / 5.0</span>
+                <span className="text-xs text-zinc-400">(2,840 Verified EU Connoisseurs)</span>
               </div>
             </div>
           </div>
 
           {/* Right Trust Stats */}
-          <div className="flex items-center gap-6 text-xs text-[#b8a99a] border-t md:border-t-0 md:border-l border-[#2e261f] pt-4 md:pt-0 md:pl-6 w-full md:w-auto justify-around">
+          <div className="flex items-center gap-6 text-xs text-zinc-300 border-t md:border-t-0 md:border-l border-zinc-800 pt-4 md:pt-0 md:pl-6 w-full md:w-auto justify-around">
             <div className="text-center md:text-left">
-              <span className="block font-serif text-lg font-bold text-amber-400">27 Countries</span>
-              <span>EU Duty Free Transit</span>
+              <span className="block font-serif text-lg font-black text-white">27 Countries</span>
+              <span className="text-zinc-400">EU Duty Free Transit</span>
             </div>
             <div className="text-center md:text-left">
-              <span className="block font-serif text-lg font-bold text-amber-400">100% Insured</span>
-              <span>Climate Courier</span>
+              <span className="block font-serif text-lg font-black text-white">100% Insured</span>
+              <span className="text-zinc-400">Climate Courier</span>
             </div>
             <div className="text-center md:text-left">
-              <span className="block font-serif text-lg font-bold text-amber-400">Age Verified</span>
-              <span>Strict 18+ Protocol</span>
+              <span className="block font-serif text-lg font-black text-white">Age Verified</span>
+              <span className="text-zinc-400">Strict 18+ Protocol</span>
             </div>
           </div>
 
@@ -120,21 +120,21 @@ export default function TrustpilotReviews() {
         {/* Carousel Header Controls */}
         <div className="flex items-center justify-between mb-6">
           <div>
-            <span className="text-amber-500 font-mono text-xs uppercase tracking-widest">VERIFIED BUYER FEEDBACK</span>
-            <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#f5f0ea]">What European Connoisseurs Say</h3>
+            <span className="text-black font-mono text-xs uppercase tracking-widest font-black">VERIFIED BUYER FEEDBACK</span>
+            <h3 className="font-serif text-xl sm:text-2xl font-black text-black">What European Connoisseurs Say</h3>
           </div>
 
           <div className="flex items-center gap-2">
             <button
               onClick={prevReview}
-              className="p-2 rounded-full bg-[#1b1612] hover:bg-amber-600 hover:text-black text-[#c2b2a3] border border-[#2e261f] transition-all"
+              className="p-2 rounded-full bg-white hover:bg-black text-black hover:text-white border-2 border-black transition-all cursor-pointer"
               aria-label="Previous Review"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={nextReview}
-              className="p-2 rounded-full bg-[#1b1612] hover:bg-amber-600 hover:text-black text-[#c2b2a3] border border-[#2e261f] transition-all"
+              className="p-2 rounded-full bg-white hover:bg-black text-black hover:text-white border-2 border-black transition-all cursor-pointer"
               aria-label="Next Review"
             >
               <ChevronRight className="w-5 h-5" />
@@ -147,45 +147,45 @@ export default function TrustpilotReviews() {
           {REVIEWS.map((review, idx) => (
             <div
               key={review.id}
-              className={`bg-[#171310] border border-[#2b221a] p-5 rounded-xl shadow-lg flex flex-col justify-between space-y-4 transition-all duration-300 ${
-                idx === currentIndex ? 'ring-2 ring-amber-500/50 bg-[#1c1713]' : ''
+              className={`bg-white border-2 border-black p-5 rounded-xl shadow-sm hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between space-y-4 transition-all duration-300 ${
+                idx === currentIndex ? 'ring-2 ring-black' : ''
               }`}
             >
               <div className="space-y-3">
                 
                 {/* Author & Flag Header */}
-                <div className="flex items-center justify-between border-b border-[#261f18] pb-3">
+                <div className="flex items-center justify-between border-b border-zinc-200 pb-3">
                   <div className="flex items-center gap-2">
                     <span className="text-lg">{review.flag}</span>
                     <div>
-                      <h4 className="font-semibold text-sm text-[#f5f0ea] flex items-center gap-1">
+                      <h4 className="font-bold text-sm text-black flex items-center gap-1">
                         <span>{review.author}</span>
                         <span title="Verified Buyer">
-                          <CheckCircle className="w-3.5 h-3.5 text-emerald-400 inline" />
+                          <CheckCircle className="w-3.5 h-3.5 text-black inline" />
                         </span>
                       </h4>
-                      <span className="text-[10px] text-[#8c7e70]">{review.country} • {review.date}</span>
+                      <span className="text-[10px] text-zinc-500 font-semibold">{review.country} • {review.date}</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Star Rating */}
-                <div className="flex items-center gap-1 text-emerald-400 text-xs">
+                <div className="flex items-center gap-1 text-black text-xs">
                   {'★'.repeat(review.rating)}
                 </div>
 
                 {/* Review Title & Comment */}
-                <h5 className="font-serif font-bold text-sm text-amber-300 line-clamp-1">{review.title}</h5>
-                <p className="text-xs text-[#b0a090] leading-relaxed font-light line-clamp-4">
+                <h5 className="font-serif font-black text-sm text-black line-clamp-1">{review.title}</h5>
+                <p className="text-xs text-zinc-700 leading-relaxed font-medium line-clamp-4">
                   “{review.comment}”
                 </p>
 
               </div>
 
               {/* Bought Bottle Footer */}
-              <div className="pt-3 border-t border-[#261f18] text-[11px] text-[#8c7e70] flex items-center gap-1">
-                <ShieldCheck className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-                <span className="truncate">Verified Order: <strong className="text-[#c4b6a7]">{review.boughtBottle}</strong></span>
+              <div className="pt-3 border-t border-zinc-200 text-[11px] text-zinc-600 flex items-center gap-1">
+                <ShieldCheck className="w-3.5 h-3.5 text-black shrink-0" />
+                <span className="truncate">Verified Order: <strong className="text-black">{review.boughtBottle}</strong></span>
               </div>
 
             </div>

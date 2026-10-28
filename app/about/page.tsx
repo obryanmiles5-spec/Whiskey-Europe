@@ -24,13 +24,13 @@ export const metadata: Metadata = {
     'whiskey cellar master panel',
   ],
   alternates: {
-    canonical: 'https://whiskeyeurope.org/about',
+    canonical: 'https://www.whiskeyeurope.org/about',
   },
   openGraph: {
     title: 'About Us | Whiskey Europe Bonded Cellars & Sommelier Team',
     description:
       'Learn about Whiskey Europe’s heritage, bonded climate-controlled cellars in Rotterdam, sommelier tasting panel, and direct distillery allocations.',
-    url: 'https://whiskeyeurope.org/about',
+    url: 'https://www.whiskeyeurope.org/about',
     siteName: 'Whiskey Europe',
     type: 'website',
   },
@@ -51,13 +51,13 @@ export default function AboutPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://whiskeyeurope.org',
+        item: 'https://www.whiskeyeurope.org',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'About Us',
-        item: 'https://whiskeyeurope.org/about',
+        item: 'https://www.whiskeyeurope.org/about',
       },
     ],
   };
@@ -132,7 +132,7 @@ export default function AboutPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPageSchema) }}
       />
-      <div className="min-h-screen bg-[#0f0d0b] text-[#f5f0ea] flex flex-col justify-between selection:bg-amber-600 selection:text-black">
+      <div className="min-h-screen bg-white text-black flex flex-col justify-between selection:bg-black selection:text-white">
         <div>
           <Header />
 
@@ -143,17 +143,17 @@ export default function AboutPage() {
               <span className="text-amber-500 font-mono text-xs uppercase tracking-widest bg-amber-950/60 px-3.5 py-1 rounded-full border border-amber-800/40">
                 ESTABLISHED FOR EUROPEAN CONNOISSEURS
               </span>
-              <h1 className="font-serif font-bold text-3xl sm:text-5xl text-[#f8f3ed] leading-tight">
+              <h1 className="font-serif font-bold text-3xl sm:text-5xl text-black leading-tight">
                 Our Passion for Rare Spirits & European Heritage
               </h1>
-              <p className="text-sm sm:text-base text-[#b8a99a] leading-relaxed font-light">
-                Whiskey Europe (<strong className="text-[#f5f0ea]">whiskeyeurope.org</strong>) was founded to unite collectors and tasting enthusiasts across the continent with authentic, directly-sourced rare cask whiskies.
+              <p className="text-sm sm:text-base text-zinc-600 leading-relaxed font-light">
+                Whiskey Europe (<strong className="text-black">whiskeyeurope.org</strong>) was founded to unite collectors and tasting enthusiasts across the continent with authentic, directly-sourced rare cask whiskies.
               </p>
             </div>
 
             {/* Story Showcase Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-[#14100c] border border-[#2b221a] p-6 sm:p-10 rounded-2xl shadow-2xl">
-              <div className="relative h-80 sm:h-[420px] w-full rounded-xl overflow-hidden border border-[#231c16]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-white border border-zinc-300 p-6 sm:p-10 rounded-2xl shadow-2xl">
+              <div className="relative h-80 sm:h-[420px] w-full rounded-xl overflow-hidden border border-zinc-300">
                 <Image
                   src="https://images.unsplash.com/photo-1527281400683-1aae777175f8?q=80&w=1200&auto=format&fit=crop"
                   alt="Whiskey Europe Cellar Vault"
@@ -168,24 +168,24 @@ export default function AboutPage() {
                 <span className="text-amber-500 text-xs font-mono tracking-wider uppercase">
                   THE ROTTERDAM BONDED HUB
                 </span>
-                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#f8f3ed]">
+                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-black">
                   Preserving Cask Integrity from Distillery to Glass
                 </h2>
-                <p className="text-xs sm:text-sm text-[#b0a090] leading-relaxed font-light">
+                <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-light">
                   Fine whisky is a living spirit shaped by climate, oak char, and years of silent maturation. Our primary logistics vault in Rotterdam operates under strict humidity control (65%) and steady 14°C ambient cellar temperatures.
                 </p>
-                <p className="text-xs sm:text-sm text-[#b0a090] leading-relaxed font-light">
+                <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-light">
                   Every single bottle is inspected by hand, stamped with an individual serial hologram, and fitted with shock-absorbent thermal air-cushioned transit packaging before being dispatched across 27 EU states via insured express freight.
                 </p>
 
                 <div className="grid grid-cols-2 gap-4 pt-2 text-xs">
-                  <div className="p-3 bg-[#18130f] border border-[#2b221a] rounded-lg">
+                  <div className="p-3 bg-white border border-zinc-300 rounded-lg">
                     <span className="font-serif font-bold text-lg text-amber-400 block">100%</span>
-                    <span className="text-[#a39382]">Anti-Counterfeit Authenticity</span>
+                    <span className="text-zinc-600">Anti-Counterfeit Authenticity</span>
                   </div>
-                  <div className="p-3 bg-[#18130f] border border-[#2b221a] rounded-lg">
+                  <div className="p-3 bg-white border border-zinc-300 rounded-lg">
                     <span className="font-serif font-bold text-lg text-amber-400 block">27 EU</span>
-                    <span className="text-[#a39382]">Seamless Customs Transit</span>
+                    <span className="text-zinc-600">Seamless Customs Transit</span>
                   </div>
                 </div>
               </div>
@@ -194,10 +194,10 @@ export default function AboutPage() {
             {/* Core Pillars */}
             <div className="space-y-8">
               <div className="text-center space-y-2 max-w-xl mx-auto">
-                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#f8f3ed]">
+                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-black">
                   The Whiskey Europe Guarantee
                 </h2>
-                <p className="text-xs text-[#a39382]">
+                <p className="text-xs text-zinc-600">
                   Four unwavering commitments behind every single bottle sold on our platform.
                 </p>
               </div>
@@ -208,15 +208,15 @@ export default function AboutPage() {
                   return (
                     <div
                       key={i}
-                      className="bg-[#14100c] border border-[#282019] p-6 rounded-xl space-y-3 hover:border-amber-600/50 transition-all"
+                      className="bg-white border border-zinc-300 p-6 rounded-xl space-y-3 hover:border-amber-600/50 transition-all"
                     >
                       <div className="w-10 h-10 rounded-lg bg-amber-950/80 border border-amber-800/40 flex items-center justify-center text-amber-400">
                         <IconComp className="w-5 h-5" />
                       </div>
-                      <h3 className="font-serif font-bold text-base text-[#f5f0ea]">
+                      <h3 className="font-serif font-bold text-base text-black">
                         {p.title}
                       </h3>
-                      <p className="text-xs text-[#a39382] leading-relaxed font-light">
+                      <p className="text-xs text-zinc-600 leading-relaxed font-light">
                         {p.desc}
                       </p>
                     </div>
@@ -231,7 +231,7 @@ export default function AboutPage() {
                 <span className="text-amber-500 font-mono text-xs uppercase tracking-wider">
                   SENSORY PANEL & CURATORS
                 </span>
-                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#f8f3ed]">
+                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-black">
                   Meet Our Cellar Masters
                 </h2>
               </div>
@@ -240,7 +240,7 @@ export default function AboutPage() {
                 {teamMembers.map((m, i) => (
                   <div
                     key={i}
-                    className="bg-[#14100c] border border-[#282019] rounded-xl overflow-hidden p-5 space-y-4 text-center hover:border-amber-600/50 transition-all"
+                    className="bg-white border border-zinc-300 rounded-xl overflow-hidden p-5 space-y-4 text-center hover:border-amber-600/50 transition-all"
                   >
                     <div className="relative w-28 h-28 rounded-full overflow-hidden mx-auto border-2 border-amber-600/50 shadow-xl">
                       <Image
@@ -253,17 +253,17 @@ export default function AboutPage() {
                       />
                     </div>
                     <div>
-                      <h3 className="font-serif font-bold text-base text-[#f8f3ed]">
+                      <h3 className="font-serif font-bold text-base text-black">
                         {m.name}
                       </h3>
                       <span className="text-xs text-amber-400 font-medium block mt-0.5">
                         {m.role}
                       </span>
-                      <span className="text-[10px] text-[#8c7e70] font-mono block">
+                      <span className="text-[10px] text-zinc-600 font-mono block">
                         {m.experience}
                       </span>
                     </div>
-                    <p className="text-xs text-[#a39382] font-light leading-relaxed">
+                    <p className="text-xs text-zinc-600 font-light leading-relaxed">
                       {m.bio}
                     </p>
                   </div>
@@ -277,53 +277,53 @@ export default function AboutPage() {
                 <span className="text-amber-500 font-mono text-xs uppercase tracking-wider">
                   KNOWLEDGE BASE
                 </span>
-                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#f8f3ed]">
+                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-black">
                   Frequently Asked Questions
                 </h2>
-                <p className="text-xs text-[#a39382]">
+                <p className="text-xs text-zinc-600">
                   Explore answers to common questions about global spirits, from what is cognac to the difference between mezcal and tequila.
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-                <div className="bg-[#14100c] border border-[#282019] p-5 rounded-xl">
-                  <h3 className="font-serif font-bold text-[#f5f0ea] mb-2">What is the difference between mezcal and tequila?</h3>
-                  <p className="text-xs text-[#a39382] leading-relaxed">
+                <div className="bg-white border border-zinc-300 p-5 rounded-xl">
+                  <h3 className="font-serif font-bold text-black mb-2">What is the difference between mezcal and tequila?</h3>
+                  <p className="text-xs text-zinc-600 leading-relaxed">
                     Wondering about <strong>tequila vs mezcal</strong>? Both are agave-based Mexican spirits, but they differ in production. <strong>What is tequila made of?</strong> It must be made from 100% Blue Weber Agave, mostly in Jalisco. <strong>What is mezcal?</strong> Mezcal can be made from over 30 agave types, and the piñas are traditionally roasted in underground pits, giving it a signature smoky flavor. Popular tequila brands include Don Julio 1942, while authentic mezcal liquor often comes from Oaxaca, Mexico.
                   </p>
                 </div>
                 
-                <div className="bg-[#14100c] border border-[#282019] p-5 rounded-xl">
-                  <h3 className="font-serif font-bold text-[#f5f0ea] mb-2">What is Cognac and how does it differ from Brandy?</h3>
-                  <p className="text-xs text-[#a39382] leading-relaxed">
+                <div className="bg-white border border-zinc-300 p-5 rounded-xl">
+                  <h3 className="font-serif font-bold text-black mb-2">What is Cognac and how does it differ from Brandy?</h3>
+                  <p className="text-xs text-zinc-600 leading-relaxed">
                     <strong>What is cognac?</strong> Cognac is a specific type of premium brandy produced exclusively in the Cognac region of France. It is double-distilled in copper pot stills and aged in French oak barrels. The top <strong>cognac brands list</strong> is dominated by names like Hennessy, Rémy Martin (creators of the legendary Remy Louis 13 cognac), and T Hine.
                   </p>
                 </div>
 
-                <div className="bg-[#14100c] border border-[#282019] p-5 rounded-xl">
-                  <h3 className="font-serif font-bold text-[#f5f0ea] mb-2">What are the most popular scotch brands?</h3>
-                  <p className="text-xs text-[#a39382] leading-relaxed">
+                <div className="bg-white border border-zinc-300 p-5 rounded-xl">
+                  <h3 className="font-serif font-bold text-black mb-2">What are the most popular scotch brands?</h3>
+                  <p className="text-xs text-zinc-600 leading-relaxed">
                     When looking at a <strong>list of scotch brands</strong>, there are two main categories: single malts and blended scotch. <strong>Single malt scotch brands</strong> like Macallan (Macallan UK), Dalmore whiskey, Glenfiddich (often misspelled glindfich), and Lagavulin Single Malt 16 dominate the premium tier. Popular <strong>blended scotch whisky brands</strong> include Johnnie Walker, Ballantine&apos;s, and Chivas Regal.
                   </p>
                 </div>
 
-                <div className="bg-[#14100c] border border-[#282019] p-5 rounded-xl">
-                  <h3 className="font-serif font-bold text-[#f5f0ea] mb-2">How do you pronounce Laphroaig?</h3>
-                  <p className="text-xs text-[#a39382] leading-relaxed">
+                <div className="bg-white border border-zinc-300 p-5 rounded-xl">
+                  <h3 className="font-serif font-bold text-black mb-2">How do you pronounce Laphroaig?</h3>
+                  <p className="text-xs text-zinc-600 leading-relaxed">
                     A common question among beginners is <strong>Laphroaig pronounce</strong>. The famous Islay single malt scotch is pronounced &quot;La-FROYg&quot; (rhymes with boy). It is one of the most heavily peated <strong>scotch whiskey from Islay</strong>, sitting alongside Ardbeg 10 and Caol Ila Islay as a staple of the island&apos;s smoky whiskey flavor.
                   </p>
                 </div>
                 
-                <div className="bg-[#14100c] border border-[#282019] p-5 rounded-xl">
-                  <h3 className="font-serif font-bold text-[#f5f0ea] mb-2">What is Soju vs Cachaca?</h3>
-                  <p className="text-xs text-[#a39382] leading-relaxed">
+                <div className="bg-white border border-zinc-300 p-5 rounded-xl">
+                  <h3 className="font-serif font-bold text-black mb-2">What is Soju vs Cachaca?</h3>
+                  <p className="text-xs text-zinc-600 leading-relaxed">
                     <strong>What is soju?</strong> Soju is a clear, low-alcohol Korean distilled beverage traditionally made from rice or sweet potatoes. On the other hand, <strong>Cachaca</strong> (kashasha drink / cachaça) is the national spirit of Brazil, a spicy, fruity liquor made directly from fermented sugarcane juice, often compared to rum (but distinct from standard cuban rum).
                   </p>
                 </div>
                 
-                <div className="bg-[#14100c] border border-[#282019] p-5 rounded-xl">
-                  <h3 className="font-serif font-bold text-[#f5f0ea] mb-2">Whats a sherry cask finish?</h3>
-                  <p className="text-xs text-[#a39382] leading-relaxed">
+                <div className="bg-white border border-zinc-300 p-5 rounded-xl">
+                  <h3 className="font-serif font-bold text-black mb-2">Whats a sherry cask finish?</h3>
+                  <p className="text-xs text-zinc-600 leading-relaxed">
                     <strong>Whats a sherry?</strong> Sherry is a fortified wine from Spain. In the whisky world, a &quot;sherry cask finish&quot; means aging single speyside malt whisky in barrels that previously held Oloroso or Pedro Ximénez sherry. This imparts deep flavors of raisins, dark chocolate, and figs—a signature whiskey flavor found in Aberlour 12, Dalwhinnie, and Macallan.
                   </p>
                 </div>
@@ -332,10 +332,10 @@ export default function AboutPage() {
 
             {/* Call to Action Banner */}
             <div className="bg-gradient-to-r from-amber-950/80 via-[#1a140f] to-[#120e0b] border border-amber-900/60 rounded-2xl p-8 text-center space-y-4 shadow-2xl">
-              <h3 className="font-serif text-2xl font-bold text-[#f8f3ed]">
+              <h3 className="font-serif text-2xl font-bold text-black">
                 Explore Our Current Cellar Allocations
               </h3>
-              <p className="text-xs text-[#b8a99a] max-w-md mx-auto">
+              <p className="text-xs text-zinc-600 max-w-md mx-auto">
                 Discover rare Islay malts, Speyside vintage sherry casks, and limited European craft whiskies ready for instant dispatch.
               </p>
               <div className="pt-2">

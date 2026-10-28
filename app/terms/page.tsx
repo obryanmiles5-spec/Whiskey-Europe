@@ -15,13 +15,13 @@ export const metadata: Metadata = {
   description:
     'Terms of Service, sale contracts, buyer age requirements (18+), and European alcohol distribution compliance.',
   alternates: {
-    canonical: 'https://whiskeyeurope.org/terms',
+    canonical: 'https://www.whiskeyeurope.org/terms',
   },
   openGraph: {
     title: 'Terms & Conditions | Whiskey Europe',
     description:
       'Terms of Service, sale contracts, buyer age requirements (18+), and European alcohol distribution compliance.',
-    url: 'https://whiskeyeurope.org/terms',
+    url: 'https://www.whiskeyeurope.org/terms',
     siteName: 'Whiskey Europe',
     type: 'website',
   },
@@ -42,13 +42,13 @@ export default function TermsPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://whiskeyeurope.org',
+        item: 'https://www.whiskeyeurope.org',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Terms & Conditions',
-        item: 'https://whiskeyeurope.org/terms',
+        item: 'https://www.whiskeyeurope.org/terms',
       },
     ],
   };
@@ -59,14 +59,14 @@ export default function TermsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(termsBreadcrumbs) }}
       />
-      <div className="min-h-screen bg-[#0f0d0b] text-[#f5f0ea] flex flex-col justify-between">
+      <div className="min-h-screen bg-white text-black flex flex-col justify-between">
         <div>
           <Header />
 
           <main className="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-8">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-xs font-semibold text-amber-400 hover:text-amber-300 transition-colors bg-[#18130f] px-3.5 py-2 rounded-lg border border-[#2b221a]"
+              className="inline-flex items-center gap-2 text-xs font-semibold text-amber-400 hover:text-amber-300 transition-colors bg-white px-3.5 py-2 rounded-lg border border-zinc-300"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back to Home</span>
@@ -77,17 +77,17 @@ export default function TermsPage() {
                 <Scale className="w-3.5 h-3.5" />
                 <span>LEGAL TERMS OF SALE</span>
               </div>
-              <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#f8f3ed]">
+              <h1 className="font-serif text-3xl sm:text-4xl font-bold text-black">
                 Terms & Conditions of Service
               </h1>
-              <p className="text-xs text-[#8c7e70]">
+              <p className="text-xs text-zinc-600">
                 Last updated: August 2026 • Governing Law: European Union Single Market & Trade Directives
               </p>
             </div>
 
-            <div className="bg-[#14100c] border border-[#28211a] rounded-2xl p-6 sm:p-8 space-y-6 text-sm text-[#b8a898] leading-relaxed font-light">
+            <div className="bg-white border border-[#28211a] rounded-2xl p-6 sm:p-8 space-y-6 text-sm text-zinc-600 leading-relaxed font-light">
               <section className="space-y-2">
-                <h2 className="font-serif font-bold text-lg text-[#f8f3ed] flex items-center gap-2">
+                <h2 className="font-serif font-bold text-lg text-black flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-amber-500" />
                   1. Age Verification & Legal Drinking Age (18+)
                 </h2>
@@ -97,7 +97,7 @@ export default function TermsPage() {
               </section>
 
               <section className="space-y-2">
-                <h2 className="font-serif font-bold text-lg text-[#f8f3ed]">
+                <h2 className="font-serif font-bold text-lg text-black">
                   2. Orders, Invoicing & Contract Formation
                 </h2>
                 <p>
@@ -106,7 +106,7 @@ export default function TermsPage() {
               </section>
 
               <section className="space-y-2">
-                <h2 className="font-serif font-bold text-lg text-[#f8f3ed]">
+                <h2 className="font-serif font-bold text-lg text-black">
                   3. Product Authenticity & Provenance Guarantee
                 </h2>
                 <p>
@@ -115,7 +115,7 @@ export default function TermsPage() {
               </section>
 
               <section className="space-y-2">
-                <h2 className="font-serif font-bold text-lg text-[#f8f3ed]">
+                <h2 className="font-serif font-bold text-lg text-black">
                   4. Payment Methods & Security
                 </h2>
                 <p>
@@ -124,7 +124,7 @@ export default function TermsPage() {
               </section>
 
               <section className="space-y-2">
-                <h2 className="font-serif font-bold text-lg text-[#f8f3ed]">
+                <h2 className="font-serif font-bold text-lg text-black">
                   5. Contact & Inquiries
                 </h2>
                 <p>

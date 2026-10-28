@@ -3,12 +3,12 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Search, X, Star, ShoppingBag, Eye, Filter, Wine } from 'lucide-react';
+import { Search, X, Filter, Wine } from 'lucide-react';
 import { useCart } from '@/lib/cart-context';
-import { WHISKEY_COLLECTION, Whiskey } from '@/lib/whiskeys';
+import { WHISKEY_COLLECTION } from '@/lib/whiskeys';
 
 export default function SearchOverlay() {
-  const { isSearchOpen, setIsSearchOpen, searchQuery, setSearchQuery, addToCart, setQuickViewWhiskey } = useCart();
+  const { isSearchOpen, setIsSearchOpen, searchQuery, setSearchQuery, addToCart } = useCart();
   const [selectedRegion, setSelectedRegion] = useState<string>('All');
   const [selectedType, setSelectedType] = useState<string>('All');
 
@@ -32,26 +32,26 @@ export default function SearchOverlay() {
   });
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/85 backdrop-blur-md p-4 sm:p-8 animate-fadeIn">
-      <div className="max-w-5xl mx-auto bg-[#14100c] border border-[#2e261f] rounded-2xl p-6 sm:p-8 shadow-2xl relative text-[#f5f0ea] my-8">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/80 backdrop-blur-md p-4 sm:p-8 animate-fadeIn">
+      <div className="max-w-5xl mx-auto bg-white border-2 border-black rounded-2xl p-6 sm:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] relative text-black my-8">
         
         {/* Header Search Input */}
-        <div className="flex items-center justify-between border-b border-[#29221b] pb-4 mb-6">
+        <div className="flex items-center justify-between border-b-2 border-black pb-4 mb-6">
           <div className="flex items-center gap-3 flex-1 mr-4">
-            <Search className="w-6 h-6 text-amber-500" />
+            <Search className="w-6 h-6 text-black" />
             <input
               type="text"
               autoFocus
               placeholder="Search by bottle name, distillery, Islay, Sherry cask, age statement..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-transparent text-lg sm:text-xl text-[#f5f0ea] placeholder-[#6e6256] focus:outline-none"
+              className="w-full bg-transparent text-lg sm:text-xl text-black font-bold placeholder-zinc-400 focus:outline-none"
             />
           </div>
 
           <button
             onClick={() => setIsSearchOpen(false)}
-            className="p-2 text-[#8c7e70] hover:text-amber-400 rounded-full hover:bg-[#1f1914]"
+            className="p-2 text-black hover:bg-zinc-100 rounded-full cursor-pointer"
             aria-label="Close Search"
           >
             <X className="w-6 h-6" />
@@ -59,15 +59,15 @@ export default function SearchOverlay() {
         </div>
 
         {/* Filter Quick Controls */}
-        <div className="flex flex-wrap items-center gap-4 text-xs text-[#a39382] mb-6 pb-4 border-b border-[#241d17]">
-          <span className="flex items-center gap-1 font-semibold text-amber-400">
+        <div className="flex flex-wrap items-center gap-4 text-xs text-zinc-700 mb-6 pb-4 border-b border-zinc-200">
+          <span className="flex items-center gap-1 font-bold text-black uppercase tracking-wider">
             <Filter className="w-3.5 h-3.5" /> Filter Results:
           </span>
 
           <select
             value={selectedRegion}
             onChange={(e) => setSelectedRegion(e.target.value)}
-            className="bg-[#100d0a] border border-[#332920] rounded px-3 py-1.5 text-[#f5f0ea] focus:outline-none focus:border-amber-500"
+            className="bg-zinc-50 border-2 border-black rounded px-3 py-1.5 text-black font-semibold focus:outline-none"
           >
             <option value="All">All Regions</option>
             <option value="Islay">Islay (Scotland)</option>
@@ -82,7 +82,7 @@ export default function SearchOverlay() {
           <select
             value={selectedType}
             onChange={(e) => setSelectedType(e.target.value)}
-            className="bg-[#100d0a] border border-[#332920] rounded px-3 py-1.5 text-[#f5f0ea] focus:outline-none focus:border-amber-500"
+            className="bg-zinc-50 border-2 border-black rounded px-3 py-1.5 text-black font-semibold focus:outline-none"
           >
             <option value="All">All Spirits Types</option>
             <option value="Single Malt">Single Malt</option>
@@ -92,7 +92,7 @@ export default function SearchOverlay() {
             <option value="Cask Strength">Cask Strength</option>
           </select>
 
-          <span className="ml-auto font-mono text-[#8c7e70]">
+          <span className="ml-auto font-mono font-bold text-black">
             Found {filtered.length} Bottles
           </span>
         </div>
@@ -100,9 +100,9 @@ export default function SearchOverlay() {
         {/* Search Results Grid */}
         {filtered.length === 0 ? (
           <div className="text-center py-16 space-y-3">
-            <Search className="w-12 h-12 text-[#6e6256] mx-auto" />
-            <h3 className="font-serif font-bold text-lg text-[#f5f0ea]">No Bottlings Found</h3>
-            <p className="text-xs text-[#a39382]">
+            <Search className="w-12 h-12 text-zinc-400 mx-auto" />
+            <h3 className="font-serif font-black text-lg text-black">No Bottlings Found</h3>
+            <p className="text-xs text-zinc-600 font-medium">
               Try searching for &quot;Bowmore&quot;, &quot;Macallan&quot;, &quot;Sherry&quot;, &quot;Peated&quot;, or &quot;Ireland&quot;.
             </p>
           </div>
@@ -111,9 +111,9 @@ export default function SearchOverlay() {
             {filtered.map((w) => (
               <div
                 key={w.id}
-                className="bg-[#18130f] border border-[#2b221a] hover:border-amber-600/60 p-3 rounded-xl flex gap-3 relative group transition-all"
+                className="bg-white border-2 border-black hover:border-black p-3 rounded-xl flex gap-3 relative group transition-all shadow-xs hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
               >
-                <div className="relative w-20 h-24 rounded-lg overflow-hidden bg-[#100d0a] shrink-0 border border-[#2b221a]">
+                <div className="relative w-20 h-24 rounded-lg overflow-hidden bg-zinc-100 shrink-0 border border-zinc-300">
                   {w.image ? (
                     <Image
                       src={w.image}
@@ -125,7 +125,7 @@ export default function SearchOverlay() {
                       referrerPolicy="no-referrer"
                     />
                   ) : (
-                    <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-b from-[#1e1813] to-[#0a0806] text-amber-500 p-1">
+                    <div className="w-full h-full flex flex-col items-center justify-center bg-zinc-100 text-black p-1">
                       <Wine className="w-6 h-6" />
                     </div>
                   )}
@@ -133,21 +133,21 @@ export default function SearchOverlay() {
 
                 <div className="flex-1 flex flex-col justify-between">
                   <div>
-                    <span className="text-[10px] text-amber-400 font-mono">
+                    <span className="text-[10px] text-zinc-600 font-mono font-bold">
                       {w.region} • {w.age} Yrs
                     </span>
                     <Link
-                      href={`/shop/${w.id}`}
+                      href={`/shop/${w.slug || w.id}`}
                       onClick={() => setIsSearchOpen(false)}
-                      className="font-serif font-bold text-sm text-[#f8f3ed] group-hover:text-amber-400 cursor-pointer line-clamp-1 block"
+                      className="font-serif font-bold text-sm text-black hover:underline cursor-pointer line-clamp-1 block"
                     >
                       {w.name}
                     </Link>
-                    <p className="text-[11px] text-[#8c7e70] truncate">{w.distillery}</p>
+                    <p className="text-[11px] text-zinc-500 font-medium truncate">{w.distillery}</p>
                   </div>
 
                   <div className="flex items-center justify-between pt-2">
-                    <span className="font-serif font-bold text-amber-400 text-sm">
+                    <span className="font-serif font-black text-black text-sm">
                       €{w.price.toFixed(2)}
                     </span>
 
@@ -156,7 +156,7 @@ export default function SearchOverlay() {
                         addToCart(w, 1);
                         setIsSearchOpen(false);
                       }}
-                      className="bg-amber-600 hover:bg-amber-500 text-black font-bold text-[11px] px-2.5 py-1 rounded"
+                      className="bg-black hover:bg-zinc-800 text-white font-black text-[11px] px-3 py-1 rounded uppercase tracking-wider cursor-pointer border border-black"
                     >
                       Add
                     </button>

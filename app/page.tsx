@@ -38,13 +38,13 @@ export const metadata: Metadata = {
     'rare bottle allocations',
   ],
   alternates: {
-    canonical: 'https://whiskeyeurope.org',
+    canonical: 'https://www.whiskeyeurope.org',
   },
   openGraph: {
     title: 'Whiskey Europe | Rare Single Malts & European Cellars',
     description:
       'Curated European boutique for rare single malts, aged whiskies, Japanese allocations, distillery map, regional shipping, and Cask Club rewards.',
-    url: 'https://whiskeyeurope.org',
+    url: 'https://www.whiskeyeurope.org',
     siteName: 'Whiskey Europe',
     type: 'website',
     images: [
@@ -149,7 +149,7 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <div className="min-h-screen bg-[#0f0d0b] text-[#f5f0ea] flex flex-col justify-between selection:bg-amber-600 selection:text-black">
+      <div className="min-h-screen bg-white text-black flex flex-col justify-between selection:bg-black selection:text-white">
         {/* 1. Top Header Announcement Bar */}
         <AnnouncementBar />
 

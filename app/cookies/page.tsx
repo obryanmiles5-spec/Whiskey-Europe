@@ -15,13 +15,13 @@ export const metadata: Metadata = {
   description:
     'Cookie usage, session preferences, cart persistence, and consent management under EU ePrivacy Directive and GDPR.',
   alternates: {
-    canonical: 'https://whiskeyeurope.org/cookies',
+    canonical: 'https://www.whiskeyeurope.org/cookies',
   },
   openGraph: {
     title: 'Cookie Policy | Whiskey Europe',
     description:
       'Cookie usage, session preferences, cart persistence, and consent management under EU ePrivacy Directive and GDPR.',
-    url: 'https://whiskeyeurope.org/cookies',
+    url: 'https://www.whiskeyeurope.org/cookies',
     siteName: 'Whiskey Europe',
     type: 'website',
   },
@@ -42,13 +42,13 @@ export default function CookiesPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://whiskeyeurope.org',
+        item: 'https://www.whiskeyeurope.org',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Cookie Policy',
-        item: 'https://whiskeyeurope.org/cookies',
+        item: 'https://www.whiskeyeurope.org/cookies',
       },
     ],
   };
@@ -59,14 +59,14 @@ export default function CookiesPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(cookiesBreadcrumbs) }}
       />
-      <div className="min-h-screen bg-[#0f0d0b] text-[#f5f0ea] flex flex-col justify-between">
+      <div className="min-h-screen bg-white text-black flex flex-col justify-between">
         <div>
           <Header />
 
           <main className="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-8">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-xs font-semibold text-amber-400 hover:text-amber-300 transition-colors bg-[#18130f] px-3.5 py-2 rounded-lg border border-[#2b221a]"
+              className="inline-flex items-center gap-2 text-xs font-semibold text-amber-400 hover:text-amber-300 transition-colors bg-white px-3.5 py-2 rounded-lg border border-zinc-300"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back to Home</span>
@@ -77,17 +77,17 @@ export default function CookiesPage() {
                 <Cookie className="w-3.5 h-3.5" />
                 <span>COOKIE & CONSENT DIRECTIVE</span>
               </div>
-              <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#f8f3ed]">
+              <h1 className="font-serif text-3xl sm:text-4xl font-bold text-black">
                 Cookie & Storage Policy
               </h1>
-              <p className="text-xs text-[#8c7e70]">
+              <p className="text-xs text-zinc-600">
                 EU ePrivacy Directive & GDPR Cookie Management
               </p>
             </div>
 
-            <div className="bg-[#14100c] border border-[#28211a] rounded-2xl p-6 sm:p-8 space-y-6 text-sm text-[#b8a898] leading-relaxed font-light">
+            <div className="bg-white border border-[#28211a] rounded-2xl p-6 sm:p-8 space-y-6 text-sm text-zinc-600 leading-relaxed font-light">
               <section className="space-y-2">
-                <h2 className="font-serif font-bold text-lg text-[#f8f3ed]">
+                <h2 className="font-serif font-bold text-lg text-black">
                   1. Essential Session & Cart Cookies
                 </h2>
                 <p>
@@ -96,7 +96,7 @@ export default function CookiesPage() {
               </section>
 
               <section className="space-y-2">
-                <h2 className="font-serif font-bold text-lg text-[#f8f3ed]">
+                <h2 className="font-serif font-bold text-lg text-black">
                   2. Performance & Analytics Cookies
                 </h2>
                 <p>
@@ -105,7 +105,7 @@ export default function CookiesPage() {
               </section>
 
               <section className="space-y-2">
-                <h2 className="font-serif font-bold text-lg text-[#f8f3ed]">
+                <h2 className="font-serif font-bold text-lg text-black">
                   3. Managing Your Cookie Preferences
                 </h2>
                 <p>
